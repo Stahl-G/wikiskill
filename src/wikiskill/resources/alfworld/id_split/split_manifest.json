@@ -1,0 +1,17 @@
+{
+  "benchmark": "ALFWorld",
+  "manifest_type": "id_split",
+  "source": "caller-provided dataset; see docs/datasets.md",
+  "seed": 20260904,
+  "counts": {
+    "train": 39,
+    "val": 18,
+    "test": 134
+  },
+  "notes": [
+    "Uid lists pinned before any ALFWorld arm runs.",
+    "test = all valid_unseen (134). train/val = seeded sample of valid_seen.",
+    "Episode driver is src/multi_agent_brief/evaluation_v2/alfworld/{act.sh,step.py,rollout.py}.",
+    "Test split is locked until ALFWorld K=4 is finished."
+  ]
+}

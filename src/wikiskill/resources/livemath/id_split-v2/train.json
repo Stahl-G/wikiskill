@@ -1,0 +1,142 @@
+[
+ {
+  "uid": "202605-28",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-47",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-46",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-47",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-54",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-53",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-64",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-13",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-33",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-55",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-11",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-57",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-103",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-58",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-111",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-79",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-82",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-108",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-7",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-93",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-26",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-15",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-94",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-28",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-45",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-77",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-42",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-21",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-86",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-13",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-81",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-71",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202606-84",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202604-51",
+  "source_split": "livemath_v2_train"
+ },
+ {
+  "uid": "202605-88",
+  "source_split": "livemath_v2_train"
+ }
+]

@@ -1,0 +1,6 @@
+uid,question,answer,source_docs,source_files,difficulty
+UIDT1,What is two plus two?,4,https://example.test/a,doc_a.txt,easy
+UIDT2,"Which names appear?","Alice, Bob","https://example.test/a
+https://example.test/b","doc_a.txt
+doc_b.txt",hard
+UIDV1,What year?,1940,https://example.test/missing,missing_doc.txt,easy

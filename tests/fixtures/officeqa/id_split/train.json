@@ -1,0 +1,18 @@
+[
+  {
+    "id": "UIDT1",
+    "uid": "UIDT1",
+    "category": "easy",
+    "source_files": "stale_split_name.txt",
+    "source_docs": "https://example.test/a",
+    "source_split": "train"
+  },
+  {
+    "id": "UIDT2",
+    "uid": "UIDT2",
+    "category": "hard",
+    "source_files": "doc_a.txt\r\ndoc_b.txt",
+    "source_docs": "https://example.test/a\r\nhttps://example.test/b",
+    "source_split": "train"
+  }
+]

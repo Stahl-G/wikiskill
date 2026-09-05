@@ -1,0 +1,433 @@
+{
+  "origin": "Stahl-G/briefloop",
+  "snapshot_date": "2026-09-05",
+  "files": [
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/fetch.py",
+      "destination": "src/wikiskill/officeqa/fetch.py",
+      "source_sha256": "f1d9d4889fa58271d7ad0a0dc2e6e761cddc2f564bffd827a0b75f9e49036663"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/wiki_agents.py",
+      "destination": "src/wikiskill/officeqa/wiki_agents.py",
+      "source_sha256": "efdb1b4a6756eb81198591b56959576d82e3880efe7b531cbc25ade1efd5f39f"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/scoring.py",
+      "destination": "src/wikiskill/officeqa/scoring.py",
+      "source_sha256": "0d13d1e33d0952c9b10752bdb4bd509a4dd7b08c4bfe33e1abb058a38091aa12"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/__init__.py",
+      "destination": "src/wikiskill/officeqa/__init__.py",
+      "source_sha256": "fa82f3f71610949f7d7f7e1c1e086391204b54c8f8e1893db5c3c48d96c57620"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/dataset.py",
+      "destination": "src/wikiskill/officeqa/dataset.py",
+      "source_sha256": "1c0e2c57811d333001489df7cd77c63ff9c79e47acb05af0be3692810a0e1a1c"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/rollout.py",
+      "destination": "src/wikiskill/officeqa/rollout.py",
+      "source_sha256": "3b887c40f2f2c6457a1448a265c94651e1e3d9d2a60a12f51f34ce58faddf1f4"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/retrieval.py",
+      "destination": "src/wikiskill/officeqa/retrieval.py",
+      "source_sha256": "114b359511d6b6dc6659b123d8418bef21fb7a0a01ad9eb20558c71704c95ad7"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/loop.py",
+      "destination": "src/wikiskill/officeqa/loop.py",
+      "source_sha256": "bb92165e46edbcfdf21cce546d22fee0c9a198b069f55dce429531d25a0a9639"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/officeqa/reward.py",
+      "destination": "src/wikiskill/officeqa/reward.py",
+      "source_sha256": "2defb2fbacc83e7898a7e9e52d90454bdd1a1fb621ce24d4cea35598f3921176"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/benchmarks/spreadsheet.py",
+      "destination": "src/wikiskill/benchmarks/spreadsheet.py",
+      "source_sha256": "d384e01d2457afbb70bf38e40871e263f627be8afb30f232e7a6c8b49afdb847"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/benchmarks/livemath.py",
+      "destination": "src/wikiskill/benchmarks/livemath.py",
+      "source_sha256": "c0f0fce8ff01a49163db2c303522390a63240d5450192c66bebf3b51aad00e98"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/benchmarks/sealqa.py",
+      "destination": "src/wikiskill/benchmarks/sealqa.py",
+      "source_sha256": "c675f48a31eb25e1faf0dfa689d5d4112baf67e386133a1be17b64e888d5e201"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/benchmarks/__init__.py",
+      "destination": "src/wikiskill/benchmarks/__init__.py",
+      "source_sha256": "5cc1306843857d06aadfc315ed66439e0b655f8844525986b3f532e0b71ec87b"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/benchmarks/alfworld.py",
+      "destination": "src/wikiskill/benchmarks/alfworld.py",
+      "source_sha256": "f3b7d850818e9d7bd46fe79a30f6eb9c679dd2be12027f6af026f583872362bc"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/livemath/__init__.py",
+      "destination": "src/wikiskill/livemath/__init__.py",
+      "source_sha256": "5cd79765a3bd9beacaf828614b0a420363460d088ae57fb33b42659760332611"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/livemath/rollout.py",
+      "destination": "src/wikiskill/livemath/rollout.py",
+      "source_sha256": "5175eb24dde0ffb23fac134c784af39c02d3a1ee81afc33dd23712d5d4e63692"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/livemath/loop.py",
+      "destination": "src/wikiskill/livemath/loop.py",
+      "source_sha256": "1e3acdbc3b7a40574d2e74becd5c2f7e2be4c356a851df791fd69801865df3ec"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/spreadsheet/__init__.py",
+      "destination": "src/wikiskill/spreadsheet/__init__.py",
+      "source_sha256": "26d24f34e7c137a80b8d104751aa162fa9bff6957ff3f654442733626c45fc04"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/spreadsheet/rollout.py",
+      "destination": "src/wikiskill/spreadsheet/rollout.py",
+      "source_sha256": "26a3196907afde552fe0792fc0e69b8f00d7fd06e902dd458ec0c27d7dfbcc19"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/spreadsheet/loop.py",
+      "destination": "src/wikiskill/spreadsheet/loop.py",
+      "source_sha256": "bd3f8115e0d970754a4000b54c1a810c305ce341f8e059e1ed5988dfaf8737fe"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/sealqa/__init__.py",
+      "destination": "src/wikiskill/sealqa/__init__.py",
+      "source_sha256": "072c89f359b3ed6277c00b0f8dc6e16d72ab504e0edbefcf2a650edb1bb5cdf5"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/sealqa/rollout.py",
+      "destination": "src/wikiskill/sealqa/rollout.py",
+      "source_sha256": "e73f4e605f93c36bcad35ec2b6e05379df329110426731930491d02e0435278a"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/sealqa/loop.py",
+      "destination": "src/wikiskill/sealqa/loop.py",
+      "source_sha256": "e2abb3ecbc8506b0347907c38894e2bfcd4498ad368155f3f61efa746859b440"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/alfworld/act.sh",
+      "destination": "src/wikiskill/alfworld/act.sh",
+      "source_sha256": "3937616bb537c03dd04c1c493e6917349cac4830039b4df188e88f82a1fabce8"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/alfworld/__init__.py",
+      "destination": "src/wikiskill/alfworld/__init__.py",
+      "source_sha256": "c0fee60a3e6a907126d13a7f8e2303d42d95a625d63bddc53b9f7f78f90dc46d"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/alfworld/step.py",
+      "destination": "src/wikiskill/alfworld/step.py",
+      "source_sha256": "961c83bf42276935ce5ee21f2ed1e4149a31e16e4409aec353bc4e1de899660a"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/alfworld/rollout.py",
+      "destination": "src/wikiskill/alfworld/rollout.py",
+      "source_sha256": "5505f36a54ff7e6d84d134ae18c3b150b58bd938ef28df755eefee81c41bc457"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/wiki.py",
+      "destination": "src/wikiskill/wiki.py",
+      "source_sha256": "68029e98381e8e8c8b2c8a1a8e5e94a263710251bfdf74dd3aa8b0326eae806b"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/codex_identity.py",
+      "destination": "src/wikiskill/codex_identity.py",
+      "source_sha256": "700b7fdbe7e75fa002fe23bd1ca68dedb00ba5adefa3c81077c7eb637084adab"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/k4_lock.py",
+      "destination": "src/wikiskill/k4_lock.py",
+      "source_sha256": "774ccb87e04de4e4272bcbf4c909d414e4f43d100a0ffb45acabb1b2a1c247b0"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/skill_proposer.py",
+      "destination": "src/wikiskill/skill_proposer.py",
+      "source_sha256": "538a29a8f9ede4c20a975ff00c8502e5b8324870805131ddc4777d74122e9a43",
+      "operation": "bounded contract extraction"
+    },
+    {
+      "source": "src/multi_agent_brief/evaluation_v2/wiki_maintainer.py",
+      "destination": "src/wikiskill/wiki_maintainer.py",
+      "source_sha256": "1ab76797b43c3aff1a83cef5df0e2a51815e00eb3774f55ce36f410cc6bd2d35",
+      "operation": "bounded contract extraction"
+    },
+    {
+      "source": "evaluation/officeqa/id_split/test.json",
+      "destination": "src/wikiskill/resources/officeqa/id_split/test.json",
+      "source_sha256": "563c30589e897f08161df4d2778578e14a8a2887391813e8d45c3d39eafd900d"
+    },
+    {
+      "source": "evaluation/officeqa/id_split/train.json",
+      "destination": "src/wikiskill/resources/officeqa/id_split/train.json",
+      "source_sha256": "1bb3a9ca003f6ba7aff34cf2d1fe23d9af12ff647060ac8b7d4c22dcb9e84b56"
+    },
+    {
+      "source": "evaluation/officeqa/id_split/split_manifest.json",
+      "destination": "src/wikiskill/resources/officeqa/id_split/split_manifest.json",
+      "source_sha256": "8f76983eadeb6670df2fc88f568fa86c6318d4e8f02912bf05c5c69955a867e7"
+    },
+    {
+      "source": "evaluation/officeqa/id_split/val.json",
+      "destination": "src/wikiskill/resources/officeqa/id_split/val.json",
+      "source_sha256": "1d7fc4443718a8fc565faf4450d31109880dbf8103759a306289f5ba9407f11b"
+    },
+    {
+      "source": "evaluation/officeqa/protocol.json",
+      "destination": "src/wikiskill/resources/officeqa/protocol.json",
+      "source_sha256": "dfed430dd1e660d57e07bcf721407b471ceab74599d97472a1d48eb1e7ac0ffe"
+    },
+    {
+      "source": "evaluation/officeqa/wiki/prompts/proposer.md",
+      "destination": "src/wikiskill/resources/officeqa/wiki/prompts/proposer.md",
+      "source_sha256": "5bc853d2a575e2d8f285a5c044f5ce78a631ed25c3983cb6bc3002bb037af2f9"
+    },
+    {
+      "source": "evaluation/officeqa/wiki/prompts/maintainer.md",
+      "destination": "src/wikiskill/resources/officeqa/wiki/prompts/maintainer.md",
+      "source_sha256": "0226313e9496c1dceb27964eca83b9f8a132b71b1e8f4f0713553c4e0c0aa835"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split/test.json",
+      "destination": "src/wikiskill/resources/livemath/id_split/test.json",
+      "source_sha256": "e8d7f89d85a512845db3c2f2db96f9cfc8d5db1fd0ad8a5c56fd7d8c856acb43"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split/train.json",
+      "destination": "src/wikiskill/resources/livemath/id_split/train.json",
+      "source_sha256": "c6a837204e2856fe2c49f63a67dbd36ac35eeba858f62e3dde2024d9b50aebe2"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split/split_manifest.json",
+      "destination": "src/wikiskill/resources/livemath/id_split/split_manifest.json",
+      "source_sha256": "c25ef800bf593721ef62b3cb13cf98ff813db12e498017ea377da1161adf90aa"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split/val.json",
+      "destination": "src/wikiskill/resources/livemath/id_split/val.json",
+      "source_sha256": "0af28c979d88f478c43fe43e705c2e67ad4751f75c4e46363deb9d5aeac60844"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split-v2/test.json",
+      "destination": "src/wikiskill/resources/livemath/id_split-v2/test.json",
+      "source_sha256": "5a3102e031cd4a340bce7886a5081a4d20e5318be5680bd3f0133074507a9037"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split-v2/train.json",
+      "destination": "src/wikiskill/resources/livemath/id_split-v2/train.json",
+      "source_sha256": "1f5547e287f4a10b6aca0624558a0e1fc16c54d418bb7295ac745a78d62507f5"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split-v2/split_manifest.json",
+      "destination": "src/wikiskill/resources/livemath/id_split-v2/split_manifest.json",
+      "source_sha256": "9745aba65ee6e03cb3123ba57d2bbb35a8e6e7900da0a0ffce6a60c3039588f8"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/id_split-v2/val.json",
+      "destination": "src/wikiskill/resources/livemath/id_split-v2/val.json",
+      "source_sha256": "09109777411a6c768758f7e7c7c4acc57959de6ae7e853739d1236cf6f9c587a"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/protocol.json",
+      "destination": "src/wikiskill/resources/livemath/protocol.json",
+      "source_sha256": "d5392395f695b0c336b943194fc0d53d65c71f0821453a4d30d0a449950d30fc"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/wiki/prompts/proposer.md",
+      "destination": "src/wikiskill/resources/livemath/wiki/prompts/proposer.md",
+      "source_sha256": "a41dcfb5c06a143c218d7e7fcc7434a1761558fd422f4a5317c7e87f9917b1d1"
+    },
+    {
+      "source": "evaluation/benchmarks/livemath/wiki/prompts/maintainer.md",
+      "destination": "src/wikiskill/resources/livemath/wiki/prompts/maintainer.md",
+      "source_sha256": "b970b5e96b8a30ed4927956e486863457321d205f0ed0ca994e541731f691fa3"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/id_split/test.json",
+      "destination": "src/wikiskill/resources/spreadsheet/id_split/test.json",
+      "source_sha256": "ded391eaed718b6d54f90e8a98bf9002374e0fa9399400bbb27c8d9c2726c190"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/id_split/train.json",
+      "destination": "src/wikiskill/resources/spreadsheet/id_split/train.json",
+      "source_sha256": "c5b6daa8cf256db27de33551410b9142059629f436148a59af8e054548bb537d"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/id_split/split_manifest.json",
+      "destination": "src/wikiskill/resources/spreadsheet/id_split/split_manifest.json",
+      "source_sha256": "8aefbf85e4e781e984421a42ac31503de6dc3555d5c0e8d2c50c64c80d5c6d84"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/id_split/val.json",
+      "destination": "src/wikiskill/resources/spreadsheet/id_split/val.json",
+      "source_sha256": "0da7ace89f54f8738c2191f940ccd1da96725c6b3dbe43a32a4b29e251f8c623"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/protocol.json",
+      "destination": "src/wikiskill/resources/spreadsheet/protocol.json",
+      "source_sha256": "418a734c8f5a0b49c13165496edb71c205d4109cf6e21ea6b7bee822bf7f1695"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/wiki/prompts/proposer.md",
+      "destination": "src/wikiskill/resources/spreadsheet/wiki/prompts/proposer.md",
+      "source_sha256": "a596fc571dc3048408d4e3606c58aea05a6ea899eb28318a266b8270db3f3de2"
+    },
+    {
+      "source": "evaluation/benchmarks/spreadsheet/wiki/prompts/maintainer.md",
+      "destination": "src/wikiskill/resources/spreadsheet/wiki/prompts/maintainer.md",
+      "source_sha256": "c28f3a58e0037a07053cd1babfa022279e0bdb7fe3b1d201692803fb5e4b9557"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/id_split/test.json",
+      "destination": "src/wikiskill/resources/sealqa/id_split/test.json",
+      "source_sha256": "0781383cf75dcfac50abb3d69f0a527241f37cfdecac7fd1266f7e9f1bd50df1"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/id_split/train.json",
+      "destination": "src/wikiskill/resources/sealqa/id_split/train.json",
+      "source_sha256": "e57fddebafef49471518677b2e53dac99f2a5a547822b142aeb635131e052d39"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/id_split/split_manifest.json",
+      "destination": "src/wikiskill/resources/sealqa/id_split/split_manifest.json",
+      "source_sha256": "067f9860af2c6bcad178f9569b81454759b3fae2db39f606d30552725ee333ec"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/id_split/val.json",
+      "destination": "src/wikiskill/resources/sealqa/id_split/val.json",
+      "source_sha256": "6815a1e7ba27b670f0263e69d8f17b277823de00f2bdde4e8593395d42be16cc"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/protocol.json",
+      "destination": "src/wikiskill/resources/sealqa/protocol.json",
+      "source_sha256": "a28d685582dd95f81a663abdfb92e22d7b3c20e550902016234e9625ebb808a3"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/wiki/prompts/proposer.md",
+      "destination": "src/wikiskill/resources/sealqa/wiki/prompts/proposer.md",
+      "source_sha256": "59a82c04bb59837fa214ff091008c0e73e51358a181d5483a0dc451a5b30436d"
+    },
+    {
+      "source": "evaluation/benchmarks/sealqa/wiki/prompts/maintainer.md",
+      "destination": "src/wikiskill/resources/sealqa/wiki/prompts/maintainer.md",
+      "source_sha256": "63cf4361c2985f1a1a1e0b91473d7ea601916c3044cb40242e7fe7dcf043e1b3"
+    },
+    {
+      "source": "evaluation/benchmarks/alfworld/id_split/test.json",
+      "destination": "src/wikiskill/resources/alfworld/id_split/test.json",
+      "source_sha256": "90641970f5a1985440bb1c4ab99a72990552a7361368a30e7d7406c4530b5fbd"
+    },
+    {
+      "source": "evaluation/benchmarks/alfworld/id_split/train.json",
+      "destination": "src/wikiskill/resources/alfworld/id_split/train.json",
+      "source_sha256": "936c50050964e64162eac7473e2fa8bf95711ef7d453ee75ce319cb6270f7f36"
+    },
+    {
+      "source": "evaluation/benchmarks/alfworld/id_split/split_manifest.json",
+      "destination": "src/wikiskill/resources/alfworld/id_split/split_manifest.json",
+      "source_sha256": "616194c4363a72524ff4bb0904f790afbdd1ed636134996d5f0360b27decee1e"
+    },
+    {
+      "source": "evaluation/benchmarks/alfworld/id_split/val.json",
+      "destination": "src/wikiskill/resources/alfworld/id_split/val.json",
+      "source_sha256": "e3577ae393dc13e62e9041918811a59abf6b168b719cace18fd16d2b54c6d905"
+    },
+    {
+      "source": "tests/test_officeqa_dataset.py",
+      "destination": "tests/test_officeqa_dataset.py",
+      "source_sha256": "cc095042e6fea68fda2f7cf5b2f91fea83124b0ad9b01c2747609ff33856c3aa"
+    },
+    {
+      "source": "tests/test_officeqa_scoring.py",
+      "destination": "tests/test_officeqa_scoring.py",
+      "source_sha256": "7b7c1697a5aa033a8aeb5d1474a59be18535fa5aaedc98e990e8e0bf2f341de4"
+    },
+    {
+      "source": "tests/test_officeqa_loop.py",
+      "destination": "tests/test_officeqa_loop.py",
+      "source_sha256": "153f5dd09de4bce19d55e98b6180937ffb020a40d0fe424c733d054b1a947631"
+    },
+    {
+      "source": "tests/test_officeqa_retrieval.py",
+      "destination": "tests/test_officeqa_retrieval.py",
+      "source_sha256": "a4c838ad2a2dca3e9cbf9c5f600326532fad0a1b9b56d1e471a70a88faa799f7"
+    },
+    {
+      "source": "tests/test_livemath_adapter.py",
+      "destination": "tests/test_livemath_adapter.py",
+      "source_sha256": "bcd7e0c3f8f92b7f75ff29672dafef1e589bfb2d1c35bcff444a37f0c024dcc5"
+    },
+    {
+      "source": "tests/test_spreadsheet_scoring.py",
+      "destination": "tests/test_spreadsheet_scoring.py",
+      "source_sha256": "79f46fc8b11d77a660ccf0103eb65f2e254f112bb757f91139a29089e0ba342e"
+    },
+    {
+      "source": "tests/test_sealqa_adapter.py",
+      "destination": "tests/test_sealqa_adapter.py",
+      "source_sha256": "86cf09520a603169d309d999a5bbdeffac4625e14412c3ddce7126044cf72ec0"
+    },
+    {
+      "source": "tests/test_alfworld_act.py",
+      "destination": "tests/test_alfworld_act.py",
+      "source_sha256": "cb23444f85fc52febeaecac757b94c562cafe2cb5c596260089a0d8525c61391"
+    },
+    {
+      "source": "tests/test_codex_identity.py",
+      "destination": "tests/test_codex_identity.py",
+      "source_sha256": "72c4cb97a43a260c3444c8e81a179283bb632b812d4d834d302c4d33d2821dc3"
+    },
+    {
+      "source": "tests/test_k4_lock.py",
+      "destination": "tests/test_k4_lock.py",
+      "source_sha256": "f201050cd8d9c739bf204903bfa88048b7bb0e753b3473b3189b7b5b773c4602"
+    },
+    {
+      "source": "tests/fixtures/officeqa/officeqa_mini.csv",
+      "destination": "tests/fixtures/officeqa/officeqa_mini.csv",
+      "source_sha256": "458ccc18ab700efdcc78128460ec734f0a0d413ee6e82345866edab22fcdea52"
+    },
+    {
+      "source": "tests/fixtures/officeqa/id_split/train.json",
+      "destination": "tests/fixtures/officeqa/id_split/train.json",
+      "source_sha256": "f87e9c9c7e835719054b67e9b5253c96086c3bd7ce0b89eae1d9e0316a0d8e56"
+    },
+    {
+      "source": "tests/fixtures/officeqa/id_split/val.json",
+      "destination": "tests/fixtures/officeqa/id_split/val.json",
+      "source_sha256": "0bfef461397d1dd6e803852e214330850bcc2d01517920cdd054df64a39aa3fa"
+    },
+    {
+      "source": "tests/fixtures/officeqa/corpus/treasury_bulletins_parsed/transformed/doc_b.txt",
+      "destination": "tests/fixtures/officeqa/corpus/treasury_bulletins_parsed/transformed/doc_b.txt",
+      "source_sha256": "e5ceb56bbcbcc843254b3500e054eb8e8fea0553400bd6ed8e6fe745d9f40846"
+    },
+    {
+      "source": "tests/fixtures/officeqa/corpus/treasury_bulletins_parsed/transformed/doc_a.txt",
+      "destination": "tests/fixtures/officeqa/corpus/treasury_bulletins_parsed/transformed/doc_a.txt",
+      "source_sha256": "19b162e789dd62b62272089ac493c4dfc76b41e3a7d86155cb9e293bc2470638"
+    },
+    {
+      "source": "tests/fixtures/livemath/qa_tiny.json",
+      "destination": "tests/fixtures/livemath/qa_tiny.json",
+      "source_sha256": "de66b6473a33ff2a6af7aa65b245ccedddfbd576a430ae8d72bc97086fbfc4d8"
+    },
+    {
+      "source": "LICENSE",
+      "destination": "LICENSE",
+      "source_sha256": "59d44ffe78a69ed32b010f69bf788c8a33e51b32421d2457f2874a80efe7d005"
+    }
+  ]
+}

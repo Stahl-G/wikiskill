@@ -1,0 +1,16 @@
+[
+  {
+    "month": "202604",
+    "no": 1,
+    "mcq": {
+      "question": "What is 2+2?",
+      "choices": [
+        {"label": "B", "text": "3"},
+        {"label": "C", "text": "5"},
+        {"label": "D", "text": "22"},
+        {"label": "E", "text": "0"}
+      ],
+      "correct_choice": {"label": "A", "text": "4"}
+    }
+  }
+]

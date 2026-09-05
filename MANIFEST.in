@@ -1,0 +1,7 @@
+include README.md README_zh-CN.md NOTICE.md LICENSE
+recursive-include third_party *
+recursive-include docs *.md *.json
+recursive-include tests *.py *.csv *.json *.txt
+recursive-include scripts *.py
+recursive-include src/wikiskill/resources *.md *.json *.sha256
+recursive-include src/wikiskill/alfworld *.sh

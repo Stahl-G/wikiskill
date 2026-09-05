@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wikiskill-research"
+version = "0.1.0"
+description = "Compile agent experience into persistent knowledge and validated skills"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md", "third_party/officeqa/*"]
+dependencies = ["pydantic>=2.10,<3"]
+
+[project.optional-dependencies]
+spreadsheet = ["openpyxl>=3.1"]
+datasets = ["huggingface-hub>=0.30", "pyarrow>=17", "pandas>=2"]
+plots = ["matplotlib>=3.8"]
+dev = ["pytest>=8", "openpyxl>=3.1", "build>=1"]
+
+[project.scripts]
+wikiskill = "wikiskill.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+wikiskill = ["resources/**/*.md", "resources/**/*.json", "resources/**/*.sha256", "alfworld/*.sh"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,42 @@
+{
+  "benchmark": "OfficeQA",
+  "paper": "arXiv:2608.27454",
+  "comparison": "no-skill vs WikiSkill",
+  "metric": "mean_accuracy",
+  "tolerance": 0.0,
+  "k": 4,
+  "scorer": "vendored databricks/officeqa reward.score_answer",
+  "answer_tag": "FINAL_ANSWER",
+  "arms": [
+    {
+      "id": "floor",
+      "model": "gpt-5.3-codex-spark",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "cheap",
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "mid",
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "ceiling",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "medium"
+    }
+  ],
+  "optimizer": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "note": "Maintainer and Proposer. Table-2-like cost split, not paper Table 1 same-model."
+  },
+  "floor_probe": {
+    "split": "val",
+    "n": 10,
+    "order": ["cheap", "mid", "floor", "ceiling"]
+  }
+}

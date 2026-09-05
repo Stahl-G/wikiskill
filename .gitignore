@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+build/
+dist/
+data/
+runs/
+.env
+.env.*
+!.env.example
+private_planning/
+*.private.md
+*.internal.md
+.DS_Store

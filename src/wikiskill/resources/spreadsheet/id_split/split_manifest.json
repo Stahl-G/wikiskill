@@ -1,0 +1,21 @@
+{
+  "benchmark": "SpreadsheetBench",
+  "manifest_type": "id_split",
+  "source": "caller-provided dataset; see docs/datasets.md",
+  "seed": 20260904,
+  "pool_size": 398,
+  "quarantined": [
+    "283-32",
+    "41-47"
+  ],
+  "counts": {
+    "train": 80,
+    "val": 40,
+    "test": 278
+  },
+  "notes": [
+    "Uid lists pinned before any Spreadsheet arm runs.",
+    "41-47 and 283-32 are quarantined (KNOWN_MALFORMED); test=278 not 280.",
+    "Test split is locked until Spreadsheet K=4 is finished."
+  ]
+}

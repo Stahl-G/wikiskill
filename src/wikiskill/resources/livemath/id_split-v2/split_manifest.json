@@ -1,0 +1,53 @@
+{
+ "benchmark": "LiveMathematicianBench (de-contaminated v2)",
+ "reason": "shortcut audit 2026-09-05: fixed-sentence option is gold in 100% of affected items (val 9/18, train 16/35, test 52/124 in v1); see private_planning/livemath/shortcut-audit-20260905.md",
+ "seed": 20260905,
+ "counts": {
+  "train": 35,
+  "val": 18,
+  "test": 124
+ },
+ "exclusion_rule": "exclude any item where an option contains 'stronger result can be proven'",
+ "notes": [
+  "v1 id_split preserved untouched as historical record; all completed v1 val histories carry the 50%-shortcut annotation",
+  "all future LiveMath runs (incl. tools-mode probe) use id_split-v2",
+  "anti-shortcut audits recorded in the audit file: gold-position uniformity, month composition, option-length tell"
+ ],
+ "carve": "position-stratified (gold label balanced A-E per split via round-robin over shuffled label buckets)",
+ "anti_shortcut_audits": {
+  "gold_position_per_split": {
+   "train": {
+    "A": 7,
+    "B": 7,
+    "C": 7,
+    "D": 7,
+    "E": 7
+   },
+   "val": {
+    "A": 4,
+    "B": 4,
+    "C": 4,
+    "D": 3,
+    "E": 3
+   },
+   "test": {
+    "A": 17,
+    "B": 29,
+    "C": 21,
+    "D": 32,
+    "E": 25
+   }
+  },
+  "shortest_option_is_gold_rate": {
+   "train": 0.314,
+   "val": 0.333,
+   "test": 0.21
+  },
+  "fixed_sentence_absent": true
+ },
+ "revision": "v2.1: initial v2 carve had D-position skew in test (39/124); re-carved position-stratified; v2.0 never used in any run",
+ "residual_risks": {
+  "test_position_skew": "B=29/D=32 vs A=17 of 124 (max +6pp over 20%); neutralized for the primary paired endpoint (S0 vs SK on identical items); only 8 items of slack in the 185-clean pool prevent full test balancing without shrinking below the paper's split shape",
+  "shortest_option_tell": "upstream property: gold options average shorter (242 vs 268 chars); shortest=gold hits 24% pool-wide vs 20% random (31%/33% in the drawn train/val). Cannot be fixed without rewriting options. Countermeasure: any accepted LiveMath skill whose text references option length/brevity/verbosity as a selection cue is flagged as tell-exploitation and reported as such"
+ }
+}

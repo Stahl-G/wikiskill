@@ -1,0 +1,45 @@
+{
+  "benchmark": "LiveMath",
+  "paper": "arXiv:2608.27454",
+  "comparison": "no-skill vs WikiSkill",
+  "metric": "mean_accuracy",
+  "k": 4,
+  "scorer": "exact match on <answer> choice label",
+  "answer_tag": "answer",
+  "arms": [
+    {
+      "id": "luna",
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "terra",
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "55",
+      "model": "gpt-5.5",
+      "reasoning_effort": "medium"
+    },
+    {
+      "id": "sol",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "medium"
+    }
+  ],
+  "optimizer": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "note": "Maintainer and Proposer. Same optimizer as OfficeQA."
+  },
+  "split": {
+    "train": 35,
+    "val": 18,
+    "test": 124,
+    "seed": 20260905,
+    "dir": "evaluation/benchmarks/livemath/id_split-v2",
+    "historical_v1": "evaluation/benchmarks/livemath/id_split",
+    "note": "v2 decontaminated split (fixed-sentence option excluded). v1 is historical only; new measurements must use id_split-v2. Test locked until official freeze + unlock."
+  }
+}

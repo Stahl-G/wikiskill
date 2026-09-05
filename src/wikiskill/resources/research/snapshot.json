@@ -1,0 +1,5144 @@
+{
+  "captured_at": "2026-09-05T09:05:56.639080+00:00",
+  "scope": "historical validation outcomes; held-out generalization evaluation in progress, results pending",
+  "source_runtime": "Codex",
+  "independent_evolutions_per_cell": 1,
+  "scores_from_pre_extraction_harness": true,
+  "cells": [
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "val_n": 24,
+      "baseline": 0.9166666666666666,
+      "retained": 0.9166666666666666,
+      "updated_at": "2026-09-04T15:50:59Z",
+      "status": "complete_k4",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "val_n": 24,
+      "baseline": 0.8333333333333334,
+      "retained": 0.875,
+      "updated_at": "2026-09-04T16:17:17Z",
+      "status": "complete_k4",
+      "accepted_iteration": 1,
+      "exploratory": false,
+      "skill": "skills/officeqa/55.md",
+      "skill_sha256": "3b6d65bd179739c7086b1689c2348f2de4ef72b884da8e1e345a8894a7b80ba1"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "val_n": 24,
+      "baseline": 0.8333333333333334,
+      "retained": 0.875,
+      "updated_at": "2026-09-04T14:40:40Z",
+      "status": "complete_k4",
+      "accepted_iteration": 3,
+      "exploratory": false,
+      "skill": "skills/officeqa/terra.md",
+      "skill_sha256": "91c7713d7fbe506649f0bcd68b8998b153afdec08374d9a4b856cb99c3f21ca2"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "val_n": 24,
+      "baseline": 0.75,
+      "retained": 0.75,
+      "updated_at": "2026-09-04T12:29:27Z",
+      "status": "complete_k4",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "val_n": 24,
+      "baseline": 0.75,
+      "retained": 0.9583333333333334,
+      "updated_at": "2026-09-05T07:31:46Z",
+      "status": "evolution_pending",
+      "accepted_iteration": 2,
+      "exploratory": true,
+      "skill": "skills/officeqa-retrieval/sol.md",
+      "skill_sha256": "5533c964477638dd2762058a0200db1c669352fb49fb3b7b9b1125cf31fb483c"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "val_n": 24,
+      "baseline": 0.7916666666666666,
+      "retained": 0.875,
+      "updated_at": "2026-09-05T07:27:04Z",
+      "status": "evolution_pending",
+      "accepted_iteration": 2,
+      "exploratory": true,
+      "skill": "skills/officeqa-retrieval/55.md",
+      "skill_sha256": "8a4f6b152973132fc7c6f213a5472f722f2623c4c14aaadf04010ea9ef81e013"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "terra",
+      "val_n": 24,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": true,
+      "skill": null
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "luna",
+      "val_n": 24,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": true,
+      "skill": null
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "val_n": 18,
+      "baseline": 0.6111111111111112,
+      "retained": 0.6111111111111112,
+      "updated_at": "2026-09-04T17:53:03Z",
+      "status": "complete_k4",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "val_n": 18,
+      "baseline": 0.5,
+      "retained": 0.6111111111111112,
+      "updated_at": "2026-09-04T18:02:51Z",
+      "status": "complete_k4",
+      "accepted_iteration": 1,
+      "exploratory": false,
+      "skill": "skills/livemath/55.md",
+      "skill_sha256": "ca4a557f6d6f25be44fcba79bf378812e66f5179bf80bd324dc7bc1ad5b88434"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "val_n": 18,
+      "baseline": 0.4444444444444444,
+      "retained": 0.4444444444444444,
+      "updated_at": "2026-09-04T17:31:10Z",
+      "status": "complete_k4",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "val_n": 18,
+      "baseline": 0.3333333333333333,
+      "retained": 0.4444444444444444,
+      "updated_at": "2026-09-04T17:14:02Z",
+      "status": "complete_k4",
+      "accepted_iteration": 1,
+      "exploratory": false,
+      "skill": "skills/livemath/luna.md",
+      "skill_sha256": "eb6ebcdb903853e48d63dc86250cf85833fad1ad5cc1cdf97b9c63be17ce1d31"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "val_n": 40,
+      "baseline": 0.825,
+      "retained": 0.85,
+      "updated_at": "2026-09-04T23:29:31Z",
+      "status": "complete_k4",
+      "accepted_iteration": 1,
+      "exploratory": false,
+      "skill": "skills/spreadsheet/sol.md",
+      "skill_sha256": "85964e7fcfda98f25a89548ae398c6962a0012a71233f048cf4b4a9e11fbb7d8"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "val_n": 40,
+      "baseline": 0.75,
+      "retained": 0.825,
+      "updated_at": "2026-09-05T08:46:00Z",
+      "status": "evolution_pending",
+      "accepted_iteration": 2,
+      "exploratory": false,
+      "skill": "skills/spreadsheet/55.md",
+      "skill_sha256": "e47ffe2f0e9015773ddbba3ab1a3d74eb14b68424ca3d066dd400393a93ee917"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "val_n": 40,
+      "baseline": 0.725,
+      "retained": 0.725,
+      "updated_at": "2026-09-04T21:21:40Z",
+      "status": "evolution_pending",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "val_n": 40,
+      "baseline": 0.8,
+      "retained": 0.8,
+      "updated_at": null,
+      "status": "evolution_pending",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "val_n": 10,
+      "baseline": 0.7,
+      "retained": 0.8,
+      "updated_at": "2026-09-04T23:06:44Z",
+      "status": "complete_k4",
+      "accepted_iteration": 4,
+      "exploratory": false,
+      "skill": "skills/sealqa/sol.md",
+      "skill_sha256": "0663e13640fb89b439f3a30450f643163f84ee8a6f1fa0a135efa2516f93decb"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "val_n": 10,
+      "baseline": 0.7,
+      "retained": 0.7,
+      "updated_at": "2026-09-04T23:06:47Z",
+      "status": "complete_k4",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "sealqa",
+      "arm": "terra",
+      "val_n": 10,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "sealqa",
+      "arm": "luna",
+      "val_n": 10,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "val_n": 18,
+      "baseline": 1.0,
+      "retained": 1.0,
+      "updated_at": null,
+      "status": "early_stop_val_ceiling",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "val_n": 18,
+      "baseline": 1.0,
+      "retained": 1.0,
+      "updated_at": null,
+      "status": "early_stop_val_ceiling",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "alfworld",
+      "arm": "terra",
+      "val_n": 18,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    },
+    {
+      "domain": "alfworld",
+      "arm": "luna",
+      "val_n": 18,
+      "baseline": null,
+      "retained": null,
+      "updated_at": null,
+      "status": "not_run",
+      "accepted_iteration": null,
+      "exploratory": false,
+      "skill": null
+    }
+  ],
+  "pairs": [
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0001",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0027",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0039",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0041",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0091",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0109",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0161",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0170",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0190",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0220",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0233",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0239",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0001",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0027",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0039",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0041",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0091",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0109",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0161",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0170",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0190",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0220",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0233",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0239",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0039",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0001",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0041",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0027",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0109",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0091",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0170",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0161",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0190",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0220",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0233",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0239",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0001",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0027",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0039",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0041",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0091",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0109",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0161",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0170",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0190",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0220",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0233",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0239",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": null
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0027",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0001",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0041",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0039",
+      "s0": 1.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0091",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0109",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0170",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0161",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0190",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0220",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0233",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0239",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0001",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0027",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0039",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0041",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0052",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0070",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0072",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0086",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0091",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0109",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0142",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0159",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0154",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0170",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0190",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0161",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0213",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0217",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0220",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0233",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0234",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0235",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0239",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "uid": "UID0240",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202606-11",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-71",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-38",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202606-52",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-18",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202606-85",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202606-44",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-56",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-19",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-88",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202606-63",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-65",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-36",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-31",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202604-60",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "uid": "202605-52",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202606-11",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-71",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-38",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-18",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202606-52",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202606-85",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202606-44",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-56",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-88",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-19",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202604-60",
+      "s0": 1.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-65",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-36",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-31",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202605-52",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "uid": "202606-63",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-71",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202606-11",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-34",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-38",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202606-52",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-18",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202606-85",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-19",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202606-44",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-88",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-56",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202606-63",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-65",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202604-60",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-36",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-31",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "uid": "202605-52",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-71",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202606-11",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-18",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-38",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202606-85",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202606-52",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202606-44",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-56",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-19",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202606-63",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-60",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202604-88",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-36",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-65",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-31",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "uid": "202605-52",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "47933",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "374-31",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "58904",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "547-18",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "34033",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "333-29",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "9726",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "43589",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "45635",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "45896",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "188-39",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "40959",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "9569",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "15671",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "50526",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "50811",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "236-22",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "230-16",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "156-14",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "51586",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "477-45",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "91-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "247-24",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "32023",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "51680",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "254-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "52807",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "17111",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "53994",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "56563",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "55421",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "54513",
+      "s0": 1.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "46240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "39667",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "40757",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "56920",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "44389",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "37378",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "269-43",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "uid": "14240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "47933",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "374-31",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "58904",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "14240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "547-18",
+      "s0": 1.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "34033",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "333-29",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "9726",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "43589",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "45635",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "188-39",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "45896",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "40959",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "15671",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "9569",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "50811",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "50526",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "236-22",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "230-16",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "156-14",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "51586",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "477-45",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "247-24",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "91-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "32023",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "51680",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "254-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "52807",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "17111",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "53994",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "56563",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "54513",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "55421",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "39667",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "46240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "40757",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "44389",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "56920",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "37378",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "uid": "269-43",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "47933",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "374-31",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "58904",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "547-18",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "14240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "34033",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "9726",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "333-29",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "43589",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "45635",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "45896",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "188-39",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "40959",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "9569",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "15671",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "50526",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "50811",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "236-22",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "230-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "156-14",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "51586",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "477-45",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "91-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "247-24",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "32023",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "51680",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "254-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "52807",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "17111",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "53994",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "56563",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "54513",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "55421",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "46240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "39667",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "40757",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "56920",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "44389",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "269-43",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "terra",
+      "uid": "37378",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-terra"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "47933",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "374-31",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "58904",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "14240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "547-18",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "34033",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "333-29",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "9726",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "43589",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "45635",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "45896",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "188-39",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "40959",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "15671",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "9569",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "50526",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "50811",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "236-22",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "230-16",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "156-14",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "51586",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "477-45",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "91-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "32023",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "247-24",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "51680",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "254-34",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "52807",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "53994",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "17111",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "56563",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "55421",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "54513",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "46240",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "39667",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "40757",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "56920",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "269-43",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "44389",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "luna",
+      "uid": "37378",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-luna"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-32",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-26",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-16",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-2",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-37",
+      "s0": 1.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-80",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-97",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-83",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-0",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "uid": "seal0-70",
+      "s0": 0.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-26",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-2",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-32",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-16",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-97",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-37",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-80",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-83",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-70",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "uid": "seal0-0",
+      "s0": 0.0,
+      "retained_val": 0.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_clean_then_place_in_recep-Cloth-None-Drawer-423/trial_T20190908_140701_251653/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Bowl-None-Cabinet-20/trial_T20190909_112912_154874/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_and_place_simple-Book-None-SideTable-329/trial_T20190908_050633_745514/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_clean_then_place_in_recep-SoapBar-None-Drawer-423/trial_T20190906_202340_749336/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_and_place_simple-Newspaper-None-Sofa-224/trial_T20190909_111324_949106/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_and_place_simple-Egg-None-Microwave-4/trial_T20190906_234406_356490/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Plate-None-CounterTop-1/trial_T20190906_205324_559361/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Cup-None-Microwave-17/trial_T20190906_192817_654400/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/look_at_obj_in_light-Laptop-None-DeskLamp-328/trial_T20190908_201550_622420/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/look_at_obj_in_light-CD-None-DeskLamp-302/trial_T20190907_154618_526741/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Lettuce-None-CounterTop-11/trial_T20190908_222555_651605/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114931_692464/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_heat_then_place_in_recep-Potato-None-Fridge-11/trial_T20190909_011341_436523/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Tomato-None-GarbageCan-6/trial_T20190909_082934_483899/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_heat_then_place_in_recep-Egg-None-Fridge-14/trial_T20190909_091314_636733/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Plate-None-Cabinet-27/trial_T20190906_173120_350651/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_and_place_simple-Candle-None-Toilet-407/trial_T20190909_055248_059513/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "sol",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Apple-None-CounterTop-14/trial_T20190909_044933_815840/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.6-sol"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_clean_then_place_in_recep-Cloth-None-Drawer-423/trial_T20190908_140701_251653/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Bowl-None-Cabinet-20/trial_T20190909_112912_154874/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_clean_then_place_in_recep-SoapBar-None-Drawer-423/trial_T20190906_202340_749336/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_and_place_simple-Book-None-SideTable-329/trial_T20190908_050633_745514/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_and_place_simple-Newspaper-None-Sofa-224/trial_T20190909_111324_949106/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Plate-None-CounterTop-1/trial_T20190906_205324_559361/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_and_place_simple-Egg-None-Microwave-4/trial_T20190906_234406_356490/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Cup-None-Microwave-17/trial_T20190906_192817_654400/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/look_at_obj_in_light-Laptop-None-DeskLamp-328/trial_T20190908_201550_622420/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/look_at_obj_in_light-CD-None-DeskLamp-302/trial_T20190907_154618_526741/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Lettuce-None-CounterTop-11/trial_T20190908_222555_651605/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114931_692464/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_heat_then_place_in_recep-Potato-None-Fridge-11/trial_T20190909_011341_436523/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Tomato-None-GarbageCan-6/trial_T20190909_082934_483899/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Plate-None-Cabinet-27/trial_T20190906_173120_350651/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_heat_then_place_in_recep-Egg-None-Fridge-14/trial_T20190909_091314_636733/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_and_place_simple-Candle-None-Toilet-407/trial_T20190909_055248_059513/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    },
+    {
+      "domain": "alfworld",
+      "arm": "55",
+      "uid": "valid_seen/pick_cool_then_place_in_recep-Apple-None-CounterTop-14/trial_T20190909_044933_815840/game.tw-pddl",
+      "s0": 1.0,
+      "retained_val": 1.0,
+      "reported_model": "gpt-5.5"
+    }
+  ],
+  "gate_events": [
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T16:06:54Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "f1ab7d52441e4cda95ba6064d7e63cb16b4795a36f3e36ef00ff9ee3da947a22",
+      "incumbent_descriptive": {
+        "r_best": 0.9166666666666666,
+        "train_R": 0.8
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8333333333333334
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T16:29:26Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "b6fdc5acef612f65bfc8921011de73b2f263f68f8d34f0d59396ec9ca8b98646",
+      "incumbent_descriptive": {
+        "r_best": 0.9166666666666666,
+        "train_R": 0.76
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8333333333333334
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T16:49:08Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "5a5913a1143cb72e0648721884e4bb3f4bd709f85e5a85854841c87467ec6683",
+      "incumbent_descriptive": {
+        "r_best": 0.9166666666666666,
+        "train_R": 0.8
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.9166666666666666
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "sol",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T17:08:16Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.9166666666666666,
+        "train_R": 0.78
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T16:09:34Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "3b6d65bd179739c7086b1689c2348f2de4ef72b884da8e1e345a8894a7b80ba1",
+      "incumbent_descriptive": {
+        "r_best": 0.8333333333333334,
+        "train_R": 0.72
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T16:34:53Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "590a1454ef91551f279cbf376a69f050cd3089d5354e6b8747a334f35c5fb3d2",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.74
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8333333333333334
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T16:57:34Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "3e78d83c91b9a559966f55968f61249bc08bbb87107bfecad9ba790ed6ff01f5",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.72
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "55",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T17:18:01Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.7
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T14:18:04Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "411cb92ebfb76f5ee25ce5c58686d71912ac9ec9723d240825c32d215ad6fabc",
+      "incumbent_descriptive": {
+        "r_best": 0.8333333333333334,
+        "train_R": 0.74
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.7083333333333334
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T14:27:41Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "141b08b30a2afac071bdf1b38db7bface44e76f2c3853155952cc59760e121c2",
+      "incumbent_descriptive": {
+        "r_best": 0.8333333333333334,
+        "train_R": 0.74
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8333333333333334
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T14:35:16Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "91c7713d7fbe506649f0bcd68b8998b153afdec08374d9a4b856cb99c3f21ca2",
+      "incumbent_descriptive": {
+        "r_best": 0.8333333333333334,
+        "train_R": 0.74
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T14:55:16Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "c2602cbc9fea4c90b8ab91f2d3de4ae4fb156741cb8a11ee18f760c007e45935",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T15:03:48Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa",
+      "arm": "terra",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T15:05:55Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "c2602cbc9fea4c90b8ab91f2d3de4ae4fb156741cb8a11ee18f760c007e45935",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T12:45:46Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "0965a1fcffd2bee90f3fc7a37a822868c5bc47e7b05156916dede35da2a01a63",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.58
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.75
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T12:53:57Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "01373daadcd23df868f37c6387e8ffeacdaa68669cab6eec9e6eb314882111c9",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.58
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6666666666666666
+      }
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T13:00:40Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.58
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa",
+      "arm": "luna",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T15:23:16Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "37f693c0d4eed58ae7c609258f93643d4517fbf838a81809c526a17894d048ae",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.7083333333333334
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:00:32Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.76
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:06:28Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.76
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:12:58Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "727caa99720a3947000adc95eccc72f28838b85cfe4d2d5bd520e30f0e57648c",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.76
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.9166666666666666
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T07:12:29Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "5533c964477638dd2762058a0200db1c669352fb49fb3b7b9b1125cf31fb483c",
+      "incumbent_descriptive": {
+        "r_best": 0.9166666666666666,
+        "train_R": 0.82
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.9583333333333334
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-05T08:15:24Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "06f185e720997e082ef4ef492f5ee06497a8a483249611e4fc3683a10c7597e9",
+      "incumbent_descriptive": {
+        "r_best": 0.9583333333333334,
+        "train_R": 0.88
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:00:37Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.7916666666666666,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:06:28Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.7916666666666666,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:12:56Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "d799a93779f4b2dd32f3e89ee2051b7c5c19a69e7d587c1fabf4ae72a147854e",
+      "incumbent_descriptive": {
+        "r_best": 0.7916666666666666,
+        "train_R": 0.68
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8333333333333334
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T07:09:20Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "8a4f6b152973132fc7c6f213a5472f722f2623c4c14aaadf04010ea9ef81e013",
+      "incumbent_descriptive": {
+        "r_best": 0.8333333333333334,
+        "train_R": 0.74
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "officeqa-retrieval",
+      "arm": "55",
+      "iteration": 3,
+      "recorded_at": "2026-09-05T08:10:59Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "7c0a84cd8bd5f28f5bc006fb50feeb418b8827cfabe407d66d69f61a2583f7ee",
+      "incumbent_descriptive": {
+        "r_best": 0.875,
+        "train_R": 0.76
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.875
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T17:59:19Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "e7b9eea871b805d1fd914a31d4b8842f6102b20c61a54a2d9cee0775f35072e2",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.5714285714285714
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6111111111111112
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T18:06:14Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "b8be9ecffe30970ceb5d2110732eb29a73bd922a99018dd6578fc4bf42bfd395",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.6285714285714286
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6111111111111112
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T18:13:54Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "4a99dd2781bb1c2393e6326aaa9363615d9d2a12a857ae1ea6c870b6c7716f5b",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.6
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5555555555555556
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "sol",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T18:22:49Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.6285714285714286
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T17:58:02Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "ca4a557f6d6f25be44fcba79bf378812e66f5179bf80bd324dc7bc1ad5b88434",
+      "incumbent_descriptive": {
+        "r_best": 0.5,
+        "train_R": 0.45714285714285713
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6111111111111112
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T18:10:41Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "29dcc6bf2aaeb0e459c3dd6800aff297d268140d6a77c4936589d40064ae5c0a",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.42857142857142855
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5555555555555556
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T18:22:21Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "bc7434cd755b2710e9be877da47b76f8a21c60ebc1703e3e6cde4e05beb6b3e1",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.45714285714285713
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "55",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T18:33:01Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "0dcd629c9ce14684121aac13a94d29f02e3ad086efd5971cffd8a97975d30d8a",
+      "incumbent_descriptive": {
+        "r_best": 0.6111111111111112,
+        "train_R": 0.5142857142857142
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.4444444444444444
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T17:34:55Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "6a9cde52d1960a6cf510f7805ca7a5351ab207eb21de12d49108442d984511f9",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.42857142857142855
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.3888888888888889
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T17:40:26Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.37142857142857144
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T17:45:02Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "34f3d4cb1705617f3f2072b100b995c13ff728e86510fd143449e2cbff78bc7c",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.42857142857142855
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.4444444444444444
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "terra",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T17:50:56Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.45714285714285713
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T17:12:32Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "eb6ebcdb903853e48d63dc86250cf85833fad1ad5cc1cdf97b9c63be17ce1d31",
+      "incumbent_descriptive": {
+        "r_best": 0.3333333333333333,
+        "train_R": 0.4
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.4444444444444444
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T17:19:08Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.37142857142857144
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T17:23:52Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "b766dbcc468ed4ae1cf932d1ac259fe6f11949ab132c933f0c492f3bc7d2d257",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.34285714285714286
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.3888888888888889
+      }
+    },
+    {
+      "domain": "livemath",
+      "arm": "luna",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T17:30:39Z",
+      "gate_verdict": "NOT_GATED",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.4444444444444444,
+        "train_R": 0.4
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T20:12:02Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.825
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T22:56:28Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "85964e7fcfda98f25a89548ae398c6962a0012a71233f048cf4b4a9e11fbb7d8",
+      "incumbent_descriptive": {
+        "r_best": 0.825,
+        "train_R": 0.7375
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.85
+      }
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T01:24:20Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T01:28:05Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T01:31:48Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T01:34:57Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T01:55:59Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "75b1e79315242e7fec9e642e108f21af49c0ed77682b97cd53c9cecc148b929a",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.85
+      }
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-05T03:23:28Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.85
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-05T04:16:57Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "b664e867d37cd449d7241110fc42985ffdd2da963058741cd578591f361fad34",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.825
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.85
+      }
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "sol",
+      "iteration": 4,
+      "recorded_at": "2026-09-05T05:55:13Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "6cbf4330c9c445ed3ae12c7cf799c189e3192f94d4725b39ae2638d562d6dd22",
+      "incumbent_descriptive": {
+        "r_best": 0.85,
+        "train_R": 0.8125
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.85
+      }
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T21:21:22Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.75
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-05T06:43:51Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "f442bf3348906651882887bf9c5960264f8d8c041f709f5473af064faa560b88",
+      "incumbent_descriptive": {
+        "r_best": 0.75,
+        "train_R": 0.75
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8
+      }
+    },
+    {
+      "domain": "spreadsheet",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-05T08:20:06Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "e47ffe2f0e9015773ddbba3ab1a3d74eb14b68424ca3d066dd400393a93ee917",
+      "incumbent_descriptive": {
+        "r_best": 0.8,
+        "train_R": 0.775
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.825
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T18:29:28Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "59b177da85a59ff61ac98ad5b5aaf3c05e8cbcf881eeaeee663f4f03c1fef4d8",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.375
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T18:38:17Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.375
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T22:42:16Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "a908cc46c277746aa85da0b70b21a3b4e43a520401c0e699981fede2b5f6ec5a",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.375
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T22:50:55Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "7b83ff495c3b8b35132e464c2cfffa1f85d70f765c653742e55f55ae75eeb11c",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.3125
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T23:00:44Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.25
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "sealqa",
+      "arm": "sol",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T23:05:44Z",
+      "gate_verdict": "ACCEPT",
+      "accepted": true,
+      "skill_sha256": "0663e13640fb89b439f3a30450f643163f84ee8a6f1fa0a135efa2516f93decb",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.25
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.8
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "iteration": 1,
+      "recorded_at": "2026-09-04T23:11:56Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "5c2e4a7fe7da9559d24aa7ca096b48a1c10bc8565698808aa170515cb00f94a5",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.25
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T23:17:53Z",
+      "gate_verdict": "INFRA_FAILURE",
+      "accepted": false,
+      "skill_sha256": "",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.3125
+      },
+      "candidate_descriptive": {}
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "iteration": 2,
+      "recorded_at": "2026-09-04T23:19:59Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "085ed341f9d31a869e736bc48785f0f4614fa9645a40ebb16ea471d0a0b16a4b",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.3125
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "iteration": 3,
+      "recorded_at": "2026-09-04T23:25:26Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "42f05519b77cd6f1248a98618a2f628a27e0b5298fb5085bbae3f5f47bc1a6df",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.3125
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.6
+      }
+    },
+    {
+      "domain": "sealqa",
+      "arm": "55",
+      "iteration": 4,
+      "recorded_at": "2026-09-04T23:31:56Z",
+      "gate_verdict": "REJECT",
+      "accepted": false,
+      "skill_sha256": "f6157034bc539ecc72b01ed22e8ee4751b71ebacd762313e7f054cc4b271edb9",
+      "incumbent_descriptive": {
+        "r_best": 0.7,
+        "train_R": 0.25
+      },
+      "candidate_descriptive": {
+        "accuracy": 0.5
+      }
+    }
+  ],
+  "source_inventory": [
+    {
+      "source": "private_planning/officeqa/loops/sol/val-s0.jsonl",
+      "sha256": "4a196a245360811fb8ce9d4e5f5d788139599f6108ea318696b8417108571f3a",
+      "bytes": 17552
+    },
+    {
+      "source": "private_planning/officeqa/loops/sol/wiki/skill-impact.md",
+      "sha256": "21b6ab2851599a62eca2f2d4575f9a57e817d7680a5a69b317f5ea9958e8ec5d",
+      "bytes": 13316
+    },
+    {
+      "source": "private_planning/officeqa/loops/sol/r_best.json",
+      "sha256": "dc3fa5fa51fa198a873d0044fe354a76267fdc9a747e61fa3918d1d711072dc9",
+      "bytes": 167
+    },
+    {
+      "source": "private_planning/officeqa/loops/55/val-s0.jsonl",
+      "sha256": "1cd3f488386b89668c975e62b2143f773e9db4c9ca138f1a95d1e1cbfd23ef06",
+      "bytes": 17359
+    },
+    {
+      "source": "private_planning/officeqa/loops/55/wiki/skill-impact.md",
+      "sha256": "03ec55805e0ace5a1496a5c090e3769993aab63c48e37c6394d815c665042366",
+      "bytes": 14152
+    },
+    {
+      "source": "private_planning/officeqa/loops/55/r_best.json",
+      "sha256": "50b8689035fb5004cdd73ba548194f2cb07db3b748a325d1ad14b71c35769cb9",
+      "bytes": 112
+    },
+    {
+      "source": "private_planning/officeqa/loops/55/wiki/SKILL-it1.md",
+      "sha256": "3b6d65bd179739c7086b1689c2348f2de4ef72b884da8e1e345a8894a7b80ba1",
+      "bytes": 2905
+    },
+    {
+      "source": "private_planning/officeqa/loops/55/it1/val-candidate.jsonl",
+      "sha256": "a3b1558d65bd54d4adba9a666b8e99fe76c1ee01c6c6ce372aaa5b0a05213438",
+      "bytes": 22679
+    },
+    {
+      "source": "private_planning/officeqa/loops/terra/val-s0.jsonl",
+      "sha256": "c4cfd48363c32fa62c12a8dcc8efd03dacf6812d8f1f7a3089a30b0990d45b77",
+      "bytes": 17573
+    },
+    {
+      "source": "private_planning/officeqa/loops/terra/wiki/skill-impact.md",
+      "sha256": "884e74e3f6b7f873c8e0de9c380f41f17fd2818f88b51f18cf1da7f97040a2b2",
+      "bytes": 18860
+    },
+    {
+      "source": "private_planning/officeqa/loops/terra/r_best.json",
+      "sha256": "7c573d3b51ede2796a3255097f9920bd143deb7472bfd95f2f6d27eeb1cff182",
+      "bytes": 112
+    },
+    {
+      "source": "private_planning/officeqa/loops/terra/wiki/SKILL-it3.md",
+      "sha256": "91c7713d7fbe506649f0bcd68b8998b153afdec08374d9a4b856cb99c3f21ca2",
+      "bytes": 1450
+    },
+    {
+      "source": "private_planning/officeqa/loops/terra/it3/val-candidate.jsonl",
+      "sha256": "38f1c14bb6eb64fd50f9f5271d1629b7f9ba68ab12e86b98e6740c1fd214389c",
+      "bytes": 17806
+    },
+    {
+      "source": "private_planning/officeqa/loops/luna/val-s0.jsonl",
+      "sha256": "3888e555f31c33e36e028593688390425a9fe401ae1bb3296f7e9c42ada5f6ee",
+      "bytes": 17605
+    },
+    {
+      "source": "private_planning/officeqa/loops/luna/wiki/skill-impact.md",
+      "sha256": "e4ea88dcfd3ab3f0811940124b10066b223a959593af7f8adee9edd13cb9c24e",
+      "bytes": 12372
+    },
+    {
+      "source": "private_planning/officeqa/loops/luna/r_best.json",
+      "sha256": "adb9985d019935784ccd8431d36652efd67b652bcf18a12c35e72f214929edb0",
+      "bytes": 114
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/s0/sol-val-s0.jsonl",
+      "sha256": "43718e41910b8ace81a18870999b3163448832b999a75b92fe301f44f9591c31",
+      "bytes": 21589
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/sol/wiki/skill-impact.md",
+      "sha256": "df0d255bcf5318d65e04ab7e177f4efa2ef9b4c0a4d6dbc7ae22d919bc87d08c",
+      "bytes": 21462
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/sol/r_best.json",
+      "sha256": "33ded93f86fc23fc3fd26f1f135d8acf9eb6b003fe22766db0bd1bbdb868739d",
+      "bytes": 125
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/sol/wiki/SKILL-it2.md",
+      "sha256": "5533c964477638dd2762058a0200db1c669352fb49fb3b7b9b1125cf31fb483c",
+      "bytes": 6459
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/sol/it2/val-candidate.jsonl",
+      "sha256": "53d86faa3573b85a667277936c665b3096c243f676ef69827acff7d823808b6b",
+      "bytes": 22021
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/s0/55-val-s0.jsonl",
+      "sha256": "9ec85cc51a97aa4d28e5bcef103ce552d493c0c131e38382eb8c57f7189e935b",
+      "bytes": 21229
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/55/wiki/skill-impact.md",
+      "sha256": "4b6952959d03ba2588eaed6645d1dd13f9703ed6ede8072ed27a28254f2caa61",
+      "bytes": 20007
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/55/r_best.json",
+      "sha256": "76f08088fbb8a1c7ba10d71f4b9eca32f990752a2b3daa445536e9a5fcef890a",
+      "bytes": 112
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/55/wiki/SKILL-it2.md",
+      "sha256": "8a4f6b152973132fc7c6f213a5472f722f2623c4c14aaadf04010ea9ef81e013",
+      "bytes": 5694
+    },
+    {
+      "source": "private_planning/officeqa-retrieval/loops/55/it2/val-candidate.jsonl",
+      "sha256": "17f30349dc0bd1394bbe5402d7be7bda08161ba0dd3137bff4d2920ff81d6f67",
+      "bytes": 21712
+    },
+    {
+      "source": "private_planning/livemath/s0/sol-val-s0.jsonl",
+      "sha256": "256a4b42d6709d68ee1194d33a85e11eb6422b17926cf0e4be0ae875bda0936e",
+      "bytes": 19301
+    },
+    {
+      "source": "private_planning/livemath/loops/sol/wiki/skill-impact.md",
+      "sha256": "d93aabd5bddb5f0dd92dc215edeadd116d6cd3cdd0fceada09459785266491c3",
+      "bytes": 10374
+    },
+    {
+      "source": "private_planning/livemath/loops/sol/r_best.json",
+      "sha256": "40b7fa21a95abccaff3595a43ce98798d80f9a35cfe09feb36e635de10d172d0",
+      "bytes": 169
+    },
+    {
+      "source": "private_planning/livemath/s0/55-val-s0.jsonl",
+      "sha256": "05795e231f0fb0b7dfc19eeb410682cd9519e562921d52cdaa5db2b76dc7165c",
+      "bytes": 25661
+    },
+    {
+      "source": "private_planning/livemath/loops/55/wiki/skill-impact.md",
+      "sha256": "0f9fd1bd7e3b3ff3abd406e8948e3e5159ba15610252eb18f1479a819e4d36e8",
+      "bytes": 17507
+    },
+    {
+      "source": "private_planning/livemath/loops/55/r_best.json",
+      "sha256": "9f74b783173009be30c0b23f9b64624c63f976f50d1404d5c32583e67366e1fc",
+      "bytes": 125
+    },
+    {
+      "source": "private_planning/livemath/loops/55/wiki/SKILL-it1.md",
+      "sha256": "ca4a557f6d6f25be44fcba79bf378812e66f5179bf80bd324dc7bc1ad5b88434",
+      "bytes": 2048
+    },
+    {
+      "source": "private_planning/livemath/loops/55/it1/val-candidate.jsonl",
+      "sha256": "919c957711176ab7c45356f5e285689bf6f6086de5b18d2391b0497910c4b015",
+      "bytes": 25088
+    },
+    {
+      "source": "private_planning/livemath/s0/terra-val-s0.jsonl",
+      "sha256": "bb6cfd4bdd5e4fa55f53b61712e137b3c1a9965041209ac807961b529138ea2a",
+      "bytes": 17424
+    },
+    {
+      "source": "private_planning/livemath/loops/terra/wiki/skill-impact.md",
+      "sha256": "179806ece656c03d627f9b0eddb8200dd8b41c0db0c802c50f39bd317064edb2",
+      "bytes": 10028
+    },
+    {
+      "source": "private_planning/livemath/loops/terra/r_best.json",
+      "sha256": "c9a07e3274b879e892a0b706ca3469dbb846825f518186b5999f1bfa9bdf0fb1",
+      "bytes": 171
+    },
+    {
+      "source": "private_planning/livemath/s0/luna-val-s0.jsonl",
+      "sha256": "73e38cfb0080ef0c9fab051ce88dd527966333146e684dc593eefe0c5ddd71de",
+      "bytes": 17821
+    },
+    {
+      "source": "private_planning/livemath/loops/luna/wiki/skill-impact.md",
+      "sha256": "2874ba03013cc2bc16eac2eda993c17f31bd12f21120ef074e1c87dcea059e78",
+      "bytes": 10770
+    },
+    {
+      "source": "private_planning/livemath/loops/luna/r_best.json",
+      "sha256": "8581c37cf823fe1104de6f88cf6a1a55e07fefe81827de4bbfcac5ea18d6c51d",
+      "bytes": 125
+    },
+    {
+      "source": "private_planning/livemath/loops/luna/wiki/SKILL-it1.md",
+      "sha256": "eb6ebcdb903853e48d63dc86250cf85833fad1ad5cc1cdf97b9c63be17ce1d31",
+      "bytes": 1466
+    },
+    {
+      "source": "private_planning/livemath/loops/luna/it1/val-candidate.jsonl",
+      "sha256": "d91ead3a42516a0d258469d61a52d04784e9564c9d05f93af19d335b5b30ae91",
+      "bytes": 17181
+    },
+    {
+      "source": "private_planning/spreadsheet/s0/sol-val-s0.jsonl",
+      "sha256": "92efa2da13e75495d2ba526dd08823499b0213d4970015f10be0452d76d3f426",
+      "bytes": 66445
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/sol/wiki/skill-impact.md",
+      "sha256": "ecdfca550de9892dd0eb924e498c6f560f2170a327b29d71c1578acbd47da38a",
+      "bytes": 37840
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/sol/r_best.json",
+      "sha256": "16b08b4f39425c98eeaf007b913ad3cd9b731953335da8bbd4bc702aa4d5387f",
+      "bytes": 111
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/sol/wiki/SKILL-it1.md",
+      "sha256": "85964e7fcfda98f25a89548ae398c6962a0012a71233f048cf4b4a9e11fbb7d8",
+      "bytes": 4636
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/sol/it1/val-candidate.jsonl",
+      "sha256": "63c4c6c60dc486daf75551e18e9e52b3954d0d4d07f61f6e93926f873f7fdf15",
+      "bytes": 79066
+    },
+    {
+      "source": "private_planning/spreadsheet/s0/55-val-s0.jsonl",
+      "sha256": "ef26810459e0c71f02db617fb73889d31a1e8dc5ce195bb5e0e10d4d226ff0ad",
+      "bytes": 57281
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/55/wiki/skill-impact.md",
+      "sha256": "dc01f40c57f6c25304a2726904295c082601f2bec405e15b6c712486065f25ad",
+      "bytes": 19178
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/55/r_best.json",
+      "sha256": "9524a17f4aeda4f59a2f4cbeeeba6dee2f15a8cb7e841991931bfc8aeed7773c",
+      "bytes": 112
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/55/wiki/SKILL-it2.md",
+      "sha256": "e47ffe2f0e9015773ddbba3ab1a3d74eb14b68424ca3d066dd400393a93ee917",
+      "bytes": 8780
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/55/it2/val-candidate.jsonl",
+      "sha256": "71069c887fe60156b1a430632bd6f63a4cfb65c99dc1f73f04d34b54410a0ffa",
+      "bytes": 88226
+    },
+    {
+      "source": "private_planning/spreadsheet/s0/terra-val-s0.jsonl",
+      "sha256": "5b344751108c6768ee7fdfc7333ba887f231f478cf9bec50e74af0bed53bdaca",
+      "bytes": 64783
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/terra/wiki/skill-impact.md",
+      "sha256": "2b2437ad534890e2f2ffd0d1e2471a7aa2bf92ffac12bc6e94898c2ba0ac3bbf",
+      "bytes": 85
+    },
+    {
+      "source": "private_planning/spreadsheet/loops/terra/r_best.json",
+      "sha256": "7aaf64fad0ffef972d16adb48ed6530e041e08ee02579f3d75055526fe43705c",
+      "bytes": 161
+    },
+    {
+      "source": "private_planning/spreadsheet/s0/luna-val-s0.jsonl",
+      "sha256": "86e197244513dfb40a21e69670953db544e04dd6f42cd5410bb077937c04e87b",
+      "bytes": 64320
+    },
+    {
+      "source": "private_planning/sealqa/s0/sol-val-s0.jsonl",
+      "sha256": "87a8fa06d0396a15733c7f2b0b9557faa17469441d01135c546b205c95c61707",
+      "bytes": 8419
+    },
+    {
+      "source": "private_planning/sealqa/loops/sol/wiki/skill-impact.md",
+      "sha256": "61bfe407abbcbf47b914eefcaa7585e3219c30021a50b4363809accb4f850a93",
+      "bytes": 21275
+    },
+    {
+      "source": "private_planning/sealqa/loops/sol/r_best.json",
+      "sha256": "aaee606f1dfff8d2970c8d45a0c5aa4d3c23754cfad3eba7054f0727ad1b00ba",
+      "bytes": 110
+    },
+    {
+      "source": "private_planning/sealqa/loops/sol/wiki/SKILL-it4.md",
+      "sha256": "0663e13640fb89b439f3a30450f643163f84ee8a6f1fa0a135efa2516f93decb",
+      "bytes": 3212
+    },
+    {
+      "source": "private_planning/sealqa/loops/sol/it4/val-candidate.jsonl",
+      "sha256": "6b35afca320d0b65025c720fe1cf48a830ca38648db468a7aa3e760fcf188538",
+      "bytes": 9135
+    },
+    {
+      "source": "private_planning/sealqa/s0/55-val-s0.jsonl",
+      "sha256": "26bbff97e02566035cc1ce87f8136a1e4b8df4fc4e8f049e41bd3b39648f3991",
+      "bytes": 7564
+    },
+    {
+      "source": "private_planning/sealqa/loops/55/wiki/skill-impact.md",
+      "sha256": "de966e5e23ac6c4bc29e6516f91bf9a227028173b1474a3f7038aa2eef046590",
+      "bytes": 22485
+    },
+    {
+      "source": "private_planning/sealqa/loops/55/r_best.json",
+      "sha256": "2c436892d54f7e2b2de8e80b4eb6d902f3cf54fb7413418fefb403075d33fc44",
+      "bytes": 148
+    },
+    {
+      "source": "private_planning/alfworld/s0/sol-val-s0.jsonl",
+      "sha256": "de0818a8cc84fd719e8b676df42d0b6928150c9f48a51982218bd54691edbd04",
+      "bytes": 27220
+    },
+    {
+      "source": "private_planning/alfworld/s0/55-val-s0.jsonl",
+      "sha256": "8536aff43f53221000db3f73a20c49f6ed5265c93c20244a8adcdd0d72ca9df3",
+      "bytes": 26452
+    }
+  ],
+  "notes": [
+    "No test scores are included.",
+    "Missing model-echo metadata is null, not verified.",
+    "Gate events include historical infrastructure attempts and superseded outcomes.",
+    "Historical LiveMath scores are from v1 with the upstream meta-option artifact.",
+    "No raw model transcripts or restricted dataset contents are redistributed."
+  ]
+}

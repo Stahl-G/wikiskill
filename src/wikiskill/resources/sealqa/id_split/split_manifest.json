@@ -1,0 +1,17 @@
+{
+  "benchmark": "SealQA",
+  "manifest_type": "id_split",
+  "source": "caller-provided dataset; see docs/datasets.md",
+  "seed": 20260904,
+  "pool_size": 111,
+  "counts": {
+    "train": 16,
+    "val": 10,
+    "test": 85
+  },
+  "notes": [
+    "Uid lists pinned before any SealQA arm runs.",
+    "Search uses workspace ./web_search.sh over fragment-stripped packaged URLs, not live Google (documented deviation).",
+    "Test split is locked until SealQA K=4 is finished."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "benchmark": "LiveMath",
+  "manifest_type": "id_split",
+  "source": "caller-provided dataset; see docs/datasets.md",
+  "source_files": [
+    "qa_202604_final.json",
+    "qa_202605_final.json",
+    "qa_202606_final.json"
+  ],
+  "seed": 20260904,
+  "pool_size": 319,
+  "counts": {
+    "train": 35,
+    "val": 18,
+    "test": 124
+  },
+  "notes": [
+    "Uid lists are pinned here before any LiveMath arm runs.",
+    "Paper's exact LiveMath uids are unpublished; this is a seeded 35/18/124 sample of the 319-item pool.",
+    "Test split is locked until LiveMath K=4 is finished."
+  ]
+}

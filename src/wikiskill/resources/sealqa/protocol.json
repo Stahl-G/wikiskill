@@ -1,0 +1,28 @@
+{
+  "benchmark": "SealQA",
+  "paper": "arXiv:2608.27454",
+  "comparison": "no-skill vs WikiSkill",
+  "metric": "mean_accuracy",
+  "k": 4,
+  "scorer": "normalized exact match on <answer> span",
+  "answer_tag": "answer",
+  "search": "workspace ./web_search.sh prints fragment-stripped packaged URLs; not live Google",
+  "arms": [
+    {"id": "luna", "model": "gpt-5.6-luna", "reasoning_effort": "medium"},
+    {"id": "terra", "model": "gpt-5.6-terra", "reasoning_effort": "medium"},
+    {"id": "55", "model": "gpt-5.5", "reasoning_effort": "medium"},
+    {"id": "sol", "model": "gpt-5.6-sol", "reasoning_effort": "medium"}
+  ],
+  "optimizer": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "note": "Maintainer and Proposer. Same optimizer as OfficeQA."
+  },
+  "split": {
+    "train": 16,
+    "val": 10,
+    "test": 85,
+    "seed": 20260904,
+    "note": "seal-0 111 items. Test locked until K=4."
+  }
+}
