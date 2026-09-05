@@ -1,5 +1,7 @@
 # Recorded validation results
 
+> **Integrity notice (2026-09-05):** The OfficeQA retrieval history has confirmed cross-run validation access. Its gains, including +20.83pp, are preserved as compromised historical observations and cannot substantiate a clean reproduction. The later v2 transfer run also failed isolation review. See [audit and corrective replication status](generalization-status.md). Other rows have not been certified clean by this audit.
+
 Snapshot: 2026-09-05T09:05:56.639080+00:00
 
 Scores are re-computable with `wikiskill results`. They are historical validation selection scores, not independent held-out results. The snapshot contains 12 ACCEPT events across 9 distinct domain-model configurations.

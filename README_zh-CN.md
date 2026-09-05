@@ -2,6 +2,8 @@
 
 **面向可评测 Agent 任务的技能自进化框架。**
 
+> **研究完整性更新（2026-09-05）：** 收官审计确认原始 OfficeQA 实验存在答案表和其它运行记录的读取，历史检索验证也已发现污染。+20.8pp 现仅保留为受污染的历史验证记录，不能作为干净技能提升的证据。全新隔离复现实验已经启动，尚无可替代的效果结果。见[审计与修正复现状态](docs/generalization-status.md)。
+
 基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
 
 [Hugging Face 论文页](https://huggingface.co/papers/2608.27454) · [arXiv 原文](https://arxiv.org/abs/2608.27454)
@@ -12,7 +14,7 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 
 [English](README.md) · [完整结果](docs/results.md) · [复跑说明](docs/reproduction.md) · [数据准备](docs/datasets.md)
 
-## 已观察的办公任务收益
+## 历史验证记录
 
 2026-09-05 09:05 UTC 快照共记录 **12 次 ACCEPT，涉及 9 个任务设置×模型单元**。
 
@@ -28,7 +30,7 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 这些分数来自本包抽取前的原始实验 harness。本包新增了统一入口、尝试归档与恢复处理，并完成离线检查；没有为了发布重新调用模型跑一遍成绩。具体差异见复跑说明。
 
 
-正在运行的精简 test 范围及待核验事项见[泛化研究状态](docs/generalization-status.md)；该轮不包含 OfficeQA 全库检索。
+当前隔离审计、历史实验限制与修正复现范围见[泛化研究状态](docs/generalization-status.md)。
 
 ## 工作原理
 

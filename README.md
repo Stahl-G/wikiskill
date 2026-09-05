@@ -2,6 +2,8 @@
 
 **A self-evolving skill framework for evaluable agent tasks.**
 
+> **Research integrity update (2026-09-05):** A postflight audit confirmed answer-key and cross-run access in the originating OfficeQA experiments, including historical retrieval validation. The +20.8pp retrieval result is an archived, compromised validation observation and must not be used as evidence of a clean skill improvement. A fresh isolated replication has started; no replacement efficacy result is available. See [audit and corrective replication status](docs/generalization-status.md).
+
 Based on **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)** by Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation of their method.
 
 [Hugging Face Paper](https://huggingface.co/papers/2608.27454) · [arXiv](https://arxiv.org/abs/2608.27454)
@@ -12,7 +14,7 @@ This independent research implementation starts with the Codex runtime and five 
 
 [中文](README_zh-CN.md) · [Results](docs/results.md) · [Reproduction](docs/reproduction.md) · [Datasets](docs/datasets.md) · [Paper](https://arxiv.org/abs/2608.27454)
 
-## Measured validation gains
+## Historical validation snapshot
 
 Snapshot: **2026-09-05 09:05 UTC**. The originating experiments recorded **12 accepted updates across 9 domain–model configurations**. In office workloads:
 
