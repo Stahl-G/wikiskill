@@ -2,6 +2,10 @@
 
 **A self-evolving skill framework for evaluable agent tasks.**
 
+Based on **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)** by Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation of their method.
+
+[Hugging Face Paper](https://huggingface.co/papers/2608.27454) · [arXiv](https://arxiv.org/abs/2608.27454)
+
 WikiSkill turns execution experience into persistent knowledge and reusable procedural skills. An agent runs tasks, a Wiki Maintainer consolidates experience, a Skill Proposer suggests an update, and a deterministic validation gate decides whether to retain it. Rejected skills are rolled back; the Wiki keeps the lessons.
 
 This independent research implementation starts with the Codex runtime and five task domains: document reasoning, spreadsheet manipulation, mathematics, web retrieval, and embodied interaction. The framework can be adapted to other tasks with reliable scoring, repeatable execution, and separate training, selection, and held-out evaluation data.
@@ -106,6 +110,22 @@ The packaged backend is Codex. Separate OpenClaw/ArXivMath experiments are part 
 | Wiki's independent causal contribution | Not established without matched ablation |
 
 LiveMathematicianBench contains a known fixed meta-option artifact. Historical scores are retained with that limitation; new runs default to a revised split, whose provenance is included. ALFWorld's sampled validation split reached a ceiling for the two production arms. Neither observation justifies silently changing old results. See [limitations](docs/limitations.md).
+
+## Cite the original paper
+
+If you use the WikiSkill method, please cite the original authors:
+
+```bibtex
+@misc{tang2026wikiskill,
+  title = {WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution},
+  author = {Liyan Tang and Cyrus Rashtchian and Chun-Sung Ferng and Andrew Tomkins and Da-Cheng Juan and Tu Vu},
+  year = {2026},
+  eprint = {2608.27454},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  url = {https://arxiv.org/abs/2608.27454}
+}
+```
 
 ## License and attribution
 

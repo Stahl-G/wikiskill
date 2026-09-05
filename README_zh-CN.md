@@ -2,6 +2,10 @@
 
 **面向可评测 Agent 任务的技能自进化框架。**
 
+基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
+
+[Hugging Face 论文页](https://huggingface.co/papers/2608.27454) · [arXiv 原文](https://arxiv.org/abs/2608.27454)
+
 WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用的程序性指导：Agent 执行任务，Wiki Maintainer 整理模式，Skill Proposer 提出修改，确定性验证门控决定是否保留。技能被拒绝时，Wiki 中的经验继续保存。
 
 本仓库是独立研究实现，当前提供 Codex runtime 与文档问答、表格操作、数学、检索、具身交互五类任务适配器。框架可扩展到具有可靠评分、可重复执行、独立训练/选择/测试数据的任务。
@@ -66,3 +70,19 @@ wikiskill evolve runs/officeqa-sol
 - LiveMath 上游固定选项捷径、ALFWorld val 天花板、长度限制修订及基础设施恢复均记录在限制说明中。
 
 框架采用 MIT；保留源自 BriefLoop 的版权信息。OfficeQA 评分器保留 Databricks Apache-2.0 许可证；数据遵守各上游条款。本仓库不是论文作者官方实现。
+
+## 引用原论文
+
+使用 WikiSkill 方法时，请引用原论文：
+
+```bibtex
+@misc{tang2026wikiskill,
+  title = {WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution},
+  author = {Liyan Tang and Cyrus Rashtchian and Chun-Sung Ferng and Andrew Tomkins and Da-Cheng Juan and Tu Vu},
+  year = {2026},
+  eprint = {2608.27454},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.AI},
+  url = {https://arxiv.org/abs/2608.27454}
+}
+```

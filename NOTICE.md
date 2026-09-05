@@ -1,6 +1,6 @@
 # Attribution
 
-This is an independent implementation of **WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution**, Liyan Tang et al., arXiv:2608.27454 (2026). Cite the paper when building on the method. The paper's prompt format and algorithm are adapted here; this repository is not affiliated with the paper's authors.
+This is an independent implementation of **WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution**, Liyan Tang et al., arXiv:2608.27454 (2026). Cite the paper when building on the method. [Hugging Face paper page](https://huggingface.co/papers/2608.27454) · [arXiv](https://arxiv.org/abs/2608.27454). The paper's prompt format and algorithm are adapted here; this repository is not affiliated with the paper's authors.
 
 The benchmark adapters, Wiki edit/proposal contracts and portions of the experiment harness were extracted and adapted from **Stahl-G/briefloop**, © 2026 multi-agent-brief-workflow contributors, MIT. The original notice is retained in LICENSE. `docs/source-provenance.json` identifies source files and their byte hashes before extraction; namespace, packaged paths and the portable driver have changed.
 
