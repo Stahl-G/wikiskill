@@ -32,17 +32,7 @@ See [generalization study status](docs/generalization-status.md) for the running
 
 ## How it works
 
-```mermaid
-flowchart LR
-    T[Train rollouts] --> W[Persistent Wiki]
-    W --> P[Skill proposal]
-    P --> V[Validation]
-    V -->|strict improvement| S[Retain skill]
-    V -->|tie or decrease| R[Reject skill]
-    S --> T
-    R --> T
-    V --> W
-```
+![WikiSkill evolution loop](assets/wikiskill-evolution.svg)
 
 - **Raw experience:** each inference attempt gets its own directory and result or failure record.
 - **Wiki:** train-derived patterns persist across accepted and rejected updates.
