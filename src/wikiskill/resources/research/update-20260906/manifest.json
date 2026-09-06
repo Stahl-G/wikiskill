@@ -1,0 +1,11 @@
+{
+  "schema_version": "wikiskill.research_update.manifest.v1",
+  "files": {
+    "livemath-luna-pairs.json": "eab825f59bcd9140e0f551719c87549f5c50fc6de760b669fae42ec6f272d7bc",
+    "livemath-luna-skill.md": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8",
+    "officeqa-luna-skill.md": "773d37b68b93cfd03ff207041a693020bbf0a374d731fa458d1e9ce1f75a5a8d",
+    "officeqa-sol-skill.md": "2c9493b25bba2e17410fe1377ee6689ade9ee9c60432adaadff217d4dc253fbc",
+    "officeqa-sol-v2-pairs.json": "2ad694334602343b6855eebbcce661de1b72297683a089468cc563d38cc72851",
+    "studies.json": "12cd20ec198cba6dde19f365043147538549a6c43d67150309e711c53d5e2696"
+  }
+}

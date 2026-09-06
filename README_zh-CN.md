@@ -2,7 +2,7 @@
 
 **面向可评测 Agent 任务的技能自进化框架。**
 
-> **研究完整性更新（2026-09-05）：** 收官审计确认原始 OfficeQA 实验存在答案表和其它运行记录的读取，历史检索验证也已发现污染。+20.8pp 现仅保留为受污染的历史验证记录，不能作为干净技能提升的证据。全新隔离复现实验已经启动，尚无可替代的效果结果。见[审计与修正复现状态](docs/generalization-status.md)。
+> **研究更新（2026-09-06）：** 修正实验已有两项完整 held-out 观察，统计上均不确定；其中 LiveMath 的一条 test 使用了 JavaScript，违反无工具条件，只作为原始观察报告。历史 OfficeQA 检索增益仍属受污染记录。本次增加可复算配对分数和运行恢复修复，见[最新证据与限制](docs/research-update-20260906.md)。
 
 基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
 
@@ -14,7 +14,30 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 
 [English](README.md) · [完整结果](docs/results.md) · [复跑说明](docs/reproduction.md) · [数据准备](docs/datasets.md)
 
-## 历史验证记录
+## 最新研究观察
+
+快照时间：**2026-09-06 15:50 UTC**。这些实验使用原始研究环境中的隔离 runner，没有冒充由本包的便携 CLI 重跑。
+
+| 研究 | 模型 / effort | Held-out 无技能 → 技能 | 变化 | 证据状态 |
+|---|---|---:|---:|---|
+| OfficeQA V1 → Pro V2，解析文本全库检索 | Sol / medium | 48/90 → 52/90 | **+4.44pp** | 运行时扩展实验；p=0.454，统计不确定 |
+| LiveMath 清理后的子集 | Luna / high | 81/124 → 87/124 | **+4.84pp** | **仅原始观察：** 一条 test 通过 JavaScript 计算违反无工具协议；p=0.307 |
+
+两项配对95%区间都跨0，**尚不能宣称统计上成立的干净正向复现**。LiveMath 的协议偏离不能靠事后删除一对题目消除；原始数据、协议与审计继续保留。
+
+Luna/high 自演化在 OfficeQA（19/24→22/24）和 LiveMath（9/18→12/18）保留了验证集增益，但它们仍是验证选优结果。OfficeQA 新的172对test使用论文的 glob/grep/read 工具集，结果待完成。SealQA、Spreadsheet 扩展线在修复两处后处理问题后继续运行，已完成的模型答案没有重新采样。
+
+[研究细节与配置差异](docs/research-update-20260906.md) · [可复算配对工件](src/wikiskill/resources/research/update-20260906) · [运行恢复设计](docs/runtime-recovery.md)
+
+```bash
+# 离线重算新配对观察并检查工件哈希，不调用模型
+python scripts/check_research_update.py
+```
+
+<details>
+<summary>展开9月5日历史验证快照——保留受污染检索观察用于追溯</summary>
+
+### 历史验证记录
 
 2026-09-05 09:05 UTC 快照共记录 **12 次 ACCEPT，涉及 9 个任务设置×模型单元**。
 
@@ -25,12 +48,15 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 | SpreadsheetBench | 5.5 | 30/40 · 75.0% | **33/40 · 82.5%** | **+7.5pp** |
 | SpreadsheetBench | Sol | 33/40 · 82.5% | **34/40 · 85.0%** | **+2.5pp** |
 
-以上是单条演化轨迹中反复选择得到的验证集分数，尚不是独立 test 上确认的收益，也不代表统计显著。部分演化仍在运行；泛化和迁移评估正在推进，独立 test 结果待完成。完整表保留无改善、未完成和未运行单元。
+以上是单条演化轨迹中反复选择得到的验证集分数，尚不是独立 test 上确认的收益，也不代表统计显著。这些状态对应9月5日历史快照，当前研究另行报告。完整表保留无改善、未完成和未运行单元。
 
 这些分数来自本包抽取前的原始实验 harness。本包新增了统一入口、尝试归档与恢复处理，并完成离线检查；没有为了发布重新调用模型跑一遍成绩。具体差异见复跑说明。
 
 
 当前隔离审计、历史实验限制与修正复现范围见[泛化研究状态](docs/generalization-status.md)。
+
+
+</details>
 
 ## 工作原理
 
@@ -76,7 +102,7 @@ wikiskill evolve runs/officeqa-sol
 ## 定位与边界
 
 - 框架层是任务无关的，新增任务需要数据 loader、执行器、评分器与领域提示；“能打分”本身不保证技能会改善。
-- 当前随包提供 Codex 后端。OpenClaw/ArXivMath 是独立的在研实验，未混入本快照或冒充已支持的后端。
+- 当前随包提供 Codex 后端；默认便携执行路径尚不是研究环境中的加固隔离后端，不能把它当作确认性隔离保证。本次加入了严格JSONL读取与AST审计工具，完整研究runner仍单独维护。OpenClaw/ArXivMath 是独立的在研实验，未混入本快照或冒充已支持的后端。
 - 全库检索与预配文档分开报告；前者不同于原论文提供 oracle 参考页的设置。
 - 当前没有宣称 Wiki 独立因果贡献、普遍正迁移、跨独立演化稳定性，或所有未见任务均不退步。
 - LiveMath 上游固定选项捷径、ALFWorld val 天花板、长度限制修订及基础设施恢复均记录在限制说明中。

@@ -2,7 +2,7 @@
 
 **A self-evolving skill framework for evaluable agent tasks.**
 
-> **Research integrity update (2026-09-05):** A postflight audit confirmed answer-key and cross-run access in the originating OfficeQA experiments, including historical retrieval validation. The +20.8pp retrieval result is an archived, compromised validation observation and must not be used as evidence of a clean skill improvement. A fresh isolated replication has started; no replacement efficacy result is available. See [audit and corrective replication status](docs/generalization-status.md).
+> **Research update (2026-09-06):** Corrective experiments now have two completed held-out observations, both statistically inconclusive. The LiveMath run also violated its no-tools condition in one episode and is reported as raw evidence only. Historical OfficeQA retrieval gains remain compromised. Runtime recovery fixes and allowlisted paired scores are included below; see [current evidence and limitations](docs/research-update-20260906.md).
 
 Based on **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)** by Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation of their method.
 
@@ -14,7 +14,30 @@ This independent research implementation starts with the Codex runtime and five 
 
 [中文](README_zh-CN.md) · [Results](docs/results.md) · [Reproduction](docs/reproduction.md) · [Datasets](docs/datasets.md) · [Paper](https://arxiv.org/abs/2608.27454)
 
-## Historical validation snapshot
+## Latest research observations
+
+Snapshot: **2026-09-06 15:50 UTC**. These studies use the originating isolated experimental runtime; they are not a rerun by the portable CLI in this package.
+
+| Study | Model / effort | Held-out S0 → skill | Change | Evidence status |
+|---|---|---:|---:|---|
+| OfficeQA V1 → Pro V2, parsed-text retrieval | Sol / medium | 48/90 → 52/90 | **+4.44 pp** | Exploratory runtime extension; p=0.454; inconclusive |
+| LiveMath cleaned subset | Luna / high | 81/124 → 87/124 | **+4.84 pp** | **Raw only:** one test episode used JavaScript despite the no-tools protocol; p=0.307 |
+
+Both paired 95% intervals include zero. These observations do **not** establish a statistically supported clean positive reproduction. The LiveMath deviation is not repaired by deleting the affected pair: its raw data, protocol and audit remain inspectable.
+
+Luna/high self-evolution retained validation improvements in OfficeQA (19/24 → 22/24) and LiveMath (9/18 → 12/18). Those are selection-conditioned development observations. OfficeQA's new 172-pair test uses the paper's `glob/grep/read` tool set; its result is pending. SealQA and Spreadsheet extensions are running after two postprocessing bugs were repaired without re-querying completed model answers.
+
+[Study details and runtime differences](docs/research-update-20260906.md) · [Allowlisted paired-score artifacts](src/wikiskill/resources/research/update-20260906) · [Recovery design](docs/runtime-recovery.md)
+
+```bash
+# Offline recomputation of the new paired observations and artifact hashes
+python scripts/check_research_update.py
+```
+
+<details>
+<summary>Historical September 5 validation snapshot — compromised retrieval observations retained for traceability</summary>
+
+### Archived validation snapshot
 
 Snapshot: **2026-09-05 09:05 UTC**. The originating experiments recorded **12 accepted updates across 9 domain–model configurations**. In office workloads:
 
@@ -25,12 +48,15 @@ Snapshot: **2026-09-05 09:05 UTC**. The originating experiments recorded **12 ac
 | SpreadsheetBench | GPT-5.5 | 30/40 · 75.0% | **33/40 · 82.5%** | **+7.5 pp** |
 | SpreadsheetBench | Sol | 33/40 · 82.5% | **34/40 · 85.0%** | **+2.5 pp** |
 
-These are adaptively selected, single-run **validation outcomes**, not statistically confirmed held-out gains. Some evolution runs are still active. Generalization and transfer studies are ongoing; held-out results are pending. The full results table includes unchanged, unfinished, and unrun configurations. A nondecreasing retained score follows from the gate and does not prove that every task or future run improves.
+These are adaptively selected, single-run **validation outcomes**, not statistically confirmed held-out gains. Those statuses describe the archived September 5 snapshot, not the current runs. Current studies are reported separately. The full results table includes unchanged, unfinished, and unrun configurations. A nondecreasing retained score follows from the gate and does not prove that every task or future run improves.
 
 The included snapshot was produced by the originating experiment harness, from which this package was extracted. The portable driver adds attempt preservation and resume bookkeeping; it has been checked offline, not used to rerun the published model matrix. See [reproduction and differences](docs/reproduction.md).
 
 
 See [generalization study status](docs/generalization-status.md) for the running lean test scope and outstanding validity checks.
+
+
+</details>
 
 ## How it works
 
@@ -87,7 +113,7 @@ Use `--domain officeqa` for pre-staged source documents. Other adapters use `--d
 
 The common driver consumes task IDs, a split loader, a rollout function, and a numerical scorer. A new domain supplies those pieces plus Maintainer/Proposer prompts. The scorer should reflect the intended capability, not reward a formatting shortcut or an artifact of task construction. The current CLI exposes the bundled domains; adding another domain is a Python adapter extension, not automatic compatibility with every scored task.
 
-The packaged backend is Codex. Separate OpenClaw/ArXivMath experiments are part of the ongoing research program, not a shipped backend or a result in the bundled snapshot.
+The packaged backend is Codex. Its default portable execution path is not the hardened isolated research backend; do not treat it as a confirmatory isolation guarantee. The package now includes strict JSONL readers and an AST-aware audit utility, while the full versioned research drivers remain separate. Separate OpenClaw/ArXivMath experiments are part of the ongoing research program, not a shipped backend or a result in the bundled snapshot.
 
 ## Research status
 
@@ -97,7 +123,7 @@ The packaged backend is Codex. Separate OpenClaw/ArXivMath experiments are part 
 | Five domain adapters | Included; optional data/environment dependencies |
 | Portable install and offline demo | Covered by tests and wheel smoke checks |
 | Cross-model transfer | Exploratory study; no broad positive-transfer claim |
-| Independent held-out generalization | In progress / results pending |
+| Held-out evaluation | Completed exploratory observations plus active studies; see validity labels above |
 | Three independent evolutions per local cell | Not measured by the included snapshot |
 | Wiki's independent causal contribution | Not established without matched ablation |
 

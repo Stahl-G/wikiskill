@@ -1,5 +1,11 @@
 # Generalization study status
 
+## Current update: 2026-09-06
+
+The corrective Sol/V2 run completed with 48/90 → 52/90 (+4.44pp, inconclusive). Luna/LiveMath completed with 81/124 → 87/124, but one episode used inline JavaScript despite a no-tools protocol; those statistics are raw observations, not clean confirmation. OfficeQA paper-tool testing is in progress. SealQA/Spreadsheet postprocessing failures were repaired without resampling the completed answers. See [full current evidence](research-update-20260906.md) and [runtime recovery](runtime-recovery.md).
+
+The entries below are historical, dated records; their earlier “pending” language is not current status.
+
 ## Integrity update: 2026-09-05
 
 The subsequent OfficeQA v1-to-v2 Sol transfer run completed 90 pairs. Its journal

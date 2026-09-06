@@ -9,7 +9,7 @@ description = "Compile agent experience into persistent knowledge and validated 
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-license-files = ["LICENSE", "NOTICE.md", "third_party/officeqa/*"]
+license-files = ["LICENSE", "NOTICE.md", "third_party/officeqa/*", "third_party/acorn/*"]
 dependencies = ["pydantic>=2.10,<3"]
 
 [project.optional-dependencies]
@@ -25,7 +25,7 @@ wikiskill = "wikiskill.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-wikiskill = ["resources/**/*.md", "resources/**/*.json", "resources/**/*.sha256", "alfworld/*.sh"]
+wikiskill = ["resources/**/*.md", "resources/**/*.json", "resources/**/*.sha256", "resources/**/*.mjs", "alfworld/*.sh"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

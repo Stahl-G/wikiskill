@@ -71,7 +71,7 @@ def _load_outcome_rows(paths: list[Path]) -> list[dict]:
     rows: list[dict] = []
     for path in paths:
         for lineno, line in enumerate(
-            Path(path).read_text(encoding="utf-8").splitlines(), start=1
+            Path(path).read_text(encoding="utf-8").split("\n"), start=1
         ):
             if not line.strip():
                 continue
@@ -177,7 +177,7 @@ def _public_outcome(row: Mapping[str, Any]) -> dict[str, Any]:
 def compact_event_log(text: str, *, max_commands: int = 12) -> str:
     """Keep command lines only. File dumps in aggregated_output are dropped."""
     commands: list[str] = []
-    for line in text.splitlines():
+    for line in text.split("\n"):
         try:
             event = json.loads(line)
         except json.JSONDecodeError:

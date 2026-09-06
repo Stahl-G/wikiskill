@@ -1,3 +1,7 @@
+# Results and evidence status
+
+Current paired observations and their validity labels are in [the September 6 update](research-update-20260906.md). Recompute them with `python scripts/check_research_update.py`. The historical snapshot below is unchanged.
+
 # Recorded validation results
 
 > **Integrity notice (2026-09-05):** The OfficeQA retrieval history has confirmed cross-run validation access. Its gains, including +20.83pp, are preserved as compromised historical observations and cannot substantiate a clean reproduction. The later v2 transfer run also failed isolation review. See [audit and corrective replication status](generalization-status.md). Other rows have not been certified clean by this audit.

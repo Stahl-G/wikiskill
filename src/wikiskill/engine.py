@@ -17,6 +17,7 @@ import shutil
 import threading
 
 from .k4_lock import workspace_lock
+from .jsonl import read_jsonl
 from .settings import RESOURCES
 from .officeqa.loop import eq4_accepted, mean_accuracy
 from .officeqa.wiki_agents import build_maintainer, build_proposer
@@ -55,7 +56,7 @@ def append(path, value):
 
 def events(root):
     p = root / 'events.jsonl'
-    return [json.loads(line) for line in p.read_text().splitlines() if line.strip()] if p.exists() else []
+    return read_jsonl(p) if p.exists() else []
 
 
 def state(root):
@@ -154,7 +155,7 @@ def batch(root, phase, config, cases, rollout, skill):
     if binding.exists() and read(binding)['sha256'] != identity:
         raise ValueError('Dataset/config/skill changed on resume; use a new workspace')
     save(binding, {'sha256': identity})
-    cached = {x['uid']: x for line in output.read_text().splitlines() if line.strip() for x in [json.loads(line)]} if output.exists() else {}
+    cached = {x['uid']: x for x in read_jsonl(output)} if output.exists() else {}
     ids = [c.uid for c in cases]
     if not cases or len(ids) != len(set(ids)) or set(cached)-set(ids):
         raise ValueError('Empty, duplicated, or unexpected task IDs')

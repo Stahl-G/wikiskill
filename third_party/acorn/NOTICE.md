@@ -1,0 +1,1 @@
+Acorn 8.15.0, MIT license. Vendored unmodified dist/acorn.mjs from https://registry.npmjs.org/acorn/-/acorn-8.15.0.tgz; npm SHA-512 integrity verified before extraction. Used only to parse JavaScript for audit, never to execute model code.

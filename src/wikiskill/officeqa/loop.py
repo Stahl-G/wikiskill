@@ -145,7 +145,7 @@ def load_jsonl_last_uid_wins(path: Path) -> dict[str, dict[str, Any]]:
     last: dict[str, dict[str, Any]] = {}
     if not path.is_file():
         return last
-    for line in path.read_text(encoding="utf-8").splitlines():
+    for line in path.read_text(encoding="utf-8").split('\n'):
         if not line.strip():
             continue
         row = json.loads(line)
@@ -198,7 +198,7 @@ def upsert_jsonl(
         path.parent.mkdir(parents=True, exist_ok=True)
         kept: list[dict[str, Any]] = []
         if path.is_file() and path.stat().st_size:
-            for existing in path.read_text(encoding="utf-8").splitlines():
+            for existing in path.read_text(encoding="utf-8").split('\n'):
                 if not existing.strip():
                     continue
                 payload = json.loads(existing)

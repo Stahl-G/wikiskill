@@ -1,0 +1,126 @@
+{
+  "schema_version": "wikiskill.research_update.v1",
+  "exported_at": "2026-09-06T15:50:32.998950+00:00",
+  "completed_observations": [
+    {
+      "id": "officeqa-sol-v1-to-v2",
+      "model": "gpt-5.6-sol",
+      "effort": "medium",
+      "pairs_file": "officeqa-sol-v2-pairs.json",
+      "bootstrap_seed": 2026090502,
+      "bootstrap_samples": 10000,
+      "statistics": {
+        "n": 90,
+        "s0_correct": 48,
+        "skill_correct": 52,
+        "delta": 0.044444444444444446,
+        "wins": 10,
+        "losses": 6,
+        "both_correct": 42,
+        "both_wrong": 32,
+        "p_exact": 0.454498291015625,
+        "bootstrap_95_ci": [
+          -0.044444444444444446,
+          0.13333333333333333
+        ]
+      },
+      "validity": "exploratory_runtime_extension_inconclusive",
+      "protocol_sha256": "e56275d592cc4d868da1731eae0943af87ae89973b5f17c117a5ed4eca61dabf",
+      "skill_sha256": "2c9493b25bba2e17410fe1377ee6689ade9ee9c60432adaadff217d4dc253fbc",
+      "limitations": [
+        "Parsed-text full-corpus retrieval; prior researcher exposure.",
+        "Scoped document tools plus Python differ from the paper OfficeQA tool set.",
+        "Single evolutionary run; not statistically conclusive."
+      ]
+    },
+    {
+      "id": "livemath-luna-high",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "pairs_file": "livemath-luna-pairs.json",
+      "bootstrap_seed": 2026090604,
+      "bootstrap_samples": 10000,
+      "statistics": {
+        "n": 124,
+        "s0_correct": 81,
+        "skill_correct": 87,
+        "delta": 0.04838709677419355,
+        "wins": 15,
+        "losses": 9,
+        "both_correct": 72,
+        "both_wrong": 28,
+        "p_exact": 0.30745625495910645,
+        "bootstrap_95_ci": [
+          -0.024193548387096774,
+          0.12903225806451613
+        ]
+      },
+      "validity": "raw_only_no_tools_protocol_deviation",
+      "protocol_sha256": "9734f3bd2c175e3c84b9947f1c51c2f4ac5ec362dab8d72f45e65a3131a76192",
+      "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8",
+      "limitations": [
+        "One SK test episode (202606-102) used inline JavaScript calculation despite the declared no-tools condition.",
+        "That pair is correct in both arms; exclusion leaves a net six wins but does not restore confirmatory validity.",
+        "Raw statistics remain inconclusive; no successful external answer-key read was found in the completion audit."
+      ]
+    }
+  ],
+  "in_progress": [
+    {
+      "id": "officeqa-luna-paper-tools",
+      "phase_at_export": "paired_held_out_test",
+      "test_result": "pending",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "protocol_sha256": "a88e30e2179ec944767b3d20ea3a094814af370aa2d81d246f0630a4dab519f4"
+    },
+    {
+      "id": "sealqa-luna-extension",
+      "phase_at_export": "iterations/01/validation",
+      "test_result": "pending",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "protocol_sha256": "17f2b5a2ff431b8f9423d374bfb50e63f263fa40906f5ec09ac3d0ceed7aa0a9",
+      "completed_validation_baseline": {
+        "correct": 6.0,
+        "n": 10
+      }
+    },
+    {
+      "id": "spreadsheet-luna-extension",
+      "phase_at_export": "iterations/01/train",
+      "test_result": "pending",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "protocol_sha256": "f9e1f39057f3f909fd4911cdebd63502735a6c6319721bfe1cc84573f82d5f14",
+      "completed_validation_baseline": {
+        "correct": 31.0,
+        "n": 40
+      }
+    }
+  ],
+  "development_observations": {
+    "officeqa_luna_high": {
+      "baseline": 19,
+      "retained": 22,
+      "n": 24,
+      "completed_iterations": 2,
+      "partial_it3_train": 20,
+      "selected_iteration": 1,
+      "scope": "validation selection with extra Python; subsequent test uses only glob/grep/read"
+    },
+    "livemath_luna_high": {
+      "baseline": 9,
+      "retained": 12,
+      "n": 18,
+      "completed_iterations": 4,
+      "scope": "validation selection, not held-out effect"
+    }
+  },
+  "reliability_repairs": [
+    "Physical-LF JSONL parsing preserves U+2028/U+2029 inside strings.",
+    "AST analysis does not interpret Python/formula strings as outer JavaScript API calls.",
+    "The two stopped native completions were recovered without new model calls; older records retained by hashes."
+  ],
+  "backend_boundary": "These live studies use versioned isolated experimental drivers in the originating environment. This package ships the portable engine and recovery/audit utilities; do not claim the default portable runtime supplied those isolation guarantees."
+}

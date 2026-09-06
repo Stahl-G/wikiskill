@@ -71,7 +71,7 @@ def main() -> int:
     else:
         history = [
             json.loads(line)["action"]
-            for line in history_path.read_text(encoding="utf-8").splitlines()
+            for line in history_path.read_text(encoding="utf-8").split('\n')
             if line.strip()
         ]
     if args.action and not args.reset:

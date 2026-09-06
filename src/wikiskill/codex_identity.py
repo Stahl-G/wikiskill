@@ -16,7 +16,7 @@ class ModelIdentityError(RuntimeError):
 
 
 def extract_thread_id(events_text: str) -> str:
-    for line in (events_text or "").splitlines():
+    for line in (events_text or "").split('\n'):
         if not line.strip():
             continue
         try:
@@ -33,7 +33,7 @@ def extract_thread_id(events_text: str) -> str:
 def model_from_session_file(path: Path) -> str:
     if not path.is_file():
         return ""
-    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+    for line in path.read_text(encoding="utf-8", errors="replace").split('\n'):
         if not line.strip():
             continue
         try:
