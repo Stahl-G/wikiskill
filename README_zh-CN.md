@@ -31,6 +31,8 @@ Luna/high 的两项已完成 test 都是**小幅正向、统计仍不确定**。
 
 [结果、限制及本次对齐](docs/research-update-20260907.md) · [仅分数与哈希的工件](src/wikiskill/resources/research/update-20260907) · [论文提示词资源](src/wikiskill/resources/paper_alignment)
 
+论文对齐模块的 Wiki 契约兼容无害的文件名差异：缺少 `.md` 时自动归一化，支持下划线、连字符和 Unicode 名称，索引路径随存储名对应。路径越界和歧义覆盖仍会报错；历史冻结快照保持不变。
+
 ```bash
 # 离线重算，不调用模型
 python scripts/check_research_update_20260907.py

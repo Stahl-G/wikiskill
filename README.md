@@ -31,6 +31,8 @@ The alignment review found that the former Maintainer sample could contain only 
 
 [Full results, limitations and alignment changes](docs/research-update-20260907.md) · [Score-only artifacts](src/wikiskill/resources/research/update-20260907) · [Paper prompt resources](src/wikiskill/resources/paper_alignment)
 
+The paper-alignment Wiki contract accepts harmless filename variants: missing `.md` suffixes are normalized, and underscores, hyphens and Unicode names are supported. Index paths follow the stored name. Path traversal and ambiguous overwrites remain errors; historical frozen snapshots are unchanged.
+
 ```bash
 # Offline recomputation; no model calls
 python scripts/check_research_update_20260907.py

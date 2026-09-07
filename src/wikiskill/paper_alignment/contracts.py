@@ -1,7 +1,8 @@
 """Deterministic paper JSON contracts; roles submit content, controller applies."""
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import json
 import re
+import unicodedata
 import yaml
 
 
@@ -11,10 +12,40 @@ class ContractError(ValueError):
 
 def canonical_pattern(name):
     if not isinstance(name,str):raise ContractError('Pattern name must be a string')
+    name=unicodedata.normalize('NFC',name.strip())
     if name.startswith('wiki/patterns/'):name=name[len('wiki/patterns/'):]
     elif name.startswith('patterns/'):name=name[len('patterns/'):]
-    if not re.fullmatch(r'[a-z0-9-]+\.md',name):raise ContractError('Expected safe pattern-name.md basename')
-    return name
+    if not name or name in ('.','..') or '/' in name or '\\' in name or PureWindowsPath(name).drive or any(unicodedata.category(c).startswith('C') for c in name):
+        raise ContractError(f'Pattern path must be one local filename, without traversal or control characters: {name!r}')
+    # Suffix and spelling conventions are storage details, not content gates.
+    # Keep underscores, hyphens, spaces and Unicode; normalize only the suffix.
+    return name[:-3]+'.md' if name.lower().endswith('.md') else name+'.md'
+
+
+def _pattern_identity(name):
+    return canonical_pattern(name).casefold()
+
+
+def _index_paths(index,names):
+    """Repair known filename aliases without editing the semantic descriptions."""
+    by_identity={_pattern_identity(name):name for name in names}
+    referenced=set()
+    def rewrite(match):
+        prefix,target=match.groups()
+        try:key=_pattern_identity(target)
+        except ContractError:return match.group(0)
+        if key not in by_identity:return match.group(0)
+        name=by_identity[key];referenced.add(name)
+        return prefix+name
+    index=re.sub(r'((?:wiki/)?patterns/)([^\n<>`)]+)',rewrite,index)
+    for name in names:
+        if name in index or name in referenced:continue
+        stem=name[:-3] if name.lower().endswith('.md') else name
+        if stem in index:
+            # A plain-name index is still readable. Add only its exact locator.
+            index+='\n- ['+stem+'](<wiki/patterns/'+name+'>)\n'
+        else:raise ContractError('update_index must retain existing pattern: '+name)
+    return index
 
 
 def patch(text,edits):
@@ -40,22 +71,29 @@ def wiki_update(value,existing):
     if not isinstance(value['update_index'],str) or not value['update_index'].strip():raise ContractError('Complete update_index required')
     if not isinstance(value['append_log'],str) or not value['append_log'].strip():raise ContractError('append_log required')
     result=dict(existing);touched=set();normalized={**value,'create_patterns':[],'update_patterns':[]}
+    existing_names={}
+    for key in existing:
+        if key.startswith('patterns/'):
+            identity=_pattern_identity(key[len('patterns/'):])
+            if identity in existing_names:raise ContractError('Ambiguous existing pattern aliases')
+            existing_names[identity]=key[len('patterns/'):]
     for kind in ('create_patterns','update_patterns'):
         if not isinstance(value[kind],list):raise ContractError(f'{kind} must be a list')
         for entry in value[kind]:
-            name=canonical_pattern(entry.get('name'));key='patterns/'+name
-            if name in touched:raise ContractError('Duplicate pattern mutation')
-            touched.add(name)
+            name=canonical_pattern(entry.get('name'));identity=_pattern_identity(name)
+            if identity in touched:raise ContractError('Duplicate pattern mutation after filename normalization: '+name)
+            touched.add(identity)
+            if kind=='create_patterns' and identity in existing_names:raise ContractError('Create would overwrite existing pattern: '+name)
+            if kind=='update_patterns':name=existing_names.get(identity,name)
+            key='patterns/'+name
             if kind=='create_patterns':
                 if set(entry)!={'name','content'} or key in result or not isinstance(entry['content'],str) or not entry['content'].strip():raise ContractError('Create requires a new name and nonempty content')
                 result[key]=entry['content'];normalized[kind].append({'name':name,'content':entry['content']})
             else:
                 if set(entry)!={'name','edits'} or key not in result:raise ContractError('Update requires an existing pattern and edits')
                 result[key]=patch(result[key],entry['edits']);normalized[kind].append({'name':name,'edits':entry['edits']})
-    for key in result:
-        if key.startswith('patterns/') and key.split('/')[-1] not in value['update_index']:
-            raise ContractError('update_index must retain every existing pattern')
-    result['index.md']=value['update_index']
+    normalized['update_index']=_index_paths(value['update_index'],[key[len('patterns/'):] for key in result if key.startswith('patterns/')])
+    result['index.md']=normalized['update_index']
     return normalized,result
 
 
@@ -100,4 +138,8 @@ def skill_text(skills):
 
 
 def read_wiki(root):
-    return {str(p.relative_to(root)):p.read_text() for p in sorted(root.rglob('*.md'))} if root.exists() else {}
+    if not root.exists():return {}
+    files=set(root.rglob('*.md'))
+    files.update(p for p in (root/'patterns').glob('*') if p.is_file() and not p.name.startswith('.'))
+    if any(not p.resolve().is_relative_to(root.resolve()) for p in files):raise ContractError('Wiki file resolves outside the Wiki directory')
+    return {str(p.relative_to(root)):p.read_text() for p in sorted(files)}
