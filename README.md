@@ -118,6 +118,9 @@ The source distribution is named `wikiskill-research`; the Python package and CL
 
 ## Run a real experiment
 
+An opt-in macOS `wikiskill spreadsheet-study` entry point is available for a bounded, isolated single-round Spreadsheet development study. It freezes caller-supplied data and keeps the legacy CLI unchanged. See [setup and scope](docs/isolated-spreadsheet-study.md). This new path is not the source of the historical published scores.
+
+
 Install and authenticate the Codex CLI separately, then obtain the dataset under its upstream access terms. `doctor` checks executable availability; it does not validate credentials or model access.
 
 ```bash

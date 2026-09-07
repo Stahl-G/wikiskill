@@ -98,6 +98,9 @@ python scripts/check_research_final_20260907.py
 
 ## 快速开始
 
+新增可选的 macOS `wikiskill spreadsheet-study` 入口，用于隔离的单轮 Spreadsheet 开发验证，冻结调用方提供的数据，保留旧 CLI 路径。见[配置与范围](docs/isolated-spreadsheet-study.md)。这条新路径不是历史公开分数的来源。
+
+
 主程序需要 Python 3.11+，支持 macOS/Linux；ALFWorld 需另配环境。
 
 ```bash

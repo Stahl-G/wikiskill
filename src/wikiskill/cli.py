@@ -1,4 +1,4 @@
-"""Command-line entry point; model calls happen only in evolve."""
+"""CLI; model calls happen in evolve or explicit spreadsheet-study run."""
 import argparse
 import json
 import shutil
@@ -28,9 +28,38 @@ def main(argv=None):
     sub.add_parser('doctor',help='Check runtime availability without model calls')
     report=sub.add_parser('results',help='Verify and summarize the bundled research snapshot')
     report.add_argument('--snapshot',type=Path)
+    study=sub.add_parser('spreadsheet-study',help='Opt-in isolated macOS single-round Spreadsheet study')
+    actions=study.add_subparsers(dest='study_action',required=True)
+    prep=actions.add_parser('prepare',help='Freeze a bounded train/val study; no model calls')
+    prep.add_argument('workspace',type=Path)
+    for name in ['data','split-dir','libreoffice-app']:prep.add_argument('--'+name,type=Path,required=True)
+    prep.add_argument('--model',default='gpt-5.6-luna')
+    prep.add_argument('--effort',default='high')
+    prep.add_argument('--train-limit',type=int,default=8)
+    prep.add_argument('--val-limit',type=int,default=4)
+    prep.add_argument('--workers',type=int,default=2)
+    prep.add_argument('--timeout',type=int,default=1800)
+    for action in ['run','status','verify']:
+        cmd=actions.add_parser(action,help='Run/resume real model calls' if action=='run' else 'Read/verify frozen study')
+        cmd.add_argument('workspace',type=Path)
+    preflight=actions.add_parser('preflight',help='Check dependencies and native read boundary; no model inference')
+    preflight.add_argument('--libreoffice-app',type=Path,required=True)
+    preflight.add_argument('--model',default='gpt-5.6-luna')
+    preflight.add_argument('--effort',default='high')
     args=parser.parse_args(argv)
     from . import engine
     try:
+        if args.command=='spreadsheet-study':
+            if args.study_action=='preflight':
+                from .isolated.runtime import preflight
+                result=preflight(libreoffice_app=args.libreoffice_app,model=args.model,effort=args.effort)
+            else:
+                from .spreadsheet import study
+                if args.study_action=='prepare':
+                    values={k:v for k,v in vars(args).items() if k not in {'command','study_action','workspace'}}
+                    result=study.prepare(args.workspace,**values)
+                else:result=getattr(study,args.study_action)(args.workspace)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if args.command=='doctor':
             print(json.dumps({'codex':shutil.which('codex'),'note':'CLI discovery only; auth and model access are not tested.'},indent=2));return 0
         if args.command=='results':
