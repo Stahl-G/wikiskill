@@ -137,6 +137,39 @@ def test_failed_attempt_is_preserved_and_not_resampled(tmp_path, monkeypatch):
     assert (tmp_path/'runtime/failure.json').read_bytes() == before
 
 
+def test_cancelled_attempt_stops_owned_process_and_removes_auth(tmp_path, monkeypatch):
+    payload, workspace, control = tmp_path/'payload', tmp_path/'w', tmp_path/'c'
+    for path in (payload, workspace, control):
+        path.mkdir()
+    (control/'auth.json').write_text('synthetic secret')
+    stopped = []
+    class Child:
+        pid = 12345
+        returncode = None
+        calls = 0
+        def communicate(self, *args, **kwargs):
+            self.calls += 1
+            if self.calls == 1:
+                raise KeyboardInterrupt()
+            self.returncode = -15
+            return '{"type":"thread.started","thread_id":"synthetic"}\n', 'interrupted'
+        def poll(self):
+            return self.returncode
+    monkeypatch.setattr(runtime, '_resources', lambda *args: {})
+    monkeypatch.setattr(runtime, 'create_context', lambda *args: (workspace, control, {}, ['synthetic']))
+    monkeypatch.setattr(runtime, 'install_spreadsheet_dependencies', lambda *args: None)
+    monkeypatch.setattr(runtime, 'inspect_context', lambda *args: {})
+    monkeypatch.setattr(runtime, 'verify_boundary', lambda *args: {})
+    monkeypatch.setattr(runtime.subprocess, 'Popen', lambda *args, **kwargs: Child())
+    monkeypatch.setattr(runtime.os, 'killpg', lambda pid, signal: stopped.append(pid))
+    with pytest.raises(KeyboardInterrupt):
+        runtime.execute(payload, 's', 'u', 'spreadsheet', libreoffice_app=Path('/synthetic.app'))
+    assert stopped == [12345]
+    assert not (control/'auth.json').exists()
+    assert (tmp_path/'runtime/stderr.log').read_text() == 'interrupted'
+    assert 'KeyboardInterrupt' in (tmp_path/'runtime/failure.json').read_text()
+
+
 def test_native_complete_recovery_never_calls_runtime_or_model(tmp_path, monkeypatch):
     archive, _, _ = archive_fixture(tmp_path)
     payload = tmp_path/'payload'

@@ -358,6 +358,7 @@ def execute(payload: Path, system: str, user: str, mode: str, timeout=1800, *,
     archive.mkdir(parents=True)
     write_json(archive/'request.json', request)
     workspace = control = None
+    child = None
     thread_id = ''
     try:
         _resources(libreoffice_app, model, effort)
@@ -408,6 +409,19 @@ def execute(payload: Path, system: str, user: str, mode: str, timeout=1800, *,
         return archive
     except BaseException as exc:
         preservation_error = None
+        if child is not None and child.poll() is None:
+            # A cancelled controller must not leave paid inference running.
+            os.killpg(child.pid, signal.SIGTERM)
+            try:
+                stdout, stderr = child.communicate(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(child.pid, signal.SIGKILL)
+                stdout, stderr = child.communicate()
+            if not (archive/'events.jsonl').exists():
+                (archive/'events.jsonl').write_text(stdout or '')
+            if not (archive/'stderr.log').exists():
+                (archive/'stderr.log').write_text(stderr or '')
+            thread_id = thread_id or extract_thread_id(stdout or '')
         if workspace is not None and control is not None:
             try:
                 _copy_records(workspace, control, archive, thread_id=thread_id)
