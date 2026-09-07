@@ -1,0 +1,97 @@
+{
+  "schema_version": "wikiskill.research_update.v2",
+  "exported_at": "2026-09-07T02:20:08.276391+00:00",
+  "completed_observations": [
+    {
+      "id": "officeqa-luna-paper-tools",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "pairs_file": "officeqa-luna-paper-tools-pairs.json",
+      "skill_file": "officeqa-luna-paper-tools-skill.md",
+      "skill_sha256": "773d37b68b93cfd03ff207041a693020bbf0a374d731fa458d1e9ce1f75a5a8d",
+      "protocol_sha256": "a88e30e2179ec944767b3d20ea3a094814af370aa2d81d246f0630a4dab519f4",
+      "bootstrap_seed": 2026090604,
+      "bootstrap_samples": 10000,
+      "statistics": {
+        "n": 172,
+        "s0_correct": 98.0,
+        "skill_correct": 104.0,
+        "delta": 0.03488372093023256,
+        "wins": 19,
+        "losses": 13,
+        "both_correct": 85,
+        "both_wrong": 55,
+        "p_exact": 0.37708558747544885,
+        "bootstrap_95_ci": [
+          -0.029069767441860465,
+          0.09883720930232558
+        ]
+      },
+      "validity": "inconclusive_with_disclosed_harness_and_learning_input_differences",
+      "correction": {
+        "p_bonferroni_two_domains": 0.7541711749508977
+      }
+    },
+    {
+      "id": "spreadsheet-luna-scoped-python",
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "pairs_file": "spreadsheet-luna-scoped-python-pairs.json",
+      "skill_file": "spreadsheet-luna-scoped-python-skill.md",
+      "skill_sha256": "77bdbefda85fa3f4c2ca54a3ca53fb596926a40cc6faa081b41b126091cdb6c7",
+      "protocol_sha256": "f9e1f39057f3f909fd4911cdebd63502735a6c6319721bfe1cc84573f82d5f14",
+      "bootstrap_seed": 2026090606,
+      "bootstrap_samples": 10000,
+      "statistics": {
+        "n": 278,
+        "s0_correct": 221.0,
+        "skill_correct": 227.0,
+        "delta": 0.02158273381294964,
+        "wins": 16,
+        "losses": 10,
+        "both_correct": 211,
+        "both_wrong": 41,
+        "p_exact": 0.32693958282470703,
+        "bootstrap_95_ci": [
+          -0.014388489208633094,
+          0.05755395683453238
+        ]
+      },
+      "validity": "inconclusive_with_disclosed_harness_and_learning_input_differences",
+      "correction": {
+        "p_bonferroni_four_domains": 1.0
+      }
+    }
+  ],
+  "effort_screen": {
+    "pairs_file": "effort-pairs.json",
+    "analysis_file": "effort-analysis.json",
+    "scope": "24-task exploratory validation screen; frozen Luna skill; prior selection exposure; no monotonic effort-by-skill benefit established"
+  },
+  "new_campaign": {
+    "status": "launched_results_pending",
+    "model": "gpt-5.6-luna",
+    "effort": "high",
+    "domains": {
+      "officeqa": {
+        "phase_at_export": "baseline",
+        "completed_current_phase": 13,
+        "target_current_phase": 24,
+        "protocol_sha256": "300744bb991ecd0dbfaabb43eeb15af270e76771b6d7e9f8310dd939e363269d",
+        "initial_source_commit": "ec42f777785a2e65504eec229061cbb0f911da69",
+        "fresh_start": true,
+        "results": "pending"
+      },
+      "spreadsheet": {
+        "phase_at_export": "baseline",
+        "completed_current_phase": 13,
+        "target_current_phase": 40,
+        "protocol_sha256": "112709e5f7b62c5a1f673bee7cc9a91fb94a3a511158e088bb57ef2899e90815",
+        "initial_source_commit": "ec42f777785a2e65504eec229061cbb0f911da69",
+        "fresh_start": true,
+        "results": "pending"
+      }
+    }
+  },
+  "backend_boundary": "Imported observations and the new campaign use the originating isolated research harness. The portable CLI is not that complete hardened backend. Paper contracts, sampling/trace helpers and prompt transcriptions are shipped separately for review and integration."
+}

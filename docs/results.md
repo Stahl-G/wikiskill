@@ -1,5 +1,8 @@
 # Results and evidence status
 
+> **Current update: September 7.** Completed Luna/high OfficeQA and Spreadsheet results, the effort screen, and the new paper-alignment campaign are documented in [the dated update](research-update-20260907.md). Older snapshots below retain their original dates and limitations. The portable CLI is not the complete isolated research backend.
+
+
 Current paired observations and their validity labels are in [the September 6 update](research-update-20260906.md). Recompute them with `python scripts/check_research_update.py`. The historical snapshot below is unchanged.
 
 # Recorded validation results

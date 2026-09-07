@@ -2,7 +2,7 @@
 
 **A self-evolving skill framework for evaluable agent tasks.**
 
-> **Research update (2026-09-06):** Corrective experiments now have two completed held-out observations, both statistically inconclusive. The LiveMath run also violated its no-tools condition in one episode and is reported as raw evidence only. Historical OfficeQA retrieval gains remain compromised. Runtime recovery fixes and allowlisted paired scores are included below; see [current evidence and limitations](docs/research-update-20260906.md).
+> **Research update (2026-09-07):** OfficeQA and Spreadsheet held-out tests are complete and inconclusive. A fresh paper-aligned campaign has started; results are pending. [Details](docs/research-update-20260907.md).
 
 Based on **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)** by Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation of their method.
 
@@ -16,22 +16,24 @@ This independent research implementation starts with the Codex runtime and five 
 
 ## Latest research observations
 
-Snapshot: **2026-09-06 15:50 UTC**. These studies use the originating isolated experimental runtime; they are not a rerun by the portable CLI in this package.
+The completed Luna/high tests show **small positive paired differences, both statistically inconclusive**. A new campaign starts from empty Wikis after correcting learning-input and task-metadata differences from the paper; **new results are pending**.
 
-| Study | Model / effort | Held-out S0 → skill | Change | Evidence status |
-|---|---|---:|---:|---|
-| OfficeQA V1 → Pro V2, parsed-text retrieval | Sol / medium | 48/90 → 52/90 | **+4.44 pp** | Exploratory runtime extension; p=0.454; inconclusive |
-| LiveMath cleaned subset | Luna / high | 81/124 → 87/124 | **+4.84 pp** | **Raw only:** one test episode used JavaScript despite the no-tools protocol; p=0.307 |
+| Completed study | No skill → frozen skill | Difference | Wins / losses | Evidence |
+|---|---:|---:|---:|---|
+| OfficeQA V1, paper document tools | 98/172 → 104/172 | **+3.49 pp** | 19 / 13 | p=0.377; 95% CI [-2.91, +9.88] pp |
+| Spreadsheet, scoped-Python extension | 221/278 → 227/278 | **+2.16 pp** | 16 / 10 | p=0.327; 95% CI [-1.44, +5.76] pp |
 
-Both paired 95% intervals include zero. These observations do **not** establish a statistically supported clean positive reproduction. The LiveMath deviation is not repaired by deleting the affected pair: its raw data, protocol and audit remain inspectable.
+A 24-task, six-condition effort screen found no established monotonic increase in skill benefit: medium **15→17**, high **16→18**, max **20→19**. This is exploratory validation, not held-out confirmation. Earlier Sol V1→V2 and raw LiveMath results remain in the [September 6 record](docs/research-update-20260906.md); the LiveMath no-tools violation remains disclosed.
 
-Luna/high self-evolution retained validation improvements in OfficeQA (19/24 → 22/24) and LiveMath (9/18 → 12/18). Those are selection-conditioned development observations. OfficeQA's new 172-pair test uses the paper's `glob/grep/read` tool set; its result is pending. SealQA and Spreadsheet extensions are running after two postprocessing bugs were repaired without re-querying completed model answers.
+The alignment review found that the former Maintainer sample could contain only failures, its inline summary missed modern tool events, and Spreadsheet target-region metadata was omitted. The new research path restores success/failure evidence, paper incremental-edit and applicability contracts, legal Spreadsheet inputs, and identical domain tools across train/val/test. OfficeQA uses glob/grep/read; Spreadsheet uses isolated bash with formula recalculation available.
 
-[Study details and runtime differences](docs/research-update-20260906.md) · [Allowlisted paired-score artifacts](src/wikiskill/resources/research/update-20260906) · [Recovery design](docs/runtime-recovery.md)
+**Runtime boundary:** the published portable adapter now includes balanced sampling and modern tool summaries, plus separate paper-contract helpers and prompt transcriptions. The default CLI retains its legacy proposal transport; it is **not** the complete isolated research runtime running the new campaign.
+
+[Full results, limitations and alignment changes](docs/research-update-20260907.md) · [Score-only artifacts](src/wikiskill/resources/research/update-20260907) · [Paper prompt resources](src/wikiskill/resources/paper_alignment)
 
 ```bash
-# Offline recomputation of the new paired observations and artifact hashes
-python scripts/check_research_update.py
+# Offline recomputation; no model calls
+python scripts/check_research_update_20260907.py
 ```
 
 <details>

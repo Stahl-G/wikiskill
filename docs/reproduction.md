@@ -1,5 +1,8 @@
 # Reproduction and portability
 
+> **Current update: September 7.** Completed Luna/high OfficeQA and Spreadsheet results, the effort screen, and the new paper-alignment campaign are documented in [the dated update](research-update-20260907.md). Older snapshots below retain their original dates and limitations. The portable CLI is not the complete isolated research backend.
+
+
 ## Two distinct records
 
 The bundled research snapshot was measured in the original Codex-based experiment harness. The import script exports only train/val scores, task identifiers, model-echo metadata, gate metadata and selected skills. Source hashes support provenance; the export does not reproduce full model trajectories or prove the absence of every possible leakage route.

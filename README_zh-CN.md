@@ -2,7 +2,7 @@
 
 **面向可评测 Agent 任务的技能自进化框架。**
 
-> **研究更新（2026-09-06）：** 修正实验已有两项完整 held-out 观察，统计上均不确定；其中 LiveMath 的一条 test 使用了 JavaScript，违反无工具条件，只作为原始观察报告。历史 OfficeQA 检索增益仍属受污染记录。本次增加可复算配对分数和运行恢复修复，见[最新证据与限制](docs/research-update-20260906.md)。
+> **研究更新（2026-09-07）：** OfficeQA 与 Spreadsheet 的 held-out test 已完成，统计结论仍不确定；论文对齐后的新实验已启动，结果待完成。[详细记录](docs/research-update-20260907.md)。
 
 基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
 
@@ -16,22 +16,24 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 
 ## 最新研究观察
 
-快照时间：**2026-09-06 15:50 UTC**。这些实验使用原始研究环境中的隔离 runner，没有冒充由本包的便携 CLI 重跑。
+Luna/high 的两项已完成 test 都是**小幅正向、统计仍不确定**。针对学习输入与任务元数据的论文对齐修订已完成，新一轮从空 Wiki 开始；**新一轮结果尚未出来**。
 
-| 研究 | 模型 / effort | Held-out 无技能 → 技能 | 变化 | 证据状态 |
-|---|---|---:|---:|---|
-| OfficeQA V1 → Pro V2，解析文本全库检索 | Sol / medium | 48/90 → 52/90 | **+4.44pp** | 运行时扩展实验；p=0.454，统计不确定 |
-| LiveMath 清理后的子集 | Luna / high | 81/124 → 87/124 | **+4.84pp** | **仅原始观察：** 一条 test 通过 JavaScript 计算违反无工具协议；p=0.307 |
+| 已完成研究 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 证据 |
+|---|---:|---:|---:|---|
+| OfficeQA V1，论文文档工具 | 98/172 → 104/172 | **+3.49pp** | 19 / 13 | p=0.377；95% CI [−2.91，+9.88]pp |
+| Spreadsheet，隔离 Python 扩展 | 221/278 → 227/278 | **+2.16pp** | 16 / 10 | p=0.327；95% CI [−1.44，+5.76]pp |
 
-两项配对95%区间都跨0，**尚不能宣称统计上成立的干净正向复现**。LiveMath 的协议偏离不能靠事后删除一对题目消除；原始数据、协议与审计继续保留。
+24 题、六条件 effort 筛查未证明技能收益随推理档位递增：medium **15→17**、high **16→18**、max **20→19**。这是探索性 val，不是 held-out 确认。此前 Sol V1→V2 和 LiveMath 原始观察保留在[9月6日记录](docs/research-update-20260906.md)，LiveMath 的无工具条件违例没有撤销。
 
-Luna/high 自演化在 OfficeQA（19/24→22/24）和 LiveMath（9/18→12/18）保留了验证集增益，但它们仍是验证选优结果。OfficeQA 新的172对test使用论文的 glob/grep/read 工具集，结果待完成。SealQA、Spreadsheet 扩展线在修复两处后处理问题后继续运行，已完成的模型答案没有重新采样。
+论文对照发现：旧 Maintainer 初始样本可能全是失败题，内联摘要漏掉现代工具事件，Spreadsheet 又没有得到合法的目标区域元数据。新研究路径恢复成功／失败配比、论文增量编辑与技能适用条件契约、Spreadsheet 合法输入，并统一 train/val/test 工具。OfficeQA 使用 glob/grep/read；Spreadsheet 使用隔离 bash，可进行公式重算。
 
-[研究细节与配置差异](docs/research-update-20260906.md) · [可复算配对工件](src/wikiskill/resources/research/update-20260906) · [运行恢复设计](docs/runtime-recovery.md)
+**实现边界：** 本包的便携适配器已加入失败／成功配比和现代工具摘要，同时提供独立的论文契约辅助模块及提示词转录。默认 CLI 仍保留旧提案传输格式，**不是**当前新实验使用的完整隔离研究运行端。
+
+[结果、限制及本次对齐](docs/research-update-20260907.md) · [仅分数与哈希的工件](src/wikiskill/resources/research/update-20260907) · [论文提示词资源](src/wikiskill/resources/paper_alignment)
 
 ```bash
-# 离线重算新配对观察并检查工件哈希，不调用模型
-python scripts/check_research_update.py
+# 离线重算，不调用模型
+python scripts/check_research_update_20260907.py
 ```
 
 <details>

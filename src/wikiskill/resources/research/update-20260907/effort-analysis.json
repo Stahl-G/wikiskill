@@ -1,0 +1,174 @@
+{
+  "n_tasks": 24,
+  "scope": "exploratory validation screen, one realization per cell",
+  "conditions": {
+    "medium_s0": {
+      "correct": 15.0,
+      "accuracy": 0.625
+    },
+    "medium_sk": {
+      "correct": 17.0,
+      "accuracy": 0.7083333333333334
+    },
+    "high_s0": {
+      "correct": 16.0,
+      "accuracy": 0.6666666666666666
+    },
+    "high_sk": {
+      "correct": 18.0,
+      "accuracy": 0.75
+    },
+    "max_s0": {
+      "correct": 20.0,
+      "accuracy": 0.8333333333333334
+    },
+    "max_sk": {
+      "correct": 19.0,
+      "accuracy": 0.7916666666666666
+    }
+  },
+  "primary": {
+    "name": "interaction_max_medium",
+    "estimate": -0.125,
+    "bootstrap_95_ci": [
+      -0.4166666666666667,
+      0.125
+    ]
+  },
+  "high_interaction": {
+    "estimate": 0.0,
+    "bootstrap_95_ci": [
+      -0.2916666666666667,
+      0.2916666666666667
+    ]
+  },
+  "secondary": [
+    {
+      "name": "skill_at_medium",
+      "delta": 0.08333333333333333,
+      "bootstrap_95_ci": [
+        -0.125,
+        0.2916666666666667
+      ],
+      "win": 4,
+      "loss": 2,
+      "both_correct": 13,
+      "both_wrong": 5,
+      "p_exact": 0.6875,
+      "p_holm": 1.0
+    },
+    {
+      "name": "skill_at_high",
+      "delta": 0.08333333333333333,
+      "bootstrap_95_ci": [
+        -0.16666666666666666,
+        0.2916666666666667
+      ],
+      "win": 5,
+      "loss": 3,
+      "both_correct": 13,
+      "both_wrong": 3,
+      "p_exact": 0.7265625,
+      "p_holm": 1.0
+    },
+    {
+      "name": "skill_at_max",
+      "delta": -0.041666666666666664,
+      "bootstrap_95_ci": [
+        -0.20833333333333334,
+        0.08333333333333333
+      ],
+      "win": 1,
+      "loss": 2,
+      "both_correct": 18,
+      "both_wrong": 3,
+      "p_exact": 1.0,
+      "p_holm": 1.0
+    },
+    {
+      "name": "high_minus_medium_without_skill",
+      "delta": 0.041666666666666664,
+      "bootstrap_95_ci": [
+        -0.16666666666666666,
+        0.25
+      ],
+      "win": 4,
+      "loss": 3,
+      "both_correct": 12,
+      "both_wrong": 5,
+      "p_exact": 1.0,
+      "p_holm": 1.0
+    },
+    {
+      "name": "max_minus_medium_without_skill",
+      "delta": 0.20833333333333334,
+      "bootstrap_95_ci": [
+        0.08333333333333333,
+        0.375
+      ],
+      "win": 5,
+      "loss": 0,
+      "both_correct": 15,
+      "both_wrong": 4,
+      "p_exact": 0.0625,
+      "p_holm": 0.3125
+    }
+  ],
+  "protocol_sha256": "27e15486db06ed340949a9583573f6e469f9e40912c82f160a1b5fc81d1778c0",
+  "workload": {
+    "medium_s0": {
+      "mean_seconds": 59.750403349123495,
+      "mean_tool_calls": 10.916666666666666,
+      "usage": {
+        "input_tokens": 4964722,
+        "cached_input_tokens": 4023808,
+        "output_tokens": 39603
+      }
+    },
+    "medium_sk": {
+      "mean_seconds": 62.27383380045952,
+      "mean_tool_calls": 13.666666666666666,
+      "usage": {
+        "input_tokens": 6366762,
+        "cached_input_tokens": 5295104,
+        "output_tokens": 49304
+      }
+    },
+    "high_s0": {
+      "mean_seconds": 88.58587289229096,
+      "mean_tool_calls": 14.875,
+      "usage": {
+        "input_tokens": 9095961,
+        "cached_input_tokens": 7953408,
+        "output_tokens": 82337
+      }
+    },
+    "high_sk": {
+      "mean_seconds": 108.99417434383274,
+      "mean_tool_calls": 15.041666666666666,
+      "usage": {
+        "input_tokens": 8244719,
+        "cached_input_tokens": 7201280,
+        "output_tokens": 108115
+      }
+    },
+    "max_s0": {
+      "mean_seconds": 151.76141419446017,
+      "mean_tool_calls": 15.291666666666666,
+      "usage": {
+        "input_tokens": 10821284,
+        "cached_input_tokens": 9449216,
+        "output_tokens": 159136
+      }
+    },
+    "max_sk": {
+      "mean_seconds": 171.14804289758226,
+      "mean_tool_calls": 18.416666666666668,
+      "usage": {
+        "input_tokens": 11518882,
+        "cached_input_tokens": 10143232,
+        "output_tokens": 185446
+      }
+    }
+  }
+}

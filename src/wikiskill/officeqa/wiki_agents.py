@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import random
 import shutil
 from collections.abc import Mapping
 from pathlib import Path
@@ -121,26 +122,17 @@ def _categories(row: Mapping[str, Any]) -> set[str]:
     return {"wrong_answer"}
 
 
-def stratified_sample(outcome_rows: list[dict], *, max_cases: int = 12) -> list[str]:
+def stratified_sample(outcome_rows: list[dict], *, max_cases: int = 8, seed: int = 0) -> list[str]:
+    """Reserve success examples: at most five failures and three successes."""
     indexed = _rows_by_case_id(outcome_rows)
-    buckets: dict[str, list[str]] = {name: [] for name in CATEGORY_ORDER}
-    for case_id, row in indexed.items():
-        for category in _categories(row):
-            buckets[category].append(case_id)
-    selected: list[str] = []
-    chosen: set[str] = set()
-    for category in CATEGORY_ORDER:
-        for case_id in sorted(buckets[category]):
-            if case_id not in chosen and len(selected) < max_cases:
-                selected.append(case_id)
-                chosen.add(case_id)
-    for case_id in sorted(indexed):
-        if len(selected) >= max_cases:
-            break
-        if case_id not in chosen:
-            selected.append(case_id)
-            chosen.add(case_id)
-    return selected
+    if max_cases < 1:
+        raise ValueError("max_cases must be positive")
+    failed = sorted(k for k, row in indexed.items() if row.get("score") != 1.0)
+    passed = sorted(k for k, row in indexed.items() if row.get("score") == 1.0)
+    rng = random.Random(seed)
+    fail_cap = min(5, max_cases)
+    pass_cap = min(3, max_cases - fail_cap)
+    return rng.sample(failed, min(fail_cap, len(failed))) + rng.sample(passed, min(pass_cap, len(passed)))
 
 
 def _category_summary(rows: list[dict]) -> dict[str, list[str]]:
@@ -175,7 +167,7 @@ def _public_outcome(row: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def compact_event_log(text: str, *, max_commands: int = 12) -> str:
-    """Keep command lines only. File dumps in aggregated_output are dropped."""
+    """Summarize shell, MCP and visible Code Mode calls without large dumps."""
     commands: list[str] = []
     for line in text.split("\n"):
         try:
@@ -183,6 +175,14 @@ def compact_event_log(text: str, *, max_commands: int = 12) -> str:
         except json.JSONDecodeError:
             continue
         item = event.get("item")
+        if isinstance(item, dict) and item.get("type") == "mcp_tool_call":
+            commands.append("MCP " + str(item.get("tool")) + " args=" + json.dumps(item.get("arguments", {}), ensure_ascii=False)[:1800]
+                            + " result=" + json.dumps(item.get("result", item.get("error")), ensure_ascii=False)[:1800])
+            continue
+        payload = event.get("payload", {})
+        if event.get("type") == "response_item" and payload.get("type") in ("function_call", "custom_tool_call", "function_call_output", "custom_tool_call_output"):
+            commands.append(json.dumps(payload, ensure_ascii=False)[:3000])
+            continue
         if not isinstance(item, dict) or item.get("type") != "command_execution":
             continue
         cmd = " ".join((item.get("command") or "").split())
@@ -190,7 +190,7 @@ def compact_event_log(text: str, *, max_commands: int = 12) -> str:
             cmd = cmd[:157] + "..."
         commands.append(f"{cmd} (exit {item.get('exit_code')})")
     if not commands:
-        return "(no command_execution events parsed)"
+        return "(no visible tool events parsed)"
     omitted = len(commands) - max_commands
     kept = commands[-max_commands:]
     prefix = f"({omitted} earlier commands omitted)\n" if omitted > 0 else ""
@@ -305,7 +305,7 @@ def build_maintainer(
             raise MaintainerContractError(f"maintainer prompt missing: {prompt_path}")
         rows = _load_outcome_rows(list(train_outcomes_paths))
         _guard_train_only(rows)
-        sampled = stratified_sample(rows)
+        sampled = stratified_sample(rows, seed=iteration)
         rows_by_id = _rows_by_case_id(rows)
         iter_dir = workdir / ".maintainer" / f"iteration-{iteration}"
         if iter_dir.exists():
