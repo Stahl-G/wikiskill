@@ -1,5 +1,7 @@
 # Reproduction and portability
 
+> **Final results, September 7:** corrected Spreadsheet fixed-split rerun **213/278 → 237/278 (+8.63 pp)**, statistically supported under the recorded analysis; original SealQA **41/85 → 44/85**, inconclusive. Math repeated VAL is exploratory. [Final report and disclosures](research-final-20260907.md). Earlier dated observations below remain unchanged; the portable CLI is not the isolated source harness.
+
 > **Current update: September 7.** Completed Luna/high OfficeQA and Spreadsheet results, the effort screen, and the new paper-alignment campaign are documented in [the dated update](research-update-20260907.md). Older snapshots below retain their original dates and limitations. The portable CLI is not the complete isolated research backend.
 
 

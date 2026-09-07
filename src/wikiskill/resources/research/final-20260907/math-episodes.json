@@ -1,0 +1,2450 @@
+[
+  {
+    "repeat": 1,
+    "uid": "202605-37",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 53.940968,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5026,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1401,
+      "reasoning_output_tokens": 1388,
+      "total_tokens": 6427
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-37",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 45.226895,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5443,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 496,
+      "reasoning_output_tokens": 483,
+      "total_tokens": 5939
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-37",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 47.063128,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5429,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 472,
+      "reasoning_output_tokens": 459,
+      "total_tokens": 5901
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-37",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 47.252261,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5461,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 479,
+      "reasoning_output_tokens": 467,
+      "total_tokens": 5940
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-4",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 47.699297,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5230,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 5759
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-4",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 123.948215,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5641,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5363,
+      "reasoning_output_tokens": 5350,
+      "total_tokens": 11004
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-4",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 72.926307,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5621,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2290,
+      "reasoning_output_tokens": 2277,
+      "total_tokens": 7911
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-4",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 79.126702,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5671,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2950,
+      "reasoning_output_tokens": 2937,
+      "total_tokens": 8621
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-45",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 57.321721,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6175,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 348,
+      "reasoning_output_tokens": 335,
+      "total_tokens": 6523
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-45",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 40.594878,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6595,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 495,
+      "reasoning_output_tokens": 483,
+      "total_tokens": 7090
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-45",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 42.153787,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6577,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 326,
+      "reasoning_output_tokens": 313,
+      "total_tokens": 6903
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-45",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 37.529582,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6629,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 205,
+      "reasoning_output_tokens": 193,
+      "total_tokens": 6834
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-80",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 472.814571,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5039,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 24357,
+      "reasoning_output_tokens": 24344,
+      "total_tokens": 29396
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-80",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 344.675579,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5452,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 17942,
+      "reasoning_output_tokens": 17930,
+      "total_tokens": 23394
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-80",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 128.7033,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5434,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5709,
+      "reasoning_output_tokens": 5696,
+      "total_tokens": 11143
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-80",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 298.423998,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5487,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 14985,
+      "reasoning_output_tokens": 14972,
+      "total_tokens": 20472
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-105",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 38.484814,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5176,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 200,
+      "reasoning_output_tokens": 187,
+      "total_tokens": 5376
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-105",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 45.250906,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5584,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 238,
+      "reasoning_output_tokens": 225,
+      "total_tokens": 5822
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-105",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 41.331183,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5573,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 182,
+      "reasoning_output_tokens": 169,
+      "total_tokens": 5755
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-105",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 28.627025,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5610,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 133,
+      "reasoning_output_tokens": 120,
+      "total_tokens": 5743
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-29",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 42.882361,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5076,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 263,
+      "reasoning_output_tokens": 250,
+      "total_tokens": 5339
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-29",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 41.895567,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5490,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 356,
+      "reasoning_output_tokens": 343,
+      "total_tokens": 5846
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-29",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 35.482638,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5476,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 173,
+      "reasoning_output_tokens": 160,
+      "total_tokens": 5649
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-29",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 36.150428,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5521,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 317,
+      "reasoning_output_tokens": 305,
+      "total_tokens": 5838
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-88",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 126.863045,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5150,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5889,
+      "reasoning_output_tokens": 5876,
+      "total_tokens": 11039
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-88",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 44.484892,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5561,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 306,
+      "reasoning_output_tokens": 293,
+      "total_tokens": 5867
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-88",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 35.223042,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5550,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 265,
+      "reasoning_output_tokens": 252,
+      "total_tokens": 5815
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-88",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 46.284087,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5596,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 660,
+      "reasoning_output_tokens": 647,
+      "total_tokens": 6256
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-76",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 75.581074,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5319,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2083,
+      "reasoning_output_tokens": 2070,
+      "total_tokens": 7402
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-76",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 39.801113,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5731,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 490,
+      "reasoning_output_tokens": 477,
+      "total_tokens": 6221
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-76",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 55.884356,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5705,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 775,
+      "reasoning_output_tokens": 762,
+      "total_tokens": 6480
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-76",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 167.013273,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5763,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7460,
+      "reasoning_output_tokens": 7447,
+      "total_tokens": 13223
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-9",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 106.359636,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5171,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4443,
+      "reasoning_output_tokens": 4430,
+      "total_tokens": 9614
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-9",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 135.551737,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5584,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5979,
+      "reasoning_output_tokens": 5966,
+      "total_tokens": 11563
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-9",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 68.029231,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5568,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1972,
+      "reasoning_output_tokens": 1959,
+      "total_tokens": 7540
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-9",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 68.951175,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5627,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2183,
+      "reasoning_output_tokens": 2170,
+      "total_tokens": 7810
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-57",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 36.844208,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5680,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 136,
+      "reasoning_output_tokens": 123,
+      "total_tokens": 5816
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-57",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 37.975331,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6096,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 162,
+      "reasoning_output_tokens": 149,
+      "total_tokens": 6258
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-57",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 39.529111,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6083,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 94,
+      "reasoning_output_tokens": 81,
+      "total_tokens": 6177
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-57",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 32.553314,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6136,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 77,
+      "reasoning_output_tokens": 64,
+      "total_tokens": 6213
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-6",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 61.230022,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5220,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1847,
+      "reasoning_output_tokens": 1834,
+      "total_tokens": 7067
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-6",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 54.206638,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5632,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1758,
+      "reasoning_output_tokens": 1745,
+      "total_tokens": 7390
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-6",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 63.386843,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5621,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1565,
+      "reasoning_output_tokens": 1552,
+      "total_tokens": 7186
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-6",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 33.189507,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5680,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 153,
+      "reasoning_output_tokens": 140,
+      "total_tokens": 5833
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-69",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 33.841166,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 4893,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 201,
+      "reasoning_output_tokens": 188,
+      "total_tokens": 5094
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-69",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 37.772422,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5292,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 263,
+      "reasoning_output_tokens": 250,
+      "total_tokens": 5555
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-69",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 31.960619,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5285,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 136,
+      "reasoning_output_tokens": 123,
+      "total_tokens": 5421
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202604-69",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 43.270146,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5329,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 159,
+      "reasoning_output_tokens": 146,
+      "total_tokens": 5488
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-59",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 114.592452,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6430,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4087,
+      "reasoning_output_tokens": 4074,
+      "total_tokens": 10517
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-59",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 156.361577,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6832,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6990,
+      "reasoning_output_tokens": 6977,
+      "total_tokens": 13822
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-59",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 100.217397,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6819,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3118,
+      "reasoning_output_tokens": 3106,
+      "total_tokens": 9937
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-59",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 86.271143,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6862,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3065,
+      "reasoning_output_tokens": 3053,
+      "total_tokens": 9927
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-31",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 36.353949,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5507,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 263,
+      "reasoning_output_tokens": 250,
+      "total_tokens": 5770
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-31",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 52.282769,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5908,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1137,
+      "reasoning_output_tokens": 1124,
+      "total_tokens": 7045
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-31",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 45.088898,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5908,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 227,
+      "reasoning_output_tokens": 214,
+      "total_tokens": 6135
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-31",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 36.651687,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5947,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 159,
+      "reasoning_output_tokens": 146,
+      "total_tokens": 6106
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-14",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 125.371891,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5103,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4547,
+      "reasoning_output_tokens": 4534,
+      "total_tokens": 9650
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-14",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 58.826286,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5512,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1624,
+      "reasoning_output_tokens": 1611,
+      "total_tokens": 7136
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-14",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 46.100688,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5502,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6031
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-14",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 169.092403,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5547,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7887,
+      "reasoning_output_tokens": 7874,
+      "total_tokens": 13434
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-19",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 90.752949,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 4985,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3835,
+      "reasoning_output_tokens": 3822,
+      "total_tokens": 8820
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-19",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 145.992922,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5392,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6538,
+      "reasoning_output_tokens": 6525,
+      "total_tokens": 11930
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-19",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 92.57933,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5381,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2905,
+      "reasoning_output_tokens": 2892,
+      "total_tokens": 8286
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-19",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 60.639596,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5440,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 928,
+      "reasoning_output_tokens": 915,
+      "total_tokens": 6368
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-41",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 58.899191,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5491,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6020
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-41",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 41.800014,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5895,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6424
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-41",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 42.261373,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5889,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 476,
+      "reasoning_output_tokens": 463,
+      "total_tokens": 6365
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202605-41",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 40.06339,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5944,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 107,
+      "total_tokens": 6064
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-106",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 40.022384,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5233,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 5762
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-106",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 119.196437,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5640,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5320,
+      "reasoning_output_tokens": 5307,
+      "total_tokens": 10960
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-106",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 89.221462,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5627,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3470,
+      "reasoning_output_tokens": 3457,
+      "total_tokens": 9097
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 1,
+    "uid": "202606-106",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 49.431236,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5679,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 579,
+      "reasoning_output_tokens": 566,
+      "total_tokens": 6258
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-37",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 45.325444,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5034,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 5563
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-37",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 57.318709,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5431,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 712,
+      "reasoning_output_tokens": 699,
+      "total_tokens": 6143
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-37",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 43.374439,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5433,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 672,
+      "reasoning_output_tokens": 659,
+      "total_tokens": 6105
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-37",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 55.888426,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5466,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 983,
+      "reasoning_output_tokens": 970,
+      "total_tokens": 6449
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-4",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 220.994155,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5232,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 10371,
+      "reasoning_output_tokens": 10358,
+      "total_tokens": 15603
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-4",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 68.842973,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5646,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2004,
+      "reasoning_output_tokens": 1991,
+      "total_tokens": 7650
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-4",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 46.931662,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5616,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 448,
+      "reasoning_output_tokens": 435,
+      "total_tokens": 6064
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-4",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 78.613986,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5673,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3061,
+      "reasoning_output_tokens": 3048,
+      "total_tokens": 8734
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-45",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 36.612974,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6182,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 347,
+      "reasoning_output_tokens": 334,
+      "total_tokens": 6529
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-45",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 35.099213,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6594,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 310,
+      "reasoning_output_tokens": 297,
+      "total_tokens": 6904
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-45",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 44.498568,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6577,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 238,
+      "reasoning_output_tokens": 225,
+      "total_tokens": 6815
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-45",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 42.882005,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6629,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 322,
+      "reasoning_output_tokens": 310,
+      "total_tokens": 6951
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-80",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 308.861999,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5039,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 14719,
+      "reasoning_output_tokens": 14706,
+      "total_tokens": 19758
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-80",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 223.351984,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5449,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 10888,
+      "reasoning_output_tokens": 10876,
+      "total_tokens": 16337
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-80",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 152.399431,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5435,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6087,
+      "reasoning_output_tokens": 6075,
+      "total_tokens": 11522
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-80",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 266.986285,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5489,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 13712,
+      "reasoning_output_tokens": 13699,
+      "total_tokens": 19201
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-105",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 31.134991,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5176,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 121,
+      "reasoning_output_tokens": 108,
+      "total_tokens": 5297
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-105",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 35.425925,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5602,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 164,
+      "reasoning_output_tokens": 151,
+      "total_tokens": 5766
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-105",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 35.855504,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5579,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 109,
+      "reasoning_output_tokens": 96,
+      "total_tokens": 5688
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-105",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 44.930993,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5619,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 150,
+      "reasoning_output_tokens": 138,
+      "total_tokens": 5769
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-29",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 46.506224,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5079,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 239,
+      "reasoning_output_tokens": 226,
+      "total_tokens": 5318
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-29",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 57.631834,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5495,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6024
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-29",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 36.168786,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5483,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 359,
+      "reasoning_output_tokens": 346,
+      "total_tokens": 5842
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-29",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 40.583017,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5519,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 222,
+      "reasoning_output_tokens": 209,
+      "total_tokens": 5741
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-88",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 32.289999,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5152,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 180,
+      "reasoning_output_tokens": 167,
+      "total_tokens": 5332
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-88",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 57.031662,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5561,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 364,
+      "reasoning_output_tokens": 351,
+      "total_tokens": 5925
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-88",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 48.196812,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5550,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 213,
+      "reasoning_output_tokens": 200,
+      "total_tokens": 5763
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-88",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 39.732407,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5601,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 162,
+      "reasoning_output_tokens": 149,
+      "total_tokens": 5763
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-76",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 87.900718,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5300,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3357,
+      "reasoning_output_tokens": 3344,
+      "total_tokens": 8657
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-76",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 47.040654,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5719,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 869,
+      "reasoning_output_tokens": 856,
+      "total_tokens": 6588
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-76",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 52.484985,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5711,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 310,
+      "reasoning_output_tokens": 297,
+      "total_tokens": 6021
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-76",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 64.418208,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5762,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 773,
+      "reasoning_output_tokens": 760,
+      "total_tokens": 6535
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-9",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 55.709807,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5172,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1134,
+      "reasoning_output_tokens": 1121,
+      "total_tokens": 6306
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-9",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 126.825036,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5596,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4976,
+      "reasoning_output_tokens": 4964,
+      "total_tokens": 10572
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-9",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 92.206159,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5571,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3444,
+      "reasoning_output_tokens": 3431,
+      "total_tokens": 9015
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-9",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 73.059937,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5618,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2083,
+      "reasoning_output_tokens": 2070,
+      "total_tokens": 7701
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-57",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 56.731055,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5687,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 150,
+      "reasoning_output_tokens": 137,
+      "total_tokens": 5837
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-57",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 38.173178,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6091,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 113,
+      "reasoning_output_tokens": 100,
+      "total_tokens": 6204
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-57",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 61.018895,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6088,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 120,
+      "reasoning_output_tokens": 108,
+      "total_tokens": 6208
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-57",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 29.721976,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6141,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 97,
+      "reasoning_output_tokens": 84,
+      "total_tokens": 6238
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-6",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 65.65632,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5216,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 803,
+      "reasoning_output_tokens": 790,
+      "total_tokens": 6019
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-6",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 50.04769,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5628,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 767,
+      "reasoning_output_tokens": 754,
+      "total_tokens": 6395
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-6",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 62.791618,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5626,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1419,
+      "reasoning_output_tokens": 1406,
+      "total_tokens": 7045
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-6",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 54.132269,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5673,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1166,
+      "reasoning_output_tokens": 1153,
+      "total_tokens": 6839
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-69",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 29.25049,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 4895,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 155,
+      "reasoning_output_tokens": 142,
+      "total_tokens": 5050
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-69",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 46.110386,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5307,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 218,
+      "reasoning_output_tokens": 205,
+      "total_tokens": 5525
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-69",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 38.811639,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5279,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 146,
+      "reasoning_output_tokens": 133,
+      "total_tokens": 5425
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202604-69",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 31.689638,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5335,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 145,
+      "reasoning_output_tokens": 132,
+      "total_tokens": 5480
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-59",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 81.387254,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6427,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1047,
+      "reasoning_output_tokens": 1034,
+      "total_tokens": 7474
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-59",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 78.626661,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6827,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2519,
+      "reasoning_output_tokens": 2506,
+      "total_tokens": 9346
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-59",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 44.202012,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6826,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1024,
+      "reasoning_output_tokens": 1011,
+      "total_tokens": 7850
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-59",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 129.059153,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 6869,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5441,
+      "reasoning_output_tokens": 5428,
+      "total_tokens": 12310
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-31",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 43.281699,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5493,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6022
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-31",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 34.955238,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5913,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 259,
+      "reasoning_output_tokens": 246,
+      "total_tokens": 6172
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-31",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 44.374726,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5900,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 292,
+      "reasoning_output_tokens": 279,
+      "total_tokens": 6192
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-31",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 41.320348,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5935,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 236,
+      "reasoning_output_tokens": 223,
+      "total_tokens": 6171
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-14",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 153.023531,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5112,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6723,
+      "reasoning_output_tokens": 6710,
+      "total_tokens": 11835
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-14",
+    "arm": "old_skill",
+    "score": 0.0,
+    "seconds": 112.287729,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5512,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4774,
+      "reasoning_output_tokens": 4761,
+      "total_tokens": 10286
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-14",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 233.50217,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 13271,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2759,
+      "reasoning_output_tokens": 2746,
+      "total_tokens": 16030
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-14",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 70.213467,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5552,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2283,
+      "reasoning_output_tokens": 2270,
+      "total_tokens": 7835
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-19",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 162.75733,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 4983,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7422,
+      "reasoning_output_tokens": 7409,
+      "total_tokens": 12405
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-19",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 179.47171,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5399,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8158,
+      "reasoning_output_tokens": 8146,
+      "total_tokens": 13557
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-19",
+    "arm": "new_skill",
+    "score": 0.0,
+    "seconds": 81.065611,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5381,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2804,
+      "reasoning_output_tokens": 2791,
+      "total_tokens": 8185
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-19",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 48.247651,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5428,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 5957
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-41",
+    "arm": "no_skill",
+    "score": 1.0,
+    "seconds": 42.486005,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5503,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 290,
+      "reasoning_output_tokens": 277,
+      "total_tokens": 5793
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-41",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 42.276793,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5909,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 529,
+      "reasoning_output_tokens": 516,
+      "total_tokens": 6438
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-41",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 38.691137,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5893,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 97,
+      "reasoning_output_tokens": 84,
+      "total_tokens": 5990
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202605-41",
+    "arm": "astra_skill",
+    "score": 1.0,
+    "seconds": 36.210634,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5943,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 240,
+      "reasoning_output_tokens": 227,
+      "total_tokens": 6183
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-106",
+    "arm": "no_skill",
+    "score": 0.0,
+    "seconds": 83.440225,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5746,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2043,
+      "reasoning_output_tokens": 2030,
+      "total_tokens": 7789
+    },
+    "skill_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-106",
+    "arm": "old_skill",
+    "score": 1.0,
+    "seconds": 44.275981,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5642,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2083,
+      "reasoning_output_tokens": 2070,
+      "total_tokens": 7725
+    },
+    "skill_sha256": "202c9514ed1d3302bf602838e4144cc2b8aeb1bb8dda92cdcc4ee95af57f38d8"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-106",
+    "arm": "new_skill",
+    "score": 1.0,
+    "seconds": 13.887403,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5625,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 307,
+      "reasoning_output_tokens": 294,
+      "total_tokens": 5932
+    },
+    "skill_sha256": "f37ed64d662fadedf2dda6eb6016ccbd515c24a67b4729af42e4f5719f443d9c"
+  },
+  {
+    "repeat": 2,
+    "uid": "202606-106",
+    "arm": "astra_skill",
+    "score": 0.0,
+    "seconds": 37.761278,
+    "tool_calls": 0,
+    "usage": {
+      "input_tokens": 5677,
+      "cached_input_tokens": 3840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 669,
+      "reasoning_output_tokens": 656,
+      "total_tokens": 6346
+    },
+    "skill_sha256": "c082600fcfb2902bd8714c031e313dc41f2b580733a6f203aa25e5ede1f3bc26"
+  }
+]

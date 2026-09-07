@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "source": "Imported sealed results from the originating isolated research harness; no portable CLI rerun.",
+  "studies": {
+    "spreadsheet": {
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "bootstrap_seed": 2026090715,
+      "bootstrap_samples": 10000,
+      "pairs_file": "spreadsheet-pairs.json",
+      "statistics": {
+        "n": 278,
+        "s0_correct": 213.0,
+        "skill_correct": 237.0,
+        "delta": 0.08633093525179857,
+        "wins": 31,
+        "losses": 7,
+        "both_correct": 206,
+        "both_wrong": 34,
+        "p_exact": 0.00011616700794547796,
+        "bootstrap_95_ci": [
+          0.046762589928057555,
+          0.12949640287769784
+        ],
+        "p_bonferroni_four_domains": 0.00046466803178191185,
+        "verdict": "supported_improvement"
+      },
+      "skill_sha256": "7876c7ecb4b2aad0e55d7623335bd3781512247a1723815c2deec0036e1cc0bf",
+      "protocol_sha256": "1599a83e3fed19594534a47a3dbc5cd87a18218669e8c20dfed8598637300c9e",
+      "source_analysis_sha256": "ff1e895f9ef7b73a3a46956fed31268384d798f2f05523601ac37b7bc195c065",
+      "amendments_sha256": {
+        "transport-admission-revision.json": "73a2dc1c040f4d998f2ef9d6f34b5859bf5dfaba19e1a1236b7b7cfc08a544a7"
+      },
+      "scope": "fixed-split rerun; researcher had seen earlier test results",
+      "cost": {
+        "s0": {
+          "mean_seconds": 94.10572278417266,
+          "tool_calls": 1287
+        },
+        "sk": {
+          "mean_seconds": 121.05399401079137,
+          "tool_calls": 1766
+        }
+      },
+      "cost_scope": "Sealed completed attempts only; not total campaign or all retry overhead",
+      "transport_retries": 4,
+      "validation": {
+        "n": 40,
+        "s0": 28,
+        "sk": 32
+      }
+    },
+    "sealqa": {
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "bootstrap_seed": 2026090606,
+      "bootstrap_samples": 10000,
+      "pairs_file": "sealqa-pairs.json",
+      "statistics": {
+        "n": 85,
+        "s0_correct": 41.0,
+        "skill_correct": 44.0,
+        "delta": 0.03529411764705882,
+        "wins": 10,
+        "losses": 7,
+        "both_correct": 34,
+        "both_wrong": 34,
+        "p_exact": 0.629058837890625,
+        "bootstrap_95_ci": [
+          -0.058823529411764705,
+          0.12941176470588237
+        ],
+        "p_bonferroni_four_domains": 1.0,
+        "verdict": "inconclusive"
+      },
+      "skill_sha256": "bcbfd2bb685f0127d2ec3372e6dcf4fa5037b1ba7b6f1963bdc83990350dfffc",
+      "protocol_sha256": "17f2b5a2ff431b8f9423d374bfb50e63f263fa40906f5ec09ac3d0ceed7aa0a9",
+      "source_analysis_sha256": "dee17c4160a640413a68e42a18e36ac8cfe0dde92fb60091e1728c4a74e3a0c4",
+      "amendments_sha256": {
+        "transport-admission-revision.json": "4c7b1b2c62c7400f7a1ecc3bbddf61ffcf5b08c787d36499e488006e24c1e872",
+        "timeout-zero-revision.json": "e6abd24ee60dcc7e625dd1800111d3a12d5937181efa0e16827ba020a500a951"
+      },
+      "scope": "original frozen SealQA skill; not the later corrected VAL candidate",
+      "timeout_scored_zero": 1,
+      "failed_image_read_admission_amendment": true
+    }
+  },
+  "math": {
+    "scope": "Exploratory repeated VAL; 18 question clusters, not 36 independent tasks; no automatic promotion",
+    "model": "gpt-5.6-luna",
+    "effort": "high",
+    "uids": [
+      "202605-37",
+      "202604-4",
+      "202604-45",
+      "202606-80",
+      "202606-105",
+      "202604-29",
+      "202606-88",
+      "202604-76",
+      "202604-9",
+      "202604-57",
+      "202606-6",
+      "202604-69",
+      "202605-59",
+      "202606-31",
+      "202606-14",
+      "202605-19",
+      "202605-41",
+      "202606-106"
+    ],
+    "analysis_seed": 2026090713,
+    "source_analysis_sha256": "42e125b00fdba5c11d13547f7e65baa796802bdf14cf57fdeb97f962193308a7",
+    "protocol_sha256": "470cb21254c8e0c02b2bbd1876e13813cfdff57fa8273ca9c9288fc9e3a07cf0",
+    "statistics": {
+      "n_question_clusters": 18,
+      "repetitions": 2,
+      "episodes": 144,
+      "scope": "exploratory repeated validation; no automatic promotion",
+      "per_repeat": {
+        "1": {
+          "correct": {
+            "no_skill": 11.0,
+            "old_skill": 13.0,
+            "new_skill": 12.0,
+            "astra_skill": 10.0
+          },
+          "accuracy": {
+            "no_skill": 0.6111111111111112,
+            "old_skill": 0.7222222222222222,
+            "new_skill": 0.6666666666666666,
+            "astra_skill": 0.5555555555555556
+          },
+          "vs_no_skill": {
+            "old_skill": {
+              "delta": 0.1111111111111111,
+              "wins": 3,
+              "losses": 1
+            },
+            "new_skill": {
+              "delta": 0.05555555555555555,
+              "wins": 3,
+              "losses": 2
+            },
+            "astra_skill": {
+              "delta": -0.05555555555555555,
+              "wins": 1,
+              "losses": 2
+            }
+          }
+        },
+        "2": {
+          "correct": {
+            "no_skill": 9.0,
+            "old_skill": 12.0,
+            "new_skill": 12.0,
+            "astra_skill": 10.0
+          },
+          "accuracy": {
+            "no_skill": 0.5,
+            "old_skill": 0.6666666666666666,
+            "new_skill": 0.6666666666666666,
+            "astra_skill": 0.5555555555555556
+          },
+          "vs_no_skill": {
+            "old_skill": {
+              "delta": 0.16666666666666666,
+              "wins": 3,
+              "losses": 0
+            },
+            "new_skill": {
+              "delta": 0.16666666666666666,
+              "wins": 3,
+              "losses": 0
+            },
+            "astra_skill": {
+              "delta": 0.05555555555555555,
+              "wins": 1,
+              "losses": 0
+            }
+          }
+        }
+      },
+      "arms": {
+        "no_skill": {
+          "mean_accuracy": 0.5555555555555556,
+          "mean_seconds": 88.97794219444444,
+          "tool_calls": 0,
+          "mean_usage": {
+            "cache_write_input_tokens": 0,
+            "reasoning_output_tokens": 2921.6111111111113,
+            "cached_input_tokens": 2346.6666666666665,
+            "output_tokens": 2934.6111111111113,
+            "total_tokens": 8277.166666666666,
+            "input_tokens": 5342.555555555556
+          }
+        },
+        "old_skill": {
+          "mean_accuracy": 0.6944444444444444,
+          "mean_seconds": 80.57326483333334,
+          "tool_calls": 0,
+          "mean_usage": {
+            "cache_write_input_tokens": 0,
+            "reasoning_output_tokens": 2659.972222222222,
+            "cached_input_tokens": 2133.3333333333335,
+            "output_tokens": 2672.8333333333335,
+            "total_tokens": 8411.75,
+            "input_tokens": 5738.916666666667
+          },
+          "mean_delta_vs_no_skill": 0.1388888888888889,
+          "uid_cluster_bootstrap_95_ci": [
+            0.027777777777777776,
+            0.2777777777777778
+          ],
+          "repeat_deltas": [
+            0.1111111111111111,
+            0.16666666666666666
+          ]
+        },
+        "new_skill": {
+          "mean_accuracy": 0.6666666666666666,
+          "mean_seconds": 62.43345138888889,
+          "tool_calls": 0,
+          "mean_usage": {
+            "cache_write_input_tokens": 0,
+            "reasoning_output_tokens": 1251.861111111111,
+            "cached_input_tokens": 2560,
+            "output_tokens": 1264.7777777777778,
+            "total_tokens": 7206.222222222223,
+            "input_tokens": 5941.444444444444
+          },
+          "mean_delta_vs_no_skill": 0.1111111111111111,
+          "uid_cluster_bootstrap_95_ci": [
+            -0.027777777777777776,
+            0.2777777777777778
+          ],
+          "repeat_deltas": [
+            0.05555555555555555,
+            0.16666666666666666
+          ]
+        },
+        "astra_skill": {
+          "mean_accuracy": 0.5555555555555556,
+          "mean_seconds": 70.72146197222222,
+          "tool_calls": 0,
+          "mean_usage": {
+            "cache_write_input_tokens": 0,
+            "reasoning_output_tokens": 2064.1944444444443,
+            "cached_input_tokens": 1920,
+            "output_tokens": 2077.027777777778,
+            "total_tokens": 7850.861111111111,
+            "input_tokens": 5773.833333333333
+          },
+          "mean_delta_vs_no_skill": 0.0,
+          "uid_cluster_bootstrap_95_ci": [
+            -0.1111111111111111,
+            0.1388888888888889
+          ],
+          "repeat_deltas": [
+            -0.05555555555555555,
+            0.05555555555555555
+          ]
+        }
+      },
+      "baseline_repeatability": {
+        "both_correct": 7,
+        "both_wrong": 5,
+        "wrong_to_correct": 2,
+        "correct_to_wrong": 4,
+        "flipped_questions": 6,
+        "accuracy_delta_repeat2_minus_repeat1": -0.1111111111111111
+      }
+    }
+  }
+}

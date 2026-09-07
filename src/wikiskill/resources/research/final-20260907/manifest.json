@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "content_policy": "Allowlisted scores, cost totals, task identifiers, hashes and aggregate statistics only; no questions, reference answers, predictions, trajectories, local paths or credentials.",
+  "files": {
+    "math-episodes.json": "503a181064581a4a038c4d0f1c1c7e65e74c215f41c8e74e685732e7baf1ef9f",
+    "sealqa-pairs.json": "ff38ca52e523fe40284057042db961d17fef17f84a3f80c8a31e3a9fde8a1f94",
+    "spreadsheet-pairs.json": "30b9d310feb5947704f17a336313a350d789c6a8463b93e3307b996ac9ff7e61",
+    "summary.json": "d01d352e6700c728a69d80e190f188fa02e9cb0ef5773110e196683fd70e6c1a",
+    "spreadsheet-SKILL.md": "7876c7ecb4b2aad0e55d7623335bd3781512247a1723815c2deec0036e1cc0bf"
+  }
+}

@@ -2,7 +2,7 @@
 
 **A self-evolving skill framework for evaluable agent tasks.**
 
-> **Research update (2026-09-07):** OfficeQA and Spreadsheet held-out tests are complete and inconclusive. A fresh paper-aligned campaign has started; results are pending. [Details](docs/research-update-20260907.md).
+> **Research results (2026-09-07):** The corrected Spreadsheet fixed-split rerun improved from **213/278 to 237/278 (+8.63 pp)** with one frozen Luna/high skill. SealQA remains inconclusive; repeated mathematics validation is exploratory. Prior test exposure, scoring limits, and protocol amendments are disclosed in the [final record](docs/research-final-20260907.md).
 
 Based on **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)** by Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation of their method.
 
@@ -16,27 +16,51 @@ This independent research implementation starts with the Codex runtime and five 
 
 ## Latest research observations
 
-The completed Luna/high tests show **small positive paired differences, both statistically inconclusive**. A new campaign starts from empty Wikis after correcting learning-input and task-metadata differences from the paper; **new results are pending**.
+The corrected Spreadsheet `feedback-v3` study shows a positive paired difference for **one frozen skill with Luna/high execution**. Both arms were freshly executed on the same 278-task split. Researchers had already seen earlier test results, so this is a **fixed-split rerun**, not a completely unseen confirmatory test. It does not establish an independent causal contribution from the Wiki or a guarantee that future evolutions will improve.
 
-| Completed study | No skill → frozen skill | Difference | Wins / losses | Evidence |
+| Completed observation | No skill → frozen skill | Difference | Wins / losses | Statistical evidence |
 |---|---:|---:|---:|---|
-| OfficeQA V1, paper document tools | 98/172 → 104/172 | **+3.49 pp** | 19 / 13 | p=0.377; 95% CI [-2.91, +9.88] pp |
-| Spreadsheet, scoped-Python extension | 221/278 → 227/278 | **+2.16 pp** | 16 / 10 | p=0.327; 95% CI [-1.44, +5.76] pp |
+| Spreadsheet, corrected `feedback-v3`, 278 pairs | 213/278 → 237/278 | **+8.63 pp** | 31 / 7 | Exact p=0.000116; four-domain Bonferroni p=0.000465; paired 95% CI [+4.68, +12.95] pp |
+| SealQA, original frozen skill, 85 pairs | 41/85 → 44/85 | **+3.53 pp** | 10 / 7 | Exact p=0.6291; four-domain corrected p=1; paired 95% CI [−5.88, +12.94] pp |
 
-A 24-task, six-condition effort screen found no established monotonic increase in skill benefit: medium **15→17**, high **16→18**, max **20→19**. This is exploratory validation, not held-out confirmation. Earlier Sol V1→V2 and raw LiveMath results remain in the [September 6 record](docs/research-update-20260906.md); the LiveMath no-tools violation remains disclosed.
+Spreadsheet's candidate was selected on validation (**28/40 → 32/40**). Its test scorer checks target-cell cached values; it does not verify whole-workbook formatting, dynamic formula behavior, or content outside the target region. Mean recorded attempt time rose from **94.11 to 121.05 seconds (+28.64%)** and cumulative tool calls from **1,287 to 1,766**. Four transport failures were each retried once and retained; these workload figures omit the full overhead of failed attempts.
 
-The alignment review found that the former Maintainer sample could contain only failures, its inline summary missed modern tool events, and Spreadsheet target-region metadata was omitted. The new research path restores success/failure evidence, paper incremental-edit and applicability contracts, legal Spreadsheet inputs, and identical domain tools across train/val/test. OfficeQA uses glob/grep/read; Spreadsheet uses isolated bash with formula recalculation available.
+SealQA used the original frozen skill, **not** the later candidate that reached 7/10 on validation. One skill-arm timeout was scored zero under a user-authorized amendment made after the run. A separate `view_image` call treated an HTTPS URL as a local path and returned `ENOENT` without data; an evidence-limited audit amendment recovered the original completion without resampling. Both amendments remain part of the result's interpretation.
 
-**Runtime boundary:** the published portable adapter now includes balanced sampling and modern tool summaries, plus separate paper-contract helpers and prompt transcriptions. The default CLI retains its legacy proposal transport; it is **not** the complete isolated research runtime running the new campaign.
+Repeated mathematics validation used **18 task IDs × 4 arms × 2 repetitions = 144 fresh calls**, all executed by Luna/high with zero tool calls. Against no skill, the old Luna skill averaged **+13.89 pp**, the new Luna skill **+11.11 pp**, and the Astra-authored skill **0.00 pp**. The independent task-cluster count is 18, not 36. These reused validation tasks and unadjusted exploratory intervals do not support a held-out generalization claim. Astra authored one skill for Luna; this does not measure Astra execution or establish proposer superiority.
 
-[Full results, limitations and alignment changes](docs/research-update-20260907.md) · [Score-only artifacts](src/wikiskill/resources/research/update-20260907) · [Paper prompt resources](src/wikiskill/resources/paper_alignment)
+**Runtime boundary:** these observations are imported from the originating research harness. The published portable adapter includes balanced sampling, modern tool summaries, paper-contract helpers and prompt transcriptions. Its default CLI retains the legacy proposal transport and is **not the complete isolated research harness** used for these results.
+
+[Final methods, results and limitations](docs/research-final-20260907.md) · [Score-only evidence and manifest](src/wikiskill/resources/research/final-20260907) · [Frozen Spreadsheet skill](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) · [Paper prompt resources](src/wikiskill/resources/paper_alignment)
+
+The linked skill is an experimental artifact for inspection; publishing it does not automatically install or enable it.
+
+```bash
+# Offline recomputation and integrity checks; no model calls
+python scripts/check_research_final_20260907.py
+```
+
+<details>
+<summary>Earlier September 7 observations — separate frozen skills and protocols</summary>
+
+The earlier Luna/high OfficeQA and Spreadsheet studies were both inconclusive:
+
+| Earlier study | No skill → frozen skill | Difference | Wins / losses | Evidence |
+|---|---:|---:|---:|---|
+| OfficeQA V1, paper document tools | 98/172 → 104/172 | +3.49 pp | 19 / 13 | p=0.377; 95% CI [−2.91, +9.88] pp |
+| Spreadsheet, scoped-Python extension | 221/278 → 227/278 | +2.16 pp | 16 / 10 | p=0.327; 95% CI [−1.44, +5.76] pp |
+
+These observations are retained under their original conditions; the corrected Spreadsheet rerun above uses a different frozen skill and protocol. Its larger difference cannot identify the causal effect of any individual repair.
+
+A 24-task, six-condition effort screen found no established monotonic increase in skill benefit: medium **15→17**, high **16→18**, max **20→19**. This is exploratory validation. Earlier Sol V1→V2 and raw LiveMath results remain in the [September 6 record](docs/research-update-20260906.md); the LiveMath no-tools violation remains disclosed.
+
+The alignment review found that the former Maintainer sample could contain only failures, its inline summary missed modern tool events, and Spreadsheet target-region metadata was omitted. The corrected research path restores success/failure evidence, paper incremental-edit and applicability contracts, legal Spreadsheet inputs, and identical domain tools across train/val/test. OfficeQA uses glob/grep/read; Spreadsheet uses isolated bash with formula recalculation available. Individual repair effects have not been measured by ablation.
+
+[Earlier checkpoint and alignment details](docs/research-update-20260907.md) · [Earlier score-only artifacts](src/wikiskill/resources/research/update-20260907)
 
 The paper-alignment Wiki contract accepts harmless filename variants: missing `.md` suffixes are normalized, and underscores, hyphens and Unicode names are supported. Index paths follow the stored name. Path traversal and ambiguous overwrites remain errors; historical frozen snapshots are unchanged.
 
-```bash
-# Offline recomputation; no model calls
-python scripts/check_research_update_20260907.py
-```
+</details>
 
 <details>
 <summary>Historical September 5 validation snapshot — compromised retrieval observations retained for traceability</summary>
@@ -57,7 +81,7 @@ These are adaptively selected, single-run **validation outcomes**, not statistic
 The included snapshot was produced by the originating experiment harness, from which this package was extracted. The portable driver adds attempt preservation and resume bookkeeping; it has been checked offline, not used to rerun the published model matrix. See [reproduction and differences](docs/reproduction.md).
 
 
-See [generalization study status](docs/generalization-status.md) for the running lean test scope and outstanding validity checks.
+See [generalization study status](docs/generalization-status.md) for subsequent studies and validity checks.
 
 
 </details>
@@ -127,7 +151,7 @@ The packaged backend is Codex. Its default portable execution path is not the ha
 | Five domain adapters | Included; optional data/environment dependencies |
 | Portable install and offline demo | Covered by tests and wheel smoke checks |
 | Cross-model transfer | Exploratory study; no broad positive-transfer claim |
-| Held-out evaluation | Completed exploratory observations plus active studies; see validity labels above |
+| Evaluation beyond skill selection | Completed paired observations and a corrected fixed-split rerun; prior exposure and protocol limits are explicit |
 | Three independent evolutions per local cell | Not measured by the included snapshot |
 | Wiki's independent causal contribution | Not established without matched ablation |
 

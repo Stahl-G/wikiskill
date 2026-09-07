@@ -1,9 +1,11 @@
 # Generalization study status
 
-> **Current update: September 7.** Completed Luna/high OfficeQA and Spreadsheet results, the effort screen, and the new paper-alignment campaign are documented in [the dated update](research-update-20260907.md). Older snapshots below retain their original dates and limitations. The portable CLI is not the complete isolated research backend.
+> **Final results, September 7:** corrected Spreadsheet fixed-split rerun **213/278 → 237/278 (+8.63 pp)**, statistically supported under the recorded analysis; original SealQA **41/85 → 44/85**, inconclusive. Math repeated VAL is exploratory. [Final report and disclosures](research-final-20260907.md). Earlier dated observations below remain unchanged; the portable CLI is not the isolated source harness.
+
+> **Earlier September 7 record:** the previous OfficeQA/Spreadsheet tests, effort screen and alignment launch are preserved in [the earlier update](research-update-20260907.md). Its pending statuses are historical; see the final report above.
 
 
-## Current update: 2026-09-06
+## Earlier update: 2026-09-06
 
 The corrective Sol/V2 run completed with 48/90 → 52/90 (+4.44pp, inconclusive). Luna/LiveMath completed with 81/124 → 87/124, but one episode used inline JavaScript despite a no-tools protocol; those statistics are raw observations, not clean confirmation. OfficeQA paper-tool testing is in progress. SealQA/Spreadsheet postprocessing failures were repaired without resampling the completed answers. See [full current evidence](research-update-20260906.md) and [runtime recovery](runtime-recovery.md).
 

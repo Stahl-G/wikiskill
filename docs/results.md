@@ -1,9 +1,11 @@
 # Results and evidence status
 
-> **Current update: September 7.** Completed Luna/high OfficeQA and Spreadsheet results, the effort screen, and the new paper-alignment campaign are documented in [the dated update](research-update-20260907.md). Older snapshots below retain their original dates and limitations. The portable CLI is not the complete isolated research backend.
+> **Final results, September 7:** corrected Spreadsheet fixed-split rerun **213/278 → 237/278 (+8.63 pp)**, statistically supported under the recorded analysis; original SealQA **41/85 → 44/85**, inconclusive. Math repeated VAL is exploratory. [Final report and disclosures](research-final-20260907.md). Earlier dated observations below remain unchanged; the portable CLI is not the isolated source harness.
+
+> **Earlier September 7 record:** the previous OfficeQA/Spreadsheet tests, effort screen and alignment launch are preserved in [the earlier update](research-update-20260907.md). Its pending statuses are historical; see the final report above.
 
 
-Current paired observations and their validity labels are in [the September 6 update](research-update-20260906.md). Recompute them with `python scripts/check_research_update.py`. The historical snapshot below is unchanged.
+Earlier paired observations and their validity labels are in [the September 6 update](research-update-20260906.md). Recompute them with `python scripts/check_research_update.py`. The historical snapshot below is unchanged.
 
 # Recorded validation results
 

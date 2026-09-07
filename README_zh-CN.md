@@ -2,7 +2,7 @@
 
 **面向可评测 Agent 任务的技能自进化框架。**
 
-> **研究更新（2026-09-07）：** OfficeQA 与 Spreadsheet 的 held-out test 已完成，统计结论仍不确定；论文对齐后的新实验已启动，结果待完成。[详细记录](docs/research-update-20260907.md)。
+> **研究结果（2026-09-07）：** 修正后的 Spreadsheet 固定划分重跑，在 Luna/high 下使用一个冻结技能，从 **213/278 提升至 237/278（+8.63pp）**。SealQA 结论仍不确定；数学重复验证仍属探索性研究。此前测试集暴露、评分边界与协议修订见[最终记录](docs/research-final-20260907.md)。
 
 基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
 
@@ -16,27 +16,51 @@ WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用�
 
 ## 最新研究观察
 
-Luna/high 的两项已完成 test 都是**小幅正向、统计仍不确定**。针对学习输入与任务元数据的论文对齐修订已完成，新一轮从空 Wiki 开始；**新一轮结果尚未出来**。
+修正后的 Spreadsheet `feedback-v3` 研究，在 **Luna/high 执行条件下使用一个冻结技能**，观察到正向配对差异。两臂均在同一组 278 题上重新执行。研究者此前已看过旧测试结果，因此这是**固定划分重跑（fixed-split rerun）**，不是完全未见的确认性测试。它不证明 Wiki 具有独立因果贡献，也不保证之后每次演化都会改善。
 
-| 已完成研究 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 证据 |
+| 已完成观察 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 统计证据 |
 |---|---:|---:|---:|---|
-| OfficeQA V1，论文文档工具 | 98/172 → 104/172 | **+3.49pp** | 19 / 13 | p=0.377；95% CI [−2.91，+9.88]pp |
-| Spreadsheet，隔离 Python 扩展 | 221/278 → 227/278 | **+2.16pp** | 16 / 10 | p=0.327；95% CI [−1.44，+5.76]pp |
+| Spreadsheet，修正后 `feedback-v3`，278 对 | 213/278 → 237/278 | **+8.63pp** | 31 / 7 | 精确 p=0.000116；四域 Bonferroni p=0.000465；配对 95% CI [+4.68，+12.95]pp |
+| SealQA，原冻结技能，85 对 | 41/85 → 44/85 | **+3.53pp** | 10 / 7 | 精确 p=0.6291；四域校正 p=1；配对 95% CI [−5.88，+12.94]pp |
 
-24 题、六条件 effort 筛查未证明技能收益随推理档位递增：medium **15→17**、high **16→18**、max **20→19**。这是探索性 val，不是 held-out 确认。此前 Sol V1→V2 和 LiveMath 原始观察保留在[9月6日记录](docs/research-update-20260906.md)，LiveMath 的无工具条件违例没有撤销。
+Spreadsheet 候选由验证集选择（**28/40 → 32/40**）。测试评分检查目标单元格的缓存值，不验证全工作簿格式、动态公式行为或目标区域外内容。封存尝试的平均耗时从 **94.11 秒升至 121.05 秒（+28.64%）**，累计工具调用从 **1,287 次增至 1,766 次**。四次传输失败各重试一次，失败记录保留；这些开销数字没有包含失败尝试的全部成本。
 
-论文对照发现：旧 Maintainer 初始样本可能全是失败题，内联摘要漏掉现代工具事件，Spreadsheet 又没有得到合法的目标区域元数据。新研究路径恢复成功／失败配比、论文增量编辑与技能适用条件契约、Spreadsheet 合法输入，并统一 train/val/test 工具。OfficeQA 使用 glob/grep/read；Spreadsheet 使用隔离 bash，可进行公式重算。
+SealQA 使用原冻结技能，未改用后来验证集达到 7/10 的候选。一次技能臂超时，按用户在该次超时后批准追加的协议记零；另一次 `view_image` 把 HTTPS URL 当成本地路径，返回 `ENOENT`，未取得数据。经证据限定的审计修订恢复了后者的原始 completion，没有重采样。两项修订均影响结果的解释范围。
 
-**实现边界：** 本包的便携适配器已加入失败／成功配比和现代工具摘要，同时提供独立的论文契约辅助模块及提示词转录。默认 CLI 仍保留旧提案传输格式，**不是**当前新实验使用的完整隔离研究运行端。
+数学重复验证共 **18 个题目 ID × 4 臂 × 2 次重复 = 144 次新调用**，执行模型均为 Luna/high，工具调用为零。相对无技能，旧 Luna 技能平均 **+13.89pp**、新 Luna 技能 **+11.11pp**、Astra 编写的技能 **0.00pp**。独立题目簇仍是 18 个，不能将两次重复当成 36 道独立题。这些题目已用于验证，探索性区间未做多臂校正，不支持独立测试集泛化结论。Astra 仅为 Luna 编写了一份技能，未评测 Astra 执行能力，也不证明其提案能力更强。
 
-[结果、限制及本次对齐](docs/research-update-20260907.md) · [仅分数与哈希的工件](src/wikiskill/resources/research/update-20260907) · [论文提示词资源](src/wikiskill/resources/paper_alignment)
+**实现边界：** 上述结果从原始研究 harness 导入。本包便携适配器已提供成功／失败配比、现代工具摘要、论文契约辅助模块及提示词转录；默认 CLI 仍保留旧提案传输格式，**不是产生这些结果的完整隔离研究运行端**。
+
+[最终方法、结果与限制](docs/research-final-20260907.md) · [仅分数证据及 manifest](src/wikiskill/resources/research/final-20260907) · [冻结 Spreadsheet 技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) · [论文提示词资源](src/wikiskill/resources/paper_alignment)
+
+链接中的技能是供检查的实验工件，发布它不会自动安装或启用它。
+
+```bash
+# 离线重算及完整性检查，不调用模型
+python scripts/check_research_final_20260907.py
+```
+
+<details>
+<summary>9月7日较早观察——保留各自冻结技能与协议</summary>
+
+此前 Luna/high 的 OfficeQA 与 Spreadsheet 研究均为统计结论不确定：
+
+| 较早研究 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 证据 |
+|---|---:|---:|---:|---|
+| OfficeQA V1，论文文档工具 | 98/172 → 104/172 | +3.49pp | 19 / 13 | p=0.377；95% CI [−2.91，+9.88]pp |
+| Spreadsheet，隔离 Python 扩展 | 221/278 → 227/278 | +2.16pp | 16 / 10 | p=0.327；95% CI [−1.44，+5.76]pp |
+
+这些观察按原始条件保留。上方修正后的 Spreadsheet 重跑使用不同的冻结技能与协议；更大的净差不能识别某一项修复的独立因果效果。
+
+24 题、六条件 effort 筛查未证明技能收益随推理档位递增：medium **15→17**、high **16→18**、max **20→19**。这是探索性验证。此前 Sol V1→V2 和 LiveMath 原始观察保留在[9月6日记录](docs/research-update-20260906.md)，LiveMath 的无工具条件违例没有撤销。
+
+论文对照发现：旧 Maintainer 初始样本可能全是失败题，内联摘要漏掉现代工具事件，Spreadsheet 又没有得到合法的目标区域元数据。修正后的研究路径恢复成功／失败配比、论文增量编辑与技能适用条件契约、Spreadsheet 合法输入，并统一 train/val/test 工具。OfficeQA 使用 glob/grep/read；Spreadsheet 使用隔离 bash，可进行公式重算。各项修复的独立效果尚未通过消融实验测量。
+
+[较早检查点及对齐记录](docs/research-update-20260907.md) · [较早分数工件](src/wikiskill/resources/research/update-20260907)
 
 论文对齐模块的 Wiki 契约兼容无害的文件名差异：缺少 `.md` 时自动归一化，支持下划线、连字符和 Unicode 名称，索引路径随存储名对应。路径越界和歧义覆盖仍会报错；历史冻结快照保持不变。
 
-```bash
-# 离线重算，不调用模型
-python scripts/check_research_update_20260907.py
-```
+</details>
 
 <details>
 <summary>展开9月5日历史验证快照——保留受污染检索观察用于追溯</summary>
