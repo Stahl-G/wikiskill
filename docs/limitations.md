@@ -1,5 +1,7 @@
 # Method and measurement limitations
 
+> **September 8 update:** the same frozen Spreadsheet skill improved all three runs; average accuracy **73.74% → 85.49% (+11.75 pp)**. [Latest results and reproducible records](research-repeatability-20260908.md).
+
 > **Final results, September 7:** corrected Spreadsheet fixed-split rerun **213/278 → 237/278 (+8.63 pp)**, statistically supported under the recorded analysis; original SealQA **41/85 → 44/85**, inconclusive. Math repeated VAL is exploratory. [Final report and disclosures](research-final-20260907.md). Earlier dated observations below remain unchanged; the portable CLI is not the isolated source harness.
 
 - **Validation selection:** the retained score is selected on reused val tasks. It is not an independent estimate of future performance. One task's percentage-point step is score resolution, not a noise band or confidence interval.

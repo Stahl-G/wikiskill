@@ -119,4 +119,4 @@ The portable adapter has balanced success/failure sampling, modern tool summarie
 
 Proposed follow-up work is separated from completed observations in [next research and practical milestones](research-next-steps.md). Those directions have not been launched or measured.
 
-Method attribution: [WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://arxiv.org/abs/2608.27454), Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation; the original authors retain credit for the method. See the [README citation](../README.md#cite-the-original-paper).
+Method attribution: [WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://arxiv.org/abs/2608.27454), Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, and Tu Vu (2026). This repository is an independent implementation; the original authors retain credit for the method. See the [README citation](../README.md#citation).

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "origin_study": "spreadsheet-feedback-v3",
+  "wiki": {
+    "file": "wiki-deliver-the-recalculated-workbook.md",
+    "sha256": "217bd1e2edf68ea448b1fbbc1a9b557e0365da279b5ab89bd93651d6f1d29305",
+    "verbatim": true
+  },
+  "skill": {
+    "file": "../final-20260907/spreadsheet-SKILL.md",
+    "sha256": "7876c7ecb4b2aad0e55d7623335bd3781512247a1723815c2deec0036e1cc0bf"
+  },
+  "selection": "Generic procedural example from actual Maintainer/Proposer artifacts; no task IDs, gold values or private paths in the excerpt."
+}

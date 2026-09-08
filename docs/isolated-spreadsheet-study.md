@@ -36,3 +36,9 @@ The selected runtime supports isolated bash with Python/openpyxl and workspace-l
 Completed native calls and score records are retained and checked on resume. A completed native call may be recovered through deterministic postprocessing without resampling. Failed/incomplete calls remain inspectable and are not automatically re-queried. Diagnose a failure before a new revision or retry policy; do not remove its artifacts to force another sample.
 
 For the initial 8-train/4-validation defaults, the maximum is 16 task calls plus two role calls. This is an installation/runtime acceptance check. It does not measure held-out skill benefit, compare optimization methods, or reproduce the published 278-task result. Run status and terminal outcomes are recorded in the caller-owned study directory; no private runtime logs or dataset material should be committed to the repository.
+
+## Completed installed-package check
+
+A non-editable wheel built from `e6f0759` completed 8 TRAIN and 4 VAL tasks, both learning roles, and 4 candidate VAL calls (18 model calls total). The new candidate tied its baseline at 3/4, so it was rejected. Final verification and another completed-run invocation made no new model calls. The preflight verified tool availability, eight forbidden-read probes, denial of packaged research data and resistance to working-directory Python module shadowing. This is a real installation/workflow check; the larger published benchmark results were produced separately. [Recorded summary](../src/wikiskill/resources/research/repeatability-20260908/installed-smoke.json)
+
+The following cancellation-cleanup patch was tested offline and was not hot-installed into that completed experiment.

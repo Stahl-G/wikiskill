@@ -1,148 +1,142 @@
 # WikiSkill
 
-**面向可评测 Agent 任务的技能自进化框架。**
+**把 Agent 的执行经验，变成下一次能用上的技能。**
 
-> **研究结果（2026-09-07）：** 修正后的 Spreadsheet 固定划分重跑，在 Luna/high 下使用一个冻结技能，从 **213/278 提升至 237/278（+8.63pp）**。SealQA 结论仍不确定；数学重复验证仍属探索性研究。此前测试集暴露、评分边界与协议修订见[最终记录](docs/research-final-20260907.md)。
+给 Agent 一批练习任务和一种检查结果的方法。WikiSkill 会整理它做对、做错的地方，把经验写进持续维护的 Wiki，再生成可以用于后续任务的技能。
 
-基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**（Liyan Tang 等，2026）。本仓库是该论文方法的独立实现，原始方法贡献归属论文作者。
+本项目基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**，将论文的方法实现到 Codex Agent 上，用于文档分析、表格操作和推理等任务。
 
-[Hugging Face 论文页](https://huggingface.co/papers/2608.27454) · [arXiv 原文](https://arxiv.org/abs/2608.27454)
+[English](README.md) · [快速开始](#快速开始) · [实验结果](docs/research-repeatability-20260908.md) · [原论文](https://arxiv.org/abs/2608.27454)
 
-WikiSkill 将执行经验整理为持久知识，再将知识转化为可复用的程序性指导：Agent 执行任务，Wiki Maintainer 整理模式，Skill Proposer 提出修改，确定性验证门控决定是否保留。技能被拒绝时，Wiki 中的经验继续保存。
+## 论文提出了什么？
 
-本仓库是独立研究实现，当前提供 Codex runtime 与文档问答、表格操作、数学、检索、具身交互五类任务适配器。框架可扩展到具有可靠评分、可重复执行、独立训练/选择/测试数据的任务。
+Agent 每次工作都会产生有价值的经验：哪次搜索找到了正确文件、哪个公式出了错、怎样修复才有效。论文关心的是，怎样把这些经验变成可以跨任务积累的知识。
 
-[English](README.md) · [完整结果](docs/results.md) · [复跑说明](docs/reproduction.md) · [数据准备](docs/datasets.md)
+WikiSkill 将它们分成三层：
 
-## 最新研究观察
+| 层次 | 保存什么 |
+|---|---|
+| **原始经验 Raw** | 当时的任务、操作、输出和反馈 |
+| **知识 Wiki** | 可复用的模式、原因、成功方法和反例 |
+| **技能 Skills** | Agent 工作时可以遵循的具体步骤 |
 
-修正后的 Spreadsheet `feedback-v3` 研究，在 **Luna/high 执行条件下使用一个冻结技能**，观察到正向配对差异。两臂均在同一组 278 题上重新执行。研究者此前已看过旧测试结果，因此这是**固定划分重跑（fixed-split rerun）**，不是完全未见的确认性测试。它不证明 Wiki 具有独立因果贡献，也不保证之后每次演化都会改善。
+**Wiki Maintainer** 负责整理经验，**Skill Proposer** 把相关经验写成候选技能。Agent 在验证任务上试用新技能，分数确实提高才保留；技能被拒绝，Wiki 中积累的经验仍然留下。
 
-| 已完成观察 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 统计证据 |
-|---|---:|---:|---:|---|
-| Spreadsheet，修正后 `feedback-v3`，278 对 | 213/278 → 237/278 | **+8.63pp** | 31 / 7 | 精确 p=0.000116；四域 Bonferroni p=0.000465；配对 95% CI [+4.68，+12.95]pp |
-| SealQA，原冻结技能，85 对 | 41/85 → 44/85 | **+3.53pp** | 10 / 7 | 精确 p=0.6291；四域校正 p=1；配对 95% CI [−5.88，+12.94]pp |
+整个过程改进的是 Agent 的工作方法，不需要训练新的模型权重。
 
-Spreadsheet 候选由验证集选择（**28/40 → 32/40**）。测试评分检查目标单元格的缓存值，不验证全工作簿格式、动态公式行为或目标区域外内容。封存尝试的平均耗时从 **94.11 秒升至 121.05 秒（+28.64%）**，累计工具调用从 **1,287 次增至 1,766 次**。四次传输失败各重试一次，失败记录保留；这些开销数字没有包含失败尝试的全部成本。
+![WikiSkill 学习循环](assets/wikiskill-evolution.svg)
 
-SealQA 使用原冻结技能，未改用后来验证集达到 7/10 的候选。一次技能臂超时，按用户在该次超时后批准追加的协议记零；另一次 `view_image` 把 HTTPS URL 当成本地路径，返回 `ENOENT`，未取得数据。经证据限定的审计修订恢复了后者的原始 completion，没有重采样。两项修订均影响结果的解释范围。
+## 一个真实例子：从表格失败中学到了什么？
 
-数学重复验证共 **18 个题目 ID × 4 臂 × 2 次重复 = 144 次新调用**，执行模型均为 Luna/high，工具调用为零。相对无技能，旧 Luna 技能平均 **+13.89pp**、新 Luna 技能 **+11.11pp**、Astra 编写的技能 **0.00pp**。独立题目簇仍是 18 个，不能将两次重复当成 36 道独立题。这些题目已用于验证，探索性区间未做多臂校正，不支持独立测试集泛化结论。Astra 仅为 Luna 编写了一份技能，未评测 Astra 执行能力，也不证明其提案能力更强。
+在我们的 Spreadsheet 实验中，Agent 写好了公式，也检查了重算后的临时文件，但最后提交的却是未经重算的原文件，里面的公式结果仍然为空。
 
-**实现边界：** 上述结果从原始研究 harness 导入。本包便携适配器已提供成功／失败配比、现代工具摘要、论文契约辅助模块及提示词转录；默认 CLI 仍保留旧提案传输格式，**不是产生这些结果的完整隔离研究运行端**。
+Maintainer 在 Wiki 中记下了这句话：
 
-[最终方法、结果与限制](docs/research-final-20260907.md) · [仅分数证据及 manifest](src/wikiskill/resources/research/final-20260907) · [冻结 Spreadsheet 技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) · [论文提示词资源](src/wikiskill/resources/paper_alignment)
+> “Formula recalculation is useful only if the recalculated file replaces the file handed to the evaluator or user.”
 
-链接中的技能是供检查的实验工件，发布它不会自动安装或启用它。
+也就是：**只有把重算后的文件真正交给用户，重算才有意义。**
 
-```bash
-# 离线重算及完整性检查，不调用模型
-python scripts/check_research_final_20260907.py
-```
+随后产出的技能把它落实成了操作步骤：
 
-<details>
-<summary>9月7日较早观察——保留各自冻结技能与协议</summary>
+> “Never deliver the pre-recalculation workbook while inspecting only a temporary copy.”
+>
+> “Reopen that exact final output twice: once with formulas visible (`data_only=False`) and once with cached results (`data_only=True`).”
 
-此前 Luna/high 的 OfficeQA 与 Spreadsheet 研究均为统计结论不确定：
+意思是：**检查和交付必须针对同一份最终文件；重新打开它，分别检查公式和计算结果。**
 
-| 较早研究 | 无技能 → 冻结技能 | 净差 | 改善 / 退化题 | 证据 |
-|---|---:|---:|---:|---|
-| OfficeQA V1，论文文档工具 | 98/172 → 104/172 | +3.49pp | 19 / 13 | p=0.377；95% CI [−2.91，+9.88]pp |
-| Spreadsheet，隔离 Python 扩展 | 221/278 → 227/278 | +2.16pp | 16 / 10 | p=0.327；95% CI [−1.44，+5.76]pp |
+以上英文摘自实际生成的产物。[阅读 Wiki 原页](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md) · [阅读完整技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md)
 
-这些观察按原始条件保留。上方修正后的 Spreadsheet 重跑使用不同的冻结技能与协议；更大的净差不能识别某一项修复的独立因果效果。
+这份技能还写明了公式兼容性、文本与数值类型的区别，以及什么情况下不必重算。它最终成为了一套可以阅读、检查和复用的工作方法。
 
-24 题、六条件 effort 筛查未证明技能收益随推理档位递增：medium **15→17**、high **16→18**、max **20→19**。这是探索性验证。此前 Sol V1→V2 和 LiveMath 原始观察保留在[9月6日记录](docs/research-update-20260906.md)，LiveMath 的无工具条件违例没有撤销。
+## 我们实现了什么？
 
-论文对照发现：旧 Maintainer 初始样本可能全是失败题，内联摘要漏掉现代工具事件，Spreadsheet 又没有得到合法的目标区域元数据。修正后的研究路径恢复成功／失败配比、论文增量编辑与技能适用条件契约、Spreadsheet 合法输入，并统一 train/val/test 工具。OfficeQA 使用 glob/grep/read；Spreadsheet 使用隔离 bash，可进行公式重算。各项修复的独立效果尚未通过消融实验测量。
+- **完整学习循环**：执行任务、整理 Wiki、提出技能、验证收益、保留或拒绝更新。
+- **Codex 接入**：明确配置执行任务和生成技能所用的模型。
+- **五类任务适配器**：文档问答、表格编辑、数学、网络研究和 ALFWorld 交互任务。
+- **隔离的 Spreadsheet 运行路径**：独立安装即可运行的 macOS 单轮实验，支持 Python/openpyxl、LibreOffice 重算和按角色限定的工具。
+- **可检查的过程产物**：查看生成的 Wiki、技能和提案结果，恢复已完成的工作。
+- **可复算的研究结果**：公开逐题分数、工件哈希和离线分析脚本。
 
-[较早检查点及对齐记录](docs/research-update-20260907.md) · [较早分数工件](src/wikiskill/resources/research/update-20260907)
+独立安装包已经完成一次真实闭环：**8 道训练任务、4 道验证任务、Maintainer、Proposer 和候选技能验证**。候选与基线同分，门控因此保留旧版本。[配置与验收记录](docs/isolated-spreadsheet-study.md)
 
-论文对齐模块的 Wiki 契约兼容无害的文件名差异：缺少 `.md` 时自动归一化，支持下划线、连字符和 Unicode 名称，索引路径随存储名对应。路径越界和歧义覆盖仍会报错；历史冻结快照保持不变。
+## 可以用在哪些场景？
 
-</details>
+如果你的 Agent 经常做同类任务，而且有明确反馈、能比较改进前后的表现，WikiSkill 就有用武之地。
 
-<details>
-<summary>展开9月5日历史验证快照——保留受污染检索观察用于追溯</summary>
+| 场景 | 可以学习什么 | 本仓库提供什么 |
+|---|---|---|
+| **表格自动化** | 编辑公式、重算结果、检查真正交付的文件 | 任务适配器、隔离实验入口和实际生成的技能 |
+| **文档分析** | 定位证据、读取表格、区分统计期间、基于资料回答问题 | OfficeQA 指定资料与全库检索适配器 |
+| **网络研究** | 改进搜索和证据搜集方法 | SealQA 适配器 |
+| **推理任务** | 复用解题步骤，减少反复出现的错误 | 数学任务适配器 |
+| **自己的可评分工作流** | 学习针对特定输入、工具和反馈的操作方法 | 用 Python 扩展任务读取、执行和二元评分适配器 |
 
-### 历史验证记录
+对于简报、研报或 BriefLoop 这样的多角色工作流，下一步是从已完成任务和人类纠正中学习取证、分析与写作方法。这属于[后续应用方向](docs/research-next-steps.md)，尚未作为内置后端提供。
 
-2026-09-05 09:05 UTC 快照共记录 **12 次 ACCEPT，涉及 9 个任务设置×模型单元**。
+## 实验结果：同一份技能，三次运行都有提升
 
-| 设置 | 模型 | 无技能 | 当前保留 val 分数 | 增量 |
-|---|---|---:|---:|---:|
-| OfficeQA 全库检索 | Sol | 18/24 · 75.0% | **23/24 · 95.8%** | **+20.8pp** |
-| OfficeQA 全库检索 | 5.5 | 19/24 · 79.2% | **21/24 · 87.5%** | **+8.3pp** |
-| SpreadsheetBench | 5.5 | 30/40 · 75.0% | **33/40 · 82.5%** | **+7.5pp** |
-| SpreadsheetBench | Sol | 33/40 · 82.5% | **34/40 · 85.0%** | **+2.5pp** |
+我们冻结了上面的 Spreadsheet 技能，让 **Luna/high 在同一批 278 道任务上分别不带技能、带技能执行**，共重复三遍。
 
-以上是单条演化轨迹中反复选择得到的验证集分数，尚不是独立 test 上确认的收益，也不代表统计显著。这些状态对应9月5日历史快照，当前研究另行报告。完整表保留无改善、未完成和未运行单元。
+| 运行 | 无技能 | 冻结技能 | 提升 |
+|---|---:|---:|---:|
+| 第 1 遍 | 76.62% | 85.25% | **+8.63pp** |
+| 第 2 遍 | 71.94% | 84.17% | **+12.23pp** |
+| 第 3 遍 | 72.66% | 87.05% | **+14.39pp** |
+| **三遍平均** | **73.74%** | **85.49%** | **+11.75pp** |
 
-这些分数来自本包抽取前的原始实验 harness。本包新增了统一入口、尝试归档与恢复处理，并完成离线检查；没有为了发布重新调用模型跑一遍成绩。具体差异见复跑说明。
-
-
-当前隔离审计、历史实验限制与修正复现范围见[泛化研究状态](docs/generalization-status.md)。
-
-
-</details>
-
-## 工作原理
-
-![WikiSkill 技能演化循环](assets/wikiskill-evolution.svg)
-
-- **原始经验：** 每次推理都有独立目录，以及成功结果或失败记录。
-- **Wiki：** 从训练轨迹中提取的模式会跨接受和拒绝持续保留。
-- **技能：** 当前技能会原样注入任务提示。
-- **门控：** 只有完整验证分严格高于当前最佳分时才保留候选；平局也拒绝。`no_action` 会在不评测候选的情况下结束该轮。
-- **恢复：** 已完成结果可复用；基础设施失败会保留并显式报告。工作区锁防止多个写者同时运行。
+后两遍是这次重复性研究的主比较，平均提升 **13.31 个百分点**，按题目聚类的 bootstrap 95% 区间为 **[+9.35，+17.45]pp**。这测量的是同一冻结技能在重复题集上的表现，评分检查任务要求的单元格值；实验由原始研究运行器完成。[完整方法、成本、其他领域结果与证据](docs/research-repeatability-20260908.md)
 
 ## 快速开始
 
-新增可选的 macOS `wikiskill spreadsheet-study` 入口，用于隔离的单轮 Spreadsheet 开发验证，冻结调用方提供的数据，保留旧 CLI 路径。见[配置与范围](docs/isolated-spreadsheet-study.md)。这条新路径不是历史公开分数的来源。
-
-
-主程序需要 Python 3.11+，支持 macOS/Linux；ALFWorld 需另配环境。
+需要 Python **3.11+**。离线示例支持 macOS 和 Linux。
 
 ```bash
+git clone https://github.com/Stahl-G/wikiskill.git
+cd wikiskill
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e '.[dev]'
+python -m pip install .
+
+# 用合成任务体验学习循环，不需要模型账号。
 wikiskill demo runs/demo
 wikiskill status runs/demo
-wikiskill results
-python -m pytest -q
 ```
 
-`demo` 用合成确定性结果演示接受、拒绝与 no_action，不调用模型、不产生 API 费用。`results` 从附带逐题元数据重新计算研究快照。源码分发名是 `wikiskill-research`，命令与 Python 包名是 `wikiskill`；请从本仓库安装。
+打开 `runs/demo/wiki/` 看整理出的经验，打开 `runs/demo/skills/` 看技能版本。这个示例会经历接受更新、拒绝更新和不提出修改三种情况。
 
-## 真实实验
+### 跑一个真实的小型 Spreadsheet 实验
 
-单独安装并登录 Codex CLI，按上游条款取得数据：
+在 macOS 上准备已登录的 Codex CLI、SpreadsheetBench 数据，以及可无界面运行的 LibreOffice 应用。这条入口使用 **Luna/high**，完成一轮有明确预算的学习。
 
 ```bash
-wikiskill init runs/officeqa-sol \
-  --domain officeqa-retrieval --model gpt-5.6-sol \
-  --optimizer-model gpt-5.6-sol \
-  --csv data/officeqa/officeqa_full.csv \
-  --corpus data/officeqa/corpus --iterations 4 --workers 4
-wikiskill evolve runs/officeqa-sol
+python -m pip install '.[spreadsheet,paper]'
+
+wikiskill spreadsheet-study prepare runs/spreadsheet \
+  --data /path/to/spreadsheet-data \
+  --split-dir /path/to/splits \
+  --libreoffice-app /path/to/LibreOffice.app
+
+# 开始真实模型调用：最多16次解题和2次学习角色调用。
+wikiskill spreadsheet-study run runs/spreadsheet
+wikiskill spreadsheet-study status runs/spreadsheet
 ```
 
-`evolve` 会调用模型；同一命令再次执行时复用已完成题目。manifest 固定模型、预算参数与提示；候选验证不完整或模型身份检查失败时不晋升。每次推理写入新的尝试目录，错误也保留。
+[依赖检查与配置说明](docs/isolated-spreadsheet-study.md) · [其他适配器与数据准备](docs/datasets.md) · [通用演化 CLI](docs/reproduction.md)
 
-## 定位与边界
+## 接下来从哪里看？
 
-- 框架层是任务无关的，新增任务需要数据 loader、执行器、评分器与领域提示；“能打分”本身不保证技能会改善。
-- 当前随包提供 Codex 后端；默认便携执行路径尚不是研究环境中的加固隔离后端，不能把它当作确认性隔离保证。本次加入了严格JSONL读取与AST审计工具，完整研究runner仍单独维护。OpenClaw/ArXivMath 是独立的在研实验，未混入本快照或冒充已支持的后端。
-- 全库检索与预配文档分开报告；前者不同于原论文提供 oracle 参考页的设置。
-- 当前没有宣称 Wiki 独立因果贡献、普遍正迁移、跨独立演化稳定性，或所有未见任务均不退步。
-- LiveMath 上游固定选项捷径、ALFWorld val 天花板、长度限制修订及基础设施恢复均记录在限制说明中。
+| 我想…… | 入口 |
+|---|---|
+| 理解原始方法 | [WikiSkill 论文](https://huggingface.co/papers/2608.27454) |
+| 看 Agent 到底学出了什么 | [Wiki 示例](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md)与[完整技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) |
+| 自己核对分数 | `python scripts/check_repeatability_20260908.py` |
+| 阅读全部实验，包括不确定结果 | [最新报告](docs/research-repeatability-20260908.md)与[历史记录](docs/results.md) |
+| 运行或扩展任务 | [复跑说明](docs/reproduction.md)与[数据准备](docs/datasets.md) |
+| 了解后续研究和实用化计划 | [下一步](docs/research-next-steps.md) |
 
-框架采用 MIT；保留源自 BriefLoop 的版权信息。OfficeQA 评分器保留 Databricks Apache-2.0 许可证；数据遵守各上游条款。本仓库不是论文作者官方实现。
+## 引用
 
-## 引用原论文
-
-使用 WikiSkill 方法时，请引用原论文：
+使用这一方法时，请引用原论文：
 
 ```bibtex
 @misc{tang2026wikiskill,
@@ -155,3 +149,7 @@ wikiskill evolve runs/officeqa-sol
   url = {https://arxiv.org/abs/2608.27454}
 }
 ```
+
+## 许可
+
+框架代码采用 MIT 许可；第三方评分器和提示词资源保留各自的署名与许可说明。本项目是论文方法的独立实现。见 [LICENSE](LICENSE)、[NOTICE](NOTICE.md) 和[第三方声明](third_party/)。

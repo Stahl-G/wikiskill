@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source_commit": "e6f0759",
+  "wheel_sha256": "8010703c414a3f7ee34c575e2fe8dbdfc6230b36ad193167fe8119dbb6ca38c2",
+  "protocol_sha256": "0682f2dbf91735520d019723f179c700c5e8bccc3a1c6c094e2c4771421e1fa0",
+  "model": "gpt-5.6-luna",
+  "effort": "high",
+  "installation": "Non-editable wheel in a separate venv, executed outside source checkout",
+  "score_records": {
+    "baseline": 4,
+    "train": 8,
+    "candidate": 4
+  },
+  "native_completions": 18,
+  "resume_extra_model_calls": 0,
+  "baseline_correct": 3,
+  "candidate_correct": 3,
+  "val_n": 4,
+  "verdict": "REJECT",
+  "meaning": "Installed task, learning, validation and resume integration check; no efficacy claim."
+}

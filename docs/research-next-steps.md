@@ -1,10 +1,12 @@
 # Next research and practical milestones
 
-Status: proposed work, not launched or measured. These directions follow the [September 7 final results](research-final-20260907.md).
+Status: roadmap with completed milestones noted below. See the [September 8 results](research-repeatability-20260908.md).
 
-## 1. Make the observed path reproducible from this repository
+Completed: two more full frozen-skill repetitions, and a real single-round Spreadsheet learning loop from an independent wheel installation. Next priorities are new workbook tasks, a simple recalculation-guidance comparison, and a persistent-Wiki ablation.
 
-First integrate the corrected Spreadsheet input contract, permitted recalculation tools, balanced learning evidence and isolated inference boundary into a versioned portable backend. Keep legacy snapshots unchanged. A clean install should run a small real train → Wiki → proposal → validation gate cycle, resume it, and evaluate/export a frozen skill. The published score-only recomputation checks are already useful, but are not this model-backed installation proof.
+## 1. Extend the installed Spreadsheet path
+
+The opt-in `spreadsheet-study` backend now supplies the corrected input contract, permitted recalculation tools, balanced learning evidence and isolated inference. A clean installation has completed one real train → Wiki → proposal → validation gate cycle and an idempotent resume. Next, extend this bounded path with existing-trace import and independent frozen-skill evaluation/export, preserving legacy snapshots. The full 278-task results remain source-harness observations rather than outputs of this small installation check.
 
 Prioritize separate interfaces for importing existing train traces, evaluating frozen skills, and exporting a skill bundle with its required tools and applicability. Keep test evaluation separate from the evolution engine. Domain preflight should check datasets, scoring dependencies and boundary enforcement before starting model calls. These are proposed interfaces; they are not current CLI commands.
 

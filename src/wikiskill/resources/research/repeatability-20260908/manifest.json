@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "content_policy": "Allowlisted task IDs, scores, aggregates and hashes, plus a verbatim procedural Wiki example. No questions, answers, workbooks, private paths or trajectories.",
+  "files": {
+    "example-provenance.json": "d0c31d1d27c7cdc7b3be766f09401ff09bca8c8d5d94ea60bd38799f694e330a",
+    "installed-smoke.json": "875122df6c391e21f2eb0417e77933b0d9cd0998144f5486aaae8db136fb1ae1",
+    "repeat1-pairs.json": "30b9d310feb5947704f17a336313a350d789c6a8463b93e3307b996ac9ff7e61",
+    "repeat2-pairs.json": "df88b0b60ec316b9fe285180883e9750cb5cdb247d7a48da3446f69a67bef88f",
+    "repeat3-pairs.json": "54a59fa3f5ea6eebffdfcafea2be01f68043e77f4c585ee1a03645c9c4dbd12c",
+    "summary.json": "bf3e1edc02bb6b56c2bbc872b6a00af08cc72a90944db481d02d670db99af215",
+    "wiki-deliver-the-recalculated-workbook.md": "217bd1e2edf68ea448b1fbbc1a9b557e0365da279b5ab89bd93651d6f1d29305"
+  }
+}
