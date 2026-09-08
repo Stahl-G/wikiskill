@@ -24,7 +24,7 @@ A **Wiki Maintainer** consolidates experience. A **Skill Proposer** turns releva
 
 This improves the agent's working instructions without training new model weights.
 
-![The WikiSkill learning loop](assets/wikiskill-evolution.svg)
+![The WikiSkill learning loop](assets/wikiskill-evolution-en.svg)
 
 ## A real example: from a failed workbook to a useful skill
 

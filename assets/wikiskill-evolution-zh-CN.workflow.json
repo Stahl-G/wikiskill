@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "技能演化循环",
+    "subtitle": "经验持续积累，验证有效的技能进入下一轮",
+    "output": "wikiskill-evolution-zh-CN.html"
+  },
+  "lanes": [
+    {
+      "id": "evolution",
+      "label": "整理执行经验"
+    },
+    {
+      "id": "decision",
+      "label": "验证并进入下一轮"
+    }
+  ],
+  "phases": [
+    {
+      "id": "learn",
+      "label": "学习",
+      "fromCol": 0,
+      "toCol": 3,
+      "variant": "dashed"
+    },
+    {
+      "id": "gate",
+      "label": "验证",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "security"
+    }
+  ],
+  "mainPath": [
+    "rollouts",
+    "wiki",
+    "proposer",
+    "validation"
+  ],
+  "nodes": [
+    {
+      "id": "rollouts",
+      "lane": "evolution",
+      "col": 0,
+      "type": "frontend",
+      "label": "执行训练任务",
+      "sublabel": "使用当前技能",
+      "width": 96
+    },
+    {
+      "id": "wiki",
+      "lane": "evolution",
+      "col": 2,
+      "type": "database",
+      "label": "知识维护者",
+      "sublabel": "整理经验与模式",
+      "width": 100
+    },
+    {
+      "id": "proposer",
+      "lane": "evolution",
+      "col": 3,
+      "type": "database",
+      "label": "技能提案者",
+      "sublabel": "生成候选技能",
+      "width": 100
+    },
+    {
+      "id": "validation",
+      "lane": "evolution",
+      "col": 5,
+      "type": "security",
+      "label": "验证门控",
+      "sublabel": "完整验证集评测",
+      "tag": "候选分数高于当前",
+      "width": 110
+    },
+    {
+      "id": "accept",
+      "lane": "decision",
+      "col": 2,
+      "type": "backend",
+      "label": "接受更新",
+      "sublabel": "候选分数更高",
+      "tag": "下一轮使用新技能",
+      "width": 144
+    },
+    {
+      "id": "next",
+      "lane": "decision",
+      "col": 0,
+      "type": "frontend",
+      "label": "下一轮",
+      "sublabel": "技能迭代 · 知识积累",
+      "width": 96
+    },
+    {
+      "id": "reject",
+      "lane": "decision",
+      "col": 4,
+      "type": "security",
+      "label": "拒绝更新",
+      "sublabel": "分数持平或下降",
+      "tag": "保留旧技能与学习经验",
+      "width": 156
+    }
+  ],
+  "edges": [
+    {
+      "from": "rollouts",
+      "to": "wiki",
+      "variant": "default"
+    },
+    {
+      "from": "wiki",
+      "to": "proposer",
+      "variant": "default"
+    },
+    {
+      "from": "proposer",
+      "to": "validation",
+      "variant": "default"
+    },
+    {
+      "from": "validation",
+      "to": "accept",
+      "label": "分数提高",
+      "variant": "emphasis",
+      "role": "branch",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "drop",
+      "bias": 0.34,
+      "labelAt": [
+        463,
+        159
+      ]
+    },
+    {
+      "from": "validation",
+      "to": "reject",
+      "label": "持平或下降",
+      "variant": "security",
+      "role": "error",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "drop",
+      "bias": 0.72,
+      "labelAt": [
+        563,
+        167
+      ]
+    },
+    {
+      "from": "accept",
+      "to": "next",
+      "variant": "emphasis",
+      "role": "return",
+      "fromSide": "left",
+      "toSide": "right",
+      "route": "straight"
+    },
+    {
+      "from": "reject",
+      "to": "next",
+      "variant": "dashed",
+      "role": "return",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "route": "bottom-channel",
+      "channelY": 284
+    },
+    {
+      "from": "next",
+      "to": "rollouts",
+      "variant": "emphasis",
+      "role": "return",
+      "fromSide": "left",
+      "toSide": "left",
+      "route": "return-left"
+    }
+  ],
+  "cards": []
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "WikiSkill Evolution Loop",
+    "subtitle": "Experience becomes knowledge; validated skills guide the next round",
+    "output": "wikiskill-evolution-en.html"
+  },
+  "lanes": [
+    {
+      "id": "evolution",
+      "label": "COMPILE EXPERIENCE"
+    },
+    {
+      "id": "decision",
+      "label": "VALIDATE + ADVANCE"
+    }
+  ],
+  "phases": [
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "fromCol": 0,
+      "toCol": 3,
+      "variant": "dashed"
+    },
+    {
+      "id": "gate",
+      "label": "GATE",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "security"
+    }
+  ],
+  "mainPath": [
+    "rollouts",
+    "wiki",
+    "proposer",
+    "validation"
+  ],
+  "nodes": [
+    {
+      "id": "rollouts",
+      "lane": "evolution",
+      "col": 0,
+      "type": "frontend",
+      "label": "Train rollouts",
+      "sublabel": "Use current skill",
+      "width": 96
+    },
+    {
+      "id": "wiki",
+      "lane": "evolution",
+      "col": 2,
+      "type": "database",
+      "label": "Wiki Maintainer",
+      "sublabel": "Keep useful patterns",
+      "width": 100
+    },
+    {
+      "id": "proposer",
+      "lane": "evolution",
+      "col": 3,
+      "type": "database",
+      "label": "Skill Proposer",
+      "sublabel": "Propose a skill",
+      "width": 100
+    },
+    {
+      "id": "validation",
+      "lane": "evolution",
+      "col": 5,
+      "type": "security",
+      "label": "Validation gate",
+      "sublabel": "Full validation set",
+      "tag": "Candidate > current",
+      "width": 110
+    },
+    {
+      "id": "accept",
+      "lane": "decision",
+      "col": 2,
+      "type": "backend",
+      "label": "ACCEPT",
+      "sublabel": "Promote candidate",
+      "tag": "Use the improved skill",
+      "width": 144
+    },
+    {
+      "id": "next",
+      "lane": "decision",
+      "col": 0,
+      "type": "frontend",
+      "label": "Next round",
+      "sublabel": "Skills + knowledge",
+      "width": 96
+    },
+    {
+      "id": "reject",
+      "lane": "decision",
+      "col": 4,
+      "type": "security",
+      "label": "REJECT",
+      "sublabel": "Keep current skill",
+      "tag": "Wiki keeps the lessons",
+      "width": 156
+    }
+  ],
+  "edges": [
+    {
+      "from": "rollouts",
+      "to": "wiki",
+      "variant": "default"
+    },
+    {
+      "from": "wiki",
+      "to": "proposer",
+      "variant": "default"
+    },
+    {
+      "from": "proposer",
+      "to": "validation",
+      "variant": "default"
+    },
+    {
+      "from": "validation",
+      "to": "accept",
+      "label": "higher score",
+      "variant": "emphasis",
+      "role": "branch",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "drop",
+      "bias": 0.34,
+      "labelAt": [
+        463,
+        159
+      ]
+    },
+    {
+      "from": "validation",
+      "to": "reject",
+      "label": "tie or lower",
+      "variant": "security",
+      "role": "error",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "drop",
+      "bias": 0.72,
+      "labelAt": [
+        563,
+        167
+      ]
+    },
+    {
+      "from": "accept",
+      "to": "next",
+      "variant": "emphasis",
+      "role": "return",
+      "fromSide": "left",
+      "toSide": "right",
+      "route": "straight"
+    },
+    {
+      "from": "reject",
+      "to": "next",
+      "variant": "dashed",
+      "role": "return",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "route": "bottom-channel",
+      "channelY": 284
+    },
+    {
+      "from": "next",
+      "to": "rollouts",
+      "variant": "emphasis",
+      "role": "return",
+      "fromSide": "left",
+      "toSide": "left",
+      "route": "return-left"
+    }
+  ],
+  "cards": []
+}

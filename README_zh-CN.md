@@ -24,7 +24,7 @@ WikiSkill 将它们分成三层：
 
 整个过程改进的是 Agent 的工作方法，不需要训练新的模型权重。
 
-![WikiSkill 学习循环](assets/wikiskill-evolution.svg)
+![WikiSkill 学习循环](assets/wikiskill-evolution-zh-CN.svg)
 
 ## 一个真实例子：从表格失败中学到了什么？
 
