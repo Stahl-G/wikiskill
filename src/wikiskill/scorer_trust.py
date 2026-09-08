@@ -1,6 +1,7 @@
 """Local, non-portable approval receipts for configured scorer commands."""
 from pathlib import Path
 from datetime import datetime, timezone
+import errno
 import hashlib
 import json
 import os
@@ -27,8 +28,13 @@ def describe(root,config):
     venv=executable.parent.parent/'pyvenv.cfg'
     if venv.is_file():files[str(venv.resolve())]=_hash(venv)
     for arg in command[1:]:
-        path=(project/arg).resolve()
-        if path.is_file():files[str(path)]=_hash(path)
+        try:
+            path=(project/arg).resolve()
+            if path.is_file():files[str(path)]=_hash(path)
+        except ValueError:
+            pass  # A non-path argument is still bound verbatim.
+        except OSError as exc:
+            if exc.errno not in (errno.ENAMETOOLONG,errno.EINVAL,errno.ENOENT,errno.ENOTDIR):raise
     binding={'workspace':str(Path(root).resolve()),'command':command,'resolved_executable':str(executable),
              'working_directory':str(project),'timeout_seconds':config['scorer_timeout'],'direct_file_sha256':files}
     fingerprint=_digest(binding);receipt=_store()/f'{fingerprint}.json'

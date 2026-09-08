@@ -339,11 +339,7 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
         except (KeyError,TypeError,ValueError) as exc:
             _event(root,s,'failure',{'request_id':request_id,'error':'Invalid scorer result','output':stored},files)
             raise ValueError('A valid finite score is required; failed scoring is not a wrong answer') from exc
-        scorer_files={}
-        for arg in s['config']['scorer'] or []:
-            candidate=Path(arg)
-            if not candidate.is_absolute():candidate=Path(s['config']['project'])/candidate
-            if candidate.is_file():scorer_files[str(candidate.resolve())]=file_hash(candidate)
+        scorer_files=scorer_info['direct_file_sha256'] if scorer_info else {}
         row={'request_id':request_id,'scorer_files':scorer_files,'scorer_authorization':scorer_info['fingerprint'] if scorer_info else None,'score':value,'feedback':fb,'success':ok,'output':stored,'model':model,'effort':effort,'runtime':runtime,'trace':trace_record,'recorded_at':now()}
         return _status(root,_advance(root,_event(root,s,'result',row,files)))
 

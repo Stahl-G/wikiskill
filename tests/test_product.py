@@ -164,3 +164,10 @@ def test_trusted_scorer_preserves_selected_python_environment(tmp_path):
     assert p.scorer_inspect(root)['resolved_executable']==str(Path(sys.executable).absolute())
     req=p.next_work(root)['requests'][0];out=tmp_path/'out';out.write_text('output');p.record(root,req['id'],out)
     assert p._load(root)['results'][req['id']]['feedback']==sys.prefix
+
+
+def test_inline_scorer_arguments_are_not_treated_as_paths(tmp_path):
+    code='import json; print(json.dumps(dict(score=1))) # '+('x'*1000)
+    root=tmp_path/'run';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,'-c',code],trust_scorer=True)
+    req=p.next_work(root)['requests'][0];out=tmp_path/'out';out.write_text('output');p.record(root,req['id'],out)
+    assert p.status(root)['completed_tasks']==1
