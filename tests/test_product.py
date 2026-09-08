@@ -144,7 +144,9 @@ def test_scorer_requires_local_consent_and_change_invalidates_it(tmp_path):
     with pytest.raises(RuntimeError,match='authorization'):p.record(root,req['id'],output)
     assert not marker.exists()
     with pytest.raises(ValueError,match='changed'):p.scorer_trust(root,info['fingerprint'])
-    p.scorer_trust(root,p.scorer_inspect(root)['fingerprint']);p.record(root,req['id'],output);assert marker.exists()
+    p.scorer_trust(root,p.scorer_inspect(root)['fingerprint'])
+    with pytest.raises(ValueError,match='consistent comparison'):p.record(root,req['id'],output)
+    assert not marker.exists()
 
 
 def test_scorer_approval_does_not_travel_with_workspace(tmp_path,monkeypatch):

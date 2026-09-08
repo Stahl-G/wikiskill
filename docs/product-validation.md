@@ -1,5 +1,7 @@
 # Product workflow validation
 
+See the [new workbook first-use acceptance](product-first-use-validation.md) for the product usability update and its observed configuration gap.
+
 The product controller is independent of the older research runners. Its commands emit work requests for a calling agent and record actual task outputs, evaluation results, Wiki submissions and candidate skills.
 
 ## Independent entry-skill forward test

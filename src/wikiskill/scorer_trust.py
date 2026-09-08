@@ -55,7 +55,10 @@ def approve(root,config,fingerprint):
     if not info['configured']:raise ValueError('No external scorer configured')
     if info['fingerprint']!=fingerprint:raise ValueError('Scorer changed since inspection; inspect it again')
     binding={k:info[k] for k in ('workspace','command','resolved_executable','working_directory','timeout_seconds','direct_file_sha256')}
-    folder=_store();folder.mkdir(parents=True,exist_ok=True)
+    folder=_store()
+    try:folder.mkdir(parents=True,exist_ok=True)
+    except PermissionError as exc:
+        raise RuntimeError('Cannot write the local scorer trust store. Set WIKISKILL_TRUST_DIR to a writable operator-owned directory outside the workflow, then run scorer trust in the existing workspace.') from exc
     path=folder/(fingerprint+'.json')
     if not path.exists():
         with path.open('x',encoding='utf-8') as f:json.dump({'binding':binding,'approved_at':datetime.now(timezone.utc).isoformat()},f,indent=2)

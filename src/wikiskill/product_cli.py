@@ -2,7 +2,7 @@
 from pathlib import Path
 import json
 
-COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities','scorer'}
+COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities','scorer','preflight','report','install','restore'}
 
 
 def register(sub):
@@ -36,12 +36,30 @@ def register(sub):
     for action in ['inspect','trust']:
         q=sp.add_parser(action);q.add_argument('workspace',type=Path)
         if action=='trust':q.add_argument('--fingerprint',required=True)
+    ins=sub.add_parser('install',help='Install a completed retained SKILL.md to an explicitly selected directory')
+    ins.add_argument('workspace',type=Path)
+    ins.add_argument('destination',type=Path)
+    ins.add_argument('--replace',action='store_true',help='Back up and replace an existing SKILL.md')
+    restore=sub.add_parser('restore',help='Restore a local skill backup without discarding later edits')
+    restore.add_argument('destination',type=Path)
+    restore.add_argument('--backup',required=True)
+    pf=sub.add_parser('preflight',help='Inspect task files and scorer readiness without executing them')
+    pf.add_argument('workspace',type=Path)
+    rp=sub.add_parser('report',help='Read a result report derived from the workspace journal')
+    rp.add_argument('workspace',type=Path)
+    rp.add_argument('--format',choices=['markdown','json'],default='markdown')
     sub.add_parser('capabilities',help='List product and research capabilities without model calls')
 
 
 def handle(args):
     from . import product as p
     c=args.command
+    if c in ('install','restore'):
+        from . import product_install
+        return product_install.install(args.workspace,args.destination,replace=args.replace) if c=='install' else product_install.restore(args.destination,args.backup)
+    if c in ('preflight','report'):
+        from . import product_views as views
+        return views.preflight(args.workspace) if c=='preflight' else views.report(args.workspace)
     if c=='capabilities':return p.capabilities()
     if c=='scorer':return p.scorer_inspect(args.workspace) if args.scorer_action=='inspect' else p.scorer_trust(args.workspace,args.fingerprint)
     if c=='start':return p.start(args.workspace,tasks=args.tasks,skill=args.skill,rounds=args.rounds,direction=args.direction,min_improvement=args.min_improvement,scorer=json.loads(args.scorer) if args.scorer else None,scorer_timeout=args.scorer_timeout,project=args.project,from_workspace=args.from_workspace,trust_scorer=args.trust_scorer)

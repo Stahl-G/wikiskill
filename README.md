@@ -105,6 +105,22 @@ Then ask your agent:
 
 The [entry skill](skills/wikiskill/SKILL.md) guides the agent through setup, task execution, Wiki maintenance, proposals and validation. You choose the model, tools and budget. It does not silently launch a fixed provider or alter your host permissions.
 
+A separate agent has completed the workbook example through the installed product entry, including Wiki maintenance and candidate validation. [Observed outcome and setup fix](docs/product-first-use-validation.md).
+
+### See progress and use the result
+
+Your agent prepares the task file from your examples and agreed checks. You can inspect setup and progress at any point:
+
+```bash
+wikiskill preflight runs/my-task
+wikiskill status runs/my-task --human
+wikiskill report runs/my-task
+```
+
+The report shows decisions, task-level improvements and regressions, actual skill changes, and learned Wiki patterns. After completion, `wikiskill install runs/my-task ./my-skills/task-name` installs a retained skill. An authorized `--replace` keeps a backup and returns a restore command. Required tools and supporting files still need to be available. [Installation and recovery](docs/product-guide.md#install-and-recover-a-local-skill).
+
+Run `wikiskill doctor` to check the distribution and installation path: this project is **Stahl-G/wikiskill**, distributed as **wikiskill-research**.
+
 ### Use the CLI or connect another agent
 
 ```bash
@@ -124,7 +140,7 @@ wikiskill export runs/my-task ./improved-skill
 
 External scorer commands are inspected and authorized once per unchanged local configuration. [Scorer trust](docs/product-guide.md#review-an-external-scorer-once).
 
-Provide an external scorer with `--scorer '["python", "score.py"]'`, or record a human/rubric-based score. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small runnable task example](examples/text-cleanup/)
+Provide an external scorer with `--scorer '["python", "score.py"]'`, or record a human/rubric-based score. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small text example](examples/text-cleanup/) · [Workbook delivery example](examples/workbook-delivery/)
 
 ### Try an offline demo
 

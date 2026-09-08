@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from wikiskill.settings import RESOURCES
+from wikiskill.score_rules import finite, accepted, improvement
 from typing import Any, Callable
 
 from wikiskill.codex_identity import ModelIdentityError
@@ -87,18 +88,19 @@ def mean_accuracy(rows: list[dict[str, Any]]) -> float:
             f"{', '.join(reasons)} rows are infra, not wrong answers: "
             + ", ".join(infra)
         )
-    return sum(float(row.get("score") or 0.0) for row in rows) / len(rows)
+    return sum(finite(row.get("score")) for row in rows) / len(rows)
 
 
 def eq4_accepted(r_cand: float, r_best: float) -> bool:
     """Eq. 4: accept iff candidate strictly beats incumbent. Tie is reject."""
-    return r_cand > r_best
+    return accepted(r_cand, r_best)
 
 
 def eq4_guard(r_cand: float, r_best: float) -> str:
-    if r_cand > r_best:
+    delta = improvement(r_cand, r_best)
+    if delta > 0:
         return "IMPROVED"
-    if r_cand == r_best:
+    if delta == 0:
         return "TIE"
     return "WORSE"
 

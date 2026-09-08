@@ -10,12 +10,13 @@ from pathlib import Path
 from datetime import datetime, timezone
 import hashlib
 import json
-import math
 import os
 import shutil
 import subprocess
 import sys
 from uuid import uuid4
+
+from .score_rules import finite, improvement, accepted as score_accepted
 
 SCHEMA = 'wikiskill.workspace.v1'
 
@@ -67,12 +68,6 @@ def locked(root):
             else: fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
-def finite(value):
-    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
-        raise ValueError('Score must be a finite number')
-    return float(value)
-
-
 def normalize_tasks(path):
     data = read(path); base = Path(path).resolve().parent
     if isinstance(data, list): raw = data
@@ -92,7 +87,7 @@ def normalize_tasks(path):
         if not isinstance(files, list) or not all(isinstance(p, str) for p in files): raise ValueError('Task files must be paths')
         files = [str((base/p).resolve()) for p in files]
         if any(not Path(p).exists() for p in files): raise ValueError('A declared task file does not exist')
-        row = {**task, 'id': uid, 'split': split, 'files': files}; rows.append(row); ids.add(uid)
+        row = {**task, 'id': uid, 'split': split, 'files': files, 'file_sha256': {f:file_hash(f) for f in files}}; rows.append(row); ids.add(uid)
     if not any(t['split']=='train' for t in rows) or not any(t['split']=='validation' for t in rows):
         raise ValueError('Provide at least one training task and one validation task')
     return rows
@@ -225,8 +220,8 @@ def _advance(root,s):
         elif s['phase']=='train':s=_event(root,s,'phase',{'phase':'maintainer'})
         else:
             score=sum(r['score'] for r in rows.values())/len(rows) if rows else None
-            delta=None if score is None else (score-s['best_score'])*(1 if s['config']['direction']=='maximize' else -1)
-            accepted=delta is not None and delta>s['config']['min_improvement']
+            delta=None if score is None else improvement(score,s['best_score'],s['config']['direction'])
+            accepted=score is not None and score_accepted(score,s['best_score'],s['config']['direction'],s['config']['min_improvement'])
             s=_event(root,s,'gate',{'round':s['round'],'accepted':accepted,'verdict':'NO_ACTION' if score is None else 'ACCEPT' if accepted else 'REJECT',
                                   'incumbent_score':s['best_score'],'candidate_score':score,'improvement':delta,
                                   'skill':s['candidate'].get('skill') if accepted else s['current_skill'],
@@ -264,9 +259,11 @@ def next_work(root,count=1):
         failed=[r for r in s['requests'].values() if r['status']=='failed']
         if failed:return {**_status(root,s),'phase':'needs_attention','failures':failed,'action':'Resolve the failure, then explicitly retry its request.'}
         if s['phase']=='complete':return _status(root,s)
+        _check_task_files(s)
         if s['config']['scorer']:
             from .scorer_trust import describe
             info=describe(root,s['config'])
+            _check_scorer_comparison(s,info)
             if not info['trusted']:return {**_status(root,s),'phase':'needs_scorer_trust','scorer':info,'action':'Review scorer inspect, then authorize this fingerprint with scorer trust.'}
         active=[r for r in s['requests'].values() if r['status']=='pending' and r['phase']==s['phase'] and r['round']==s['round']]
         todo=[]
@@ -283,8 +280,8 @@ def next_work(root,count=1):
             if task:
                 prior=[r for r in s['requests'].values() if r['phase']==s['phase'] and r['round']==s['round'] and r['task_id']==task['id'] and r['status']=='superseded']
                 if prior:req.update(retry_of=prior[-1]['id'],previous_output=prior[-1].get('failed_output'),previous_error=prior[-1].get('error'))
-                req['task']={k:v for k,v in task.items() if k not in ('reference','expected','gold','score')}
-                req['instruction']='Execute this task with the indicated skill using your normal tools. Save the actual output to a file, then record it; do not assign an invented score.'
+                req['task']={k:v for k,v in task.items() if k not in ('reference','expected','gold','score','file_sha256')}
+                req['instruction']='Execute this task with the indicated skill using your normal tools. Declared input files are fixed sources: save edits to output copies. Save the actual output to a file, then record it; do not assign an invented score.'
             else:
                 p=folder/'context.json';write(p,_context(root,s),immutable=True);req['context_file']=p.relative_to(root).as_posix()
                 req['instruction']=('Consolidate experience into reusable Wiki patterns. Preserve human feedback and cite training request IDs or feedback IDs. Write a JSON object with patterns [{name, content, sources}].' if s['phase']=='maintainer' else 'Read the Wiki and relevant training trajectories; propose a reusable SKILL.md with clear applicability and concrete actions, or choose no_action. Keep factual answers out of the skill.')
@@ -301,6 +298,18 @@ def _request(s,rid,kind):
     return r
 
 
+def _check_task_files(s):
+    for task in s['tasks']:
+        for path, expected in task.get('file_sha256', {}).items():
+            if not Path(path).is_file() or file_hash(path) != expected:
+                raise ValueError('Task input changed: '+path+'. Restore it or start a new comparison; do not mix task conditions.')
+
+
+def _check_scorer_comparison(s,info):
+    if any(row.get('scorer_authorization') != info['fingerprint'] for row in s['results'].values()):
+        raise ValueError('Scorer changed after recorded scores. Start a new workspace for a consistent comparison; old outputs and scores remain preserved.')
+
+
 def record(root,request_id,output=None,score=None,feedback='',success=None,model=None,runtime=None,error=None,trace=None,effort=None):
     with locked(root) as root:
         s=_load(root);req=_request(s,request_id,'task')
@@ -311,10 +320,12 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
             return _status(root,s)
         if error:return _status(root,_event(root,s,'failure',{'request_id':request_id,'error':error}))
         if output is None:raise ValueError('An actual output file is required')
+        _check_task_files(s)
         scorer_info=None
         if s['config']['scorer']:
             from .scorer_trust import require
             scorer_info=require(root,s['config'])
+            _check_scorer_comparison(s,scorer_info)
         stored,p=_store_file(root,output,Path(output).name)
         judged={'score':score,'feedback':feedback,'success':success};files=[p];trace_record=None
         if trace:
@@ -408,7 +419,21 @@ def export(root,destination):
 
 def _status(root,s):
     current=s['current_skill'];failed=[r['id'] for r in s['requests'].values() if r['status']=='failed']
-    return {'schema_version':SCHEMA,'workspace':str(root),'phase':'needs_attention' if failed else s['phase'],
+    active=[r for r in s['requests'].values() if r['phase']==s['phase'] and r['round']==s['round'] and r['status']!='superseded']
+    task_phase=s['phase'] in ('baseline','train','validation')
+    total=len(_stage_tasks(s)) if task_phase else 0 if s['phase']=='complete' else 1
+    actions={'baseline':'Measure the initial skill on validation tasks.', 'train':'Run learning tasks with the retained skill.',
+             'maintainer':'Consolidate the supplied training evidence and feedback into Wiki patterns.',
+             'proposer':'Propose a skill from the Wiki, or submit no_action.',
+             'validation':'Evaluate the candidate on the same validation tasks.',
+             'complete':'Read wikiskill report; export the retained skill if available.'}
+    action='Resolve the failure and retry its request; saved scoring outputs can be reused.' if failed else actions[s['phase']]
+    phase='needs_attention' if failed else s['phase'] if s['tasks'] else 'needs_tasks'
+    if not s['tasks']:action='Prepare train and validation examples, then attach them with wikiskill tasks.'
+    failures=[{'id':r['id'],'error':r['error'],'output':str(root/r['failed_output']['file']) if r.get('failed_output') else None} for r in s['requests'].values() if r['status']=='failed']
+    return {'schema_version':SCHEMA,'workspace':str(root),'phase':phase,
+            'action':action,'failures':failures,
+            'progress':{'completed':sum(r['status']=='complete' for r in active),'total':total,'pending':sum(r['status']=='pending' for r in active)},
             'round':min(s['round'],s['config']['rounds']),'rounds':s['config']['rounds'],'best_score':s['best_score'],
             'direction':s['config']['direction'],'skill':str(root/current['file']) if current else None,
             'completed_tasks':len(s['results']),'pending_requests':[r['id'] for r in s['requests'].values() if r['status']=='pending'],
@@ -417,7 +442,18 @@ def _status(root,s):
 
 
 def status(root):
-    root=Path(root).resolve();return _status(root,_load(root))
+    root=Path(root).resolve();s=_load(root);result=_status(root,s)
+    if result['phase'] not in ('complete','needs_attention','needs_tasks'):
+        try:
+            _check_task_files(s)
+            if s['config']['scorer']:
+                from .scorer_trust import describe
+                info=describe(root,s['config']);_check_scorer_comparison(s,info)
+                if not info['trusted']:
+                    result.update(phase='needs_scorer_trust',action='Run scorer inspect, then authorize the approved checker fingerprint with scorer trust.')
+        except (OSError,ValueError,RuntimeError) as exc:
+            result.update(phase='needs_attention',action=str(exc))
+    return result
 
 
 def capabilities():
@@ -425,7 +461,7 @@ def capabilities():
             'platforms':['macOS','Linux','Windows'],'scoring':'finite numeric scores; maximize or minimize',
             'hard_sample_limit':None,'hard_round_limit':None,'external_scorer':'JSON stdin/stdout command',
             'scorer_authorization':'Local fingerprint receipt; never imported from a workspace',
-            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','status']},
+            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report']},
             'research':{'spreadsheet-study':'Separate macOS isolated Luna/high research/integration path',
                         'evolve':'Legacy Codex-backed domain evolution'},
             'available_executables':{n:shutil.which(n) for n in ('python','python3','codex','claude')}}

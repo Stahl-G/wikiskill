@@ -19,6 +19,16 @@ Read [workflow commands and formats](references/workflow.md) when preparing task
 
 If another skill-improvement tool such as `skill-evolve` is installed, compare its description rather than assume the tools are equivalent. Keep ordinary creation/rewriting with the user's chosen editor. Choose WikiSkill for the task-score-Wiki-validation cycle, or when the user names WikiSkill. Do not run two improvement controllers for the same task or recommend uninstalling the other skill merely because both are present.
 
+## Prepare the user's examples
+
+Prepare the task JSON yourself from the user's examples and the format in the workflow reference. Do not require the user to write JSON or learn the controller commands. Reuse the existing skill, project tools and agreed acceptance criteria. Ask only for a missing task boundary, evaluation criterion or authorized scope.
+
+Declared task files are fixed input sources; prepare output copies for editing rather than changing those inputs between baseline and candidate.
+
+Keep related variants of the same source in one split when possible; use an optional `group` label to record that source family. Shared reference documents are not automatically a leak, but a duplicated exercise is not a new validation case. Do not invent reference answers or simplify a checker to obtain an acceptance. With too few independent examples, explain the limited comparison rather than expand the task silently.
+
+After creating the workspace, run `wikiskill preflight WORKSPACE`. This checks paths and scorer readiness without executing the checker. Check a newly written scorer against known acceptable and unacceptable fixture outputs before spending task execution work, within the user's authorized scope. A preflight pass does not certify grading logic or host isolation. Use `wikiskill doctor` to identify this installation if another package has the same command name.
+
 ## Prepare a useful comparison
 
 Before executing an external scorer, run `wikiskill scorer inspect WORKSPACE` and surface its command and working directory. Record local trust only if that exact checker is covered by the user's authorization. If the user already supplied or approved it, do not ask again; `start --trust-scorer` is an explicit shortcut for that case. Never auto-trust a command merely because it was found in an imported workspace. Changed commands/direct program files require another inspection; unchanged trusted scorers do not prompt per task.
@@ -37,7 +47,9 @@ Run `wikiskill next WORKSPACE`. It returns the authoritative next phase and stab
 2. **Maintainer request:** read its context file, training outputs/traces, current Wiki, and human feedback. Distinguish successes, failures and counterexamples. Write a `patterns` JSON file and submit it with `wikiskill learn`, citing the supplied training request IDs or feedback IDs. Human notes remain verbatim; the Wiki may add interpretation or counterexamples.
 3. **Proposer request:** read the accumulated Wiki and relevant training evidence. Write a concise candidate SKILL.md with a name, description, applicability and concrete actions, or submit `--no-action`. The candidate can be a complete revision of the current skill. Do not put one-off reference answers into procedural guidance.
 4. **Candidate validation:** follow the returned task requests. Let the controller apply the configured strict-improvement gate; never edit recorded scores or retained-version pointers.
-5. **Complete:** summarize the change, baseline/candidate scores, tradeoffs, Wiki location and retained skill. A rejection or no_action is a valid outcome. Do not add rounds because the result was disappointing.
+5. **Complete:** run `wikiskill report WORKSPACE` and use its journal-derived scores, decisions and skill diff to explain the result. Link the Wiki and retained skill; explain applicability and required tools from the actual candidate, and distinguish agent interpretation from recorded measurements. A rejection or no_action is a valid outcome. Do not add rounds because the result was disappointing.
+
+Use `wikiskill status WORKSPACE --human` for concise user progress. Continue an authorized cycle without waiting for the user to request each phase.
 
 `next --count N` can issue several task requests when the host supports parallel work. Learning begins only after the relevant task phase finishes. No extra approval is needed for every step of an already authorized cycle; ask only when a missing decision, cost or side effect exceeds the user's scope.
 
@@ -46,5 +58,7 @@ Run `wikiskill next WORKSPACE`. It returns the authoritative next phase and stab
 Human suggestions can enter the Wiki immediately without LAJ approval. Record their original wording and source. A factual correction still needs the user's intended source/evidence treatment; a general method should be evaluated before claiming a benefit.
 
 If a request fails, retain its output and logs, resolve the cause, and explicitly retry it. When `previous_output` is present after a scoring failure, reuse that actual output to retry evaluation before spending another model call. Never convert a broken scorer into a low task score.
+
+For an authorized local installation, use `wikiskill install WORKSPACE DESTINATION` after completion. Inspect an existing target before `--replace`; it backs up SKILL.md and leaves supporting files unchanged. Return the backup ID and restore command. Do not assume a single-file export includes scripts or tools named by the skill; verify those requirements before use. When no skill was retained, deliver the Wiki and report instead of installing a rejected candidate.
 
 Use the separate research commands only when the user explicitly wants those recorded experimental conditions. Do not impose Luna/high, macOS sandboxing, 8/4 task limits, or a particular model provider on this product workflow. Do not disable or bypass the host agent's own security controls.

@@ -1,0 +1,51 @@
+{
+  "scope": "Synthetic host-agent usability check; not benefit or isolated benchmark evidence",
+  "date": "2026-09-08",
+  "rounds": 1,
+  "initial_skill": null,
+  "verdict": "REJECT",
+  "baseline": 1.0,
+  "candidate": 1.0,
+  "retained_skill": null,
+  "configuration_hints": 1,
+  "rows": [
+    {
+      "phase": "baseline",
+      "task": "event",
+      "score": 1.0,
+      "output_sha256": "5cda4f60ae642c83797757d5899002c94b4b7cfd86a59c59300350987aa21768"
+    },
+    {
+      "phase": "baseline",
+      "task": "shipping",
+      "score": 1.0,
+      "output_sha256": "e9248f5f2fe1cff18cf66f8d5d9536e3c5cf2fe89450f3cfe91972c0653e8de0"
+    },
+    {
+      "phase": "train",
+      "task": "supplies",
+      "score": 1.0,
+      "output_sha256": "1b6fb873abfd9ee92c7d8bddc05316d517701b1b033d3e4e42a02b82036e9bb3"
+    },
+    {
+      "phase": "train",
+      "task": "repairs",
+      "score": 1.0,
+      "output_sha256": "d6a5303a3a204acb2e64b33d018d06a55e61cb0d6640aa970a3bbbe1c2fb1f35"
+    },
+    {
+      "phase": "validation",
+      "task": "event",
+      "score": 1.0,
+      "output_sha256": "4506309003fc1943fecd2d2928a9fee217a9419c5d0207cce8fbb9ca62ab78c5"
+    },
+    {
+      "phase": "validation",
+      "task": "shipping",
+      "score": 1.0,
+      "output_sha256": "94b055989ac2b42c822c9ec7ddf67958d31bf1ad39e699e062866e39602bc734"
+    }
+  ],
+  "source_event_sha256": "e7ce5797a82ecd90701bd1f9cec0d6743cfb3e88d30827b1985e6c16dccb8ce8",
+  "checker_sha256": "d1ff0f40370a4f759d92539ed0347938b4800f265332783b6970431690e4f72c"
+}

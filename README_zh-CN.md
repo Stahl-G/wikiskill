@@ -153,6 +153,24 @@ wikiskill status runs/demo
 | 运行研究适配器 | [复跑说明](docs/reproduction.md)与[数据准备](docs/datasets.md) |
 | 了解后续研究和实用化计划 | [下一步](docs/research-next-steps.md) |
 
+可直接使用[表格交付样例](examples/workbook-delivery/)：用四份公开的合成工作簿学习和验证公式编辑、重算与交付检查。
+
+独立 Agent 已通过安装后的产品入口完成这套表格流程，包括 Wiki 维护和候选验证。[实际结果与发现的配置问题](docs/product-first-use-validation.md)。
+
+## 查看进度与使用结果
+
+Agent 会根据你的例子和验收标准整理任务文件。你可以随时检查准备情况、进度和结果：
+
+```bash
+wikiskill preflight runs/my-task
+wikiskill status runs/my-task --human
+wikiskill report runs/my-task
+```
+
+结果报告展示门控裁决、逐题改善与退步、实际技能差异和 Wiki 经验。完成后，使用 `wikiskill install runs/my-task ./my-skills/task-name` 安装保留的技能；已授权的 `--replace` 会备份旧文件并返回恢复命令。技能所需的工具和辅助文件仍需就绪。[安装与恢复说明](docs/product-guide.md#install-and-recover-a-local-skill)。
+
+运行 `wikiskill doctor` 可查看发行包与安装路径。本项目是 **Stahl-G/wikiskill**，发行包名为 **wikiskill-research**，可据此区分同名命令。
+
 ## 引用
 
 使用这一方法时，请引用原论文：

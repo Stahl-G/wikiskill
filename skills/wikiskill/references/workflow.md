@@ -138,4 +138,16 @@ wikiskill export .wikiskill/my-task ./improved-skill
 
 If there was no initial skill and every candidate was rejected or no_action, there is no retained skill to export. Explain that result and link the Wiki and candidate history; do not present the rejected candidate as retained.
 
-Export writes the retained `SKILL.md` plus provenance. It does not overwrite an occupied directory or automatically install a global skill. When installation/replacement is already authorized, use the host's normal file operations to apply it to the requested destination, retaining the previous version. Keep user run folders and feedback out of public Git commits.
+Export writes the retained `SKILL.md` plus provenance. It does not overwrite an occupied directory or automatically install a global skill. When installation/replacement is authorized, use the install/restore commands below for the chosen directory. Keep user run folders and feedback out of public Git commits.
+
+## Readiness and user-facing results
+
+Run `wikiskill preflight WORKSPACE` before task execution. It is read-only and does not execute a scorer; exit 2 identifies missing setup. Optional task `group` records a source family for split review. Use `wikiskill doctor` to identify the installed distribution and module.
+
+Use `wikiskill status WORKSPACE --human` for progress and `wikiskill report WORKSPACE` at completion. The report contains recorded gate decisions, candidate/incumbent task comparisons, skill diffs and source-bound Wiki patterns. `--format json` returns structured data. No-action has no candidate score; partial baselines remain unmeasured. Save the report to the user's local workspace if useful, and explain applicability/tools from the actual skill rather than inventing them.
+
+After explicitly selecting an installation directory, `wikiskill install WORKSPACE DESTINATION` installs the retained SKILL.md. Add `--replace` only for an intended replacement. The command returns a backup ID and `wikiskill restore DESTINATION --backup ID` undo command; later user edits are protected. Existing support files are not changed, and tool dependencies are not installed automatically.
+
+A checker changed after successful scores requires a new comparison workspace, even after local authorization. A checker repaired before any successful score can rescore saved output through the normal retry path.
+
+If the host cannot write the default `~/.wikiskill/scorer-trust` directory, set `WIKISKILL_TRUST_DIR` to a writable operator-owned directory **outside the workflow**. Use that same environment setting for subsequent commands. Resume the existing workspace with `scorer inspect` / `scorer trust`; a setup permission error does not require starting over. Do not point this setting at an imported workspace's own approval files.

@@ -1,0 +1,50 @@
+{
+  "train": [
+    {
+      "id": "supplies",
+      "group": "supplies",
+      "instruction": "Complete the Order worksheet in a new output XLSX. In D4:D6, multiply each row quantity in B by its unit cost in C using multiplication or PRODUCT formulas. In D7, total these amounts with SUM or addition. Preserve all other values and existing number formats. Deliver live formulas with saved calculated values readable without opening a spreadsheet application. Do not edit the input file.",
+      "input": {
+        "total_row": 7
+      },
+      "files": [
+        "inputs/supplies.xlsx"
+      ]
+    },
+    {
+      "id": "repairs",
+      "group": "repairs",
+      "instruction": "Complete the Order worksheet in a new output XLSX. In D4:D7, multiply each row quantity in B by its unit cost in C using multiplication or PRODUCT formulas. In D8, total these amounts with SUM or addition. Preserve all other values and existing number formats. Deliver live formulas with saved calculated values readable without opening a spreadsheet application. Do not edit the input file.",
+      "input": {
+        "total_row": 8
+      },
+      "files": [
+        "inputs/repairs.xlsx"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "event",
+      "group": "event",
+      "instruction": "Complete the Order worksheet in a new output XLSX. In D4:D8, multiply each row quantity in B by its unit cost in C using multiplication or PRODUCT formulas. In D9, total these amounts with SUM or addition. Preserve all other values and existing number formats. Deliver live formulas with saved calculated values readable without opening a spreadsheet application. Do not edit the input file.",
+      "input": {
+        "total_row": 9
+      },
+      "files": [
+        "inputs/event.xlsx"
+      ]
+    },
+    {
+      "id": "shipping",
+      "group": "shipping",
+      "instruction": "Complete the Order worksheet in a new output XLSX. In D4:D5, multiply each row quantity in B by its unit cost in C using multiplication or PRODUCT formulas. In D6, total these amounts with SUM or addition. Preserve all other values and existing number formats. Deliver live formulas with saved calculated values readable without opening a spreadsheet application. Do not edit the input file.",
+      "input": {
+        "total_row": 6
+      },
+      "files": [
+        "inputs/shipping.xlsx"
+      ]
+    }
+  ]
+}

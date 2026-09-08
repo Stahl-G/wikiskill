@@ -29,5 +29,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install '.[dev]'
-      - run: python -m pytest -q tests/test_product.py
+      - run: python -m pytest -q tests/test_product.py tests/test_product_views.py tests/test_product_install.py
       - run: wikiskill capabilities

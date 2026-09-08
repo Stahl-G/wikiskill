@@ -23,6 +23,7 @@ def main(argv=None):
     for name in ['evolve','status']:
         cmd=sub.add_parser(name,help='Run/resume train-val evolution' if name=='evolve' else 'Read experiment state')
         cmd.add_argument('workspace',type=Path)
+        if name=='status':cmd.add_argument('--human',action='store_true',help='Readable product progress and recovery actions')
     demo=sub.add_parser('demo',help='Deterministic offline demonstration; no model calls')
     demo.add_argument('workspace',type=Path)
     sub.add_parser('doctor',help='Check runtime availability without model calls')
@@ -52,10 +53,19 @@ def main(argv=None):
     try:
         if args.command in product_cli.COMMANDS:
             result=product_cli.handle(args)
-            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+            if args.command=='report' and args.format=='markdown':
+                from .product_views import report_markdown
+                print(report_markdown(result))
+            else:print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 2 if args.command=='preflight' and not result['ready'] else 0
         if args.command=='status' and (args.workspace/'config.json').exists():
             from .product import status
-            print(json.dumps(status(args.workspace),ensure_ascii=False,indent=2));return 0
+            result=status(args.workspace)
+            if args.human:
+                from .product_views import status_text
+                print(status_text(result))
+            else:print(json.dumps(result,ensure_ascii=False,indent=2))
+            return 0
         if args.command=='spreadsheet-study':
             if args.study_action=='preflight':
                 from .isolated.runtime import preflight
@@ -68,7 +78,8 @@ def main(argv=None):
                 else:result=getattr(study,args.study_action)(args.workspace)
             print(json.dumps(result,ensure_ascii=False,indent=2));return 0
         if args.command=='doctor':
-            print(json.dumps({'codex':shutil.which('codex'),'note':'CLI discovery only; auth and model access are not tested.'},indent=2));return 0
+            from .product_views import identity
+            print(json.dumps({**identity(),'codex':shutil.which('codex'),'note':'CLI discovery only; auth and model access are not tested.'},indent=2));return 0
         if args.command=='results':
             from .results import verify
             print(json.dumps(verify(args.snapshot),indent=2));return 0

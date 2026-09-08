@@ -133,3 +133,39 @@ The JSON request protocol is the integration surface. A provider does not need a
 `start` / `next` and the entry skill are the normal host-agent product path. Existing `evolve`, `demo` and `spreadsheet-study` remain compatible for their documented uses. In particular, `spreadsheet-study` retains its original isolated macOS/Luna research conditions.
 
 Product workspaces preserve useful records, but they inherit normal host access and are not presented as isolated benchmark evidence. The published benchmark results retain their original runtime and protocol descriptions.
+
+## Prepare, inspect and finish without learning the CLI
+
+Give your agent examples, an existing skill if any, and a definition of a good result. The entry skill prepares the task JSON for you and reuses an existing checker when available. An optional task `group` identifies variants from the same source; keep such variants together when splitting learning and validation examples.
+
+```bash
+wikiskill doctor
+wikiskill preflight runs/my-workflow
+wikiskill status runs/my-workflow --human
+wikiskill report runs/my-workflow
+# Structured report for another application:
+wikiskill report runs/my-workflow --format json
+```
+
+`doctor` shows the project, distribution, version, module location and Python executable, helping distinguish this project from other packages named WikiSkill. `preflight` checks declared files, project directory, scorer availability/trust and recorded failures; shared source groups/files are reported for review. It issues no work and runs neither the checker nor a model. Exit code 2 means something requires attention. Verify a new checker on known fixture outputs separately.
+
+The report is a read-only projection of the journal. It includes each completed gate, per-task improvements/regressions against that round's incumbent, skill diffs, Wiki patterns and source IDs. Incomplete baselines are not reported as final scores. A report from an unfinished loop is explicitly partial. Save its stdout if you want a Markdown file; it contains local paths and may contain private skill text, so review it before sharing.
+
+A checker modified after any successful scoring cannot continue the same comparison, even if the changed command is trusted. Start a new workspace to establish consistent scores. Before any successful score exists, a broken checker can be repaired and the saved output rescored. This distinction keeps command permission separate from evaluation comparability.
+
+## Install and recover a local skill
+
+Choose the target directory explicitly. Installation is available after the loop finishes and only if it has a retained skill.
+
+```bash
+wikiskill install runs/my-workflow ./my-agent-skills/workbook-delivery
+# If replacement of an existing skill is intended and authorized:
+wikiskill install runs/my-workflow ./my-agent-skills/workbook-delivery --replace
+wikiskill restore ./my-agent-skills/workbook-delivery --backup BACKUP_ID
+```
+
+Only `SKILL.md` is replaced; supporting files are preserved. A backup and provenance receipt are stored under the destination's `.wikiskill-backups/`, and install returns the restore command. Restore refuses to overwrite later edits. Undoing a first installation removes only the installed SKILL.md. This is a single-file skill installer, not a tool dependency installer: inspect required scripts, applications and applicability before using the result.
+
+New task sets record hashes of declared input files. Task dispatch and recording reject changed inputs; status and reports remain readable. Restore the original input or start a new comparison. Older workspaces without these bindings remain readable and are not retroactively described as input-frozen.
+
+If the host cannot write the default `~/.wikiskill/scorer-trust` directory, set `WIKISKILL_TRUST_DIR` to a writable operator-owned directory **outside the workflow**. Use that same environment setting for subsequent commands. Resume the existing workspace with `scorer inspect` / `scorer trust`; a setup permission error does not require starting over. Do not point this setting at an imported workspace's own approval files.

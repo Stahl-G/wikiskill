@@ -7,4 +7,4 @@ recursive-include src/wikiskill/resources *.md *.json *.sha256
 recursive-include src/wikiskill/alfworld *.sh
 
 recursive-include skills *.md *.yaml
-recursive-include examples *.md *.json *.py
+recursive-include examples *.md *.json *.py *.xlsx
