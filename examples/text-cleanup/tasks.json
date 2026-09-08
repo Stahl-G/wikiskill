@@ -1,0 +1,10 @@
+{
+  "train": [
+    {"id": "train-1", "instruction": "Normalize this label: trim outside whitespace, collapse internal whitespace and lowercase it. Return only the label.", "input": "  Needs   Review  ", "reference": "needs review"},
+    {"id": "train-2", "instruction": "Normalize this label: trim outside whitespace, collapse internal whitespace and lowercase it. Return only the label.", "input": "READY\tTO SHIP", "reference": "ready to ship"}
+  ],
+  "validation": [
+    {"id": "val-1", "instruction": "Normalize this label: trim outside whitespace, collapse internal whitespace and lowercase it. Return only the label.", "input": " Waiting   For  Approval ", "reference": "waiting for approval"},
+    {"id": "val-2", "instruction": "Normalize this label: trim outside whitespace, collapse internal whitespace and lowercase it. Return only the label.", "input": "DONE\nTODAY", "reference": "done today"}
+  ]
+}

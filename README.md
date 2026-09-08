@@ -4,9 +4,9 @@
 
 Give an agent practice tasks and a way to check its work. WikiSkill collects what went right and wrong, organizes the lessons in a persistent Wiki, and turns them into skills the agent can use on its next task.
 
-Built from the ideas in **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**, this independent implementation brings the method to Codex agents and practical document, spreadsheet, and reasoning tasks.
+Built from the ideas in **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**, this independent implementation lets your existing agent enter an improvement loop using its own model and normal tools.
 
-[中文](README_zh-CN.md) · [Quick start](#quick-start) · [Results](docs/research-repeatability-20260908.md) · [Original paper](https://arxiv.org/abs/2608.27454)
+[中文](README_zh-CN.md) · [Install the skill](#quick-start) · [Product guide](docs/product-guide.md) · [Results](docs/research-repeatability-20260908.md) · [Original paper](https://arxiv.org/abs/2608.27454)
 
 ## The idea behind the paper
 
@@ -47,9 +47,13 @@ The resulting skill also covers formula compatibility, text versus numeric outpu
 ## What we built
 
 - **A working learning loop:** run tasks, build a Wiki, propose a skill, evaluate it, and keep or reject the update.
-- **Codex integration:** use explicitly configured models for execution and skill development.
+- **Use your own agent and model:** a host-agent request protocol, with no product-level model pin or mandatory sandbox.
+- **Your own tasks and scores:** arbitrary JSON/file inputs, finite numeric metrics, maximize/minimize, and user-selected sample sizes and rounds.
+- **Keep learning across batches:** carry a retained skill, Wiki and feedback into new tasks with `start --from`.
+- **Human feedback straight into the Wiki:** preserve the original note, then connect it to learned patterns.
+- **An installable entry skill:** ask your agent to start, resume, inspect or export an improvement loop.
 - **Five task adapters:** document QA, spreadsheet editing, mathematics, web research, and ALFWorld interaction.
-- **An isolated Spreadsheet path:** a standalone macOS study with Python/openpyxl, LibreOffice recalculation, scoped tools, and separate learning/evaluation inputs.
+- **An optional isolated research path:** a standalone macOS study with Python/openpyxl, LibreOffice recalculation, scoped tools, and separate learning/evaluation inputs.
 - **Inspectable artifacts:** read the generated Wiki and skills, track accepted/rejected proposals, and resume completed work without repeating it.
 - **Recomputable research results:** public per-task scores, artifact hashes, and offline analysis scripts.
 
@@ -65,7 +69,7 @@ WikiSkill is useful when you have recurring tasks, meaningful feedback, and a wa
 | **Document analysis** | Locate evidence, read tables, compare reporting periods, and answer from source material | Staged and full-corpus OfficeQA adapters |
 | **Web research** | Improve search and evidence-gathering procedures | SealQA adapter |
 | **Reasoning tasks** | Reuse problem-solving procedures and avoid recurring mistakes | Mathematics adapter |
-| **Your own scored workflow** | Learn procedures specific to your inputs, tools, and feedback | Extend a Python adapter with a task loader, rollout, and binary scorer |
+| **Your own scored workflow** | Learn procedures specific to your inputs, tools, and feedback | Product task JSON, your agent, and an external scorer or declared human/rubric rating |
 
 For recurring reports or multi-agent workflows such as BriefLoop, the next step is to learn evidence gathering, analysis, and writing procedures from completed work and human corrections. That integration is a [planned application](docs/research-next-steps.md), not a bundled backend.
 
@@ -84,40 +88,48 @@ The two follow-up runs—the primary repeatability comparison—averaged **+13.3
 
 ## Quick start
 
-Python **3.11+**. The offline demo works on macOS and Linux.
+Python **3.11+** for the controller. Product mode uses your agent's normal environment on macOS, Linux or Windows.
 
 ```bash
-git clone https://github.com/Stahl-G/wikiskill.git
-cd wikiskill
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install .
+python -m pip install git+https://github.com/Stahl-G/wikiskill.git
+npx skills add Stahl-G/wikiskill --skill wikiskill
+```
 
-# Try the learning loop with synthetic tasks. No model access needed.
+Then ask your agent:
+
+> Use WikiSkill to improve this skill from my task examples and feedback. Use the project's tests to evaluate it, and start with one round.
+
+The [entry skill](skills/wikiskill/SKILL.md) guides the agent through setup, task execution, Wiki maintenance, proposals and validation. You choose the model, tools and budget. It does not silently launch a fixed provider or alter your host permissions.
+
+### Use the CLI or connect another agent
+
+```bash
+# Create a workflow using your own task examples.
+wikiskill start runs/my-task --tasks tasks.json --rounds 2
+
+# Return the next task or learning request for your agent.
+wikiskill next runs/my-task
+
+# Add feedback directly, or inspect progress.
+wikiskill feedback runs/my-task --text "Check the exact file you will deliver."
+wikiskill status runs/my-task
+
+# After the loop finishes, export the retained skill.
+wikiskill export runs/my-task ./improved-skill
+```
+
+Provide an external scorer with `--scorer '["python", "score.py"]'`, or record a human/rubric-based score. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small runnable task example](examples/text-cleanup/)
+
+### Try an offline demo
+
+```bash
 wikiskill demo runs/demo
 wikiskill status runs/demo
 ```
 
-Open `runs/demo/wiki/` to see the accumulated lessons and `runs/demo/skills/` to inspect skill versions. The demo exercises an accepted update, a rejected update, and a round with no proposal.
+The synthetic demo needs no model access and exercises acceptance, rejection and no_action. Open `runs/demo/wiki/` and `runs/demo/skills/` to inspect the artifacts.
 
-### Run a small real Spreadsheet study
-
-On macOS, provide an authenticated Codex CLI, SpreadsheetBench data, and a headless-compatible LibreOffice app. This entry uses **Luna/high** and one bounded learning round.
-
-```bash
-python -m pip install '.[spreadsheet,paper]'
-
-wikiskill spreadsheet-study prepare runs/spreadsheet \
-  --data /path/to/spreadsheet-data \
-  --split-dir /path/to/splits \
-  --libreoffice-app /path/to/LibreOffice.app
-
-# Starts real model calls: up to 16 task calls and 2 learning calls.
-wikiskill spreadsheet-study run runs/spreadsheet
-wikiskill spreadsheet-study status runs/spreadsheet
-```
-
-[Dependency checks and study setup](docs/isolated-spreadsheet-study.md) · [Other adapters and data preparation](docs/datasets.md) · [General evolution CLI](docs/reproduction.md)
+The existing benchmark adapters and the isolated macOS Spreadsheet study remain available as separate research tools. [Research study setup](docs/isolated-spreadsheet-study.md) · [Datasets](docs/datasets.md) · [Legacy evolution CLI](docs/reproduction.md)
 
 ## Explore the project
 
@@ -127,7 +139,8 @@ wikiskill spreadsheet-study status runs/spreadsheet
 | Inspect what the agents learned | [Wiki example](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md) and [evolved skill](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) |
 | Check the numbers | `python scripts/check_repeatability_20260908.py` |
 | Read all experiments, including mixed results | [Latest report](docs/research-repeatability-20260908.md) and [result history](docs/results.md) |
-| Run or extend a task adapter | [Reproduction guide](docs/reproduction.md) and [datasets](docs/datasets.md) |
+| Improve my own task | [Product guide](docs/product-guide.md) and [entry skill](skills/wikiskill/SKILL.md) |
+| Run the research adapters | [Reproduction guide](docs/reproduction.md) and [datasets](docs/datasets.md) |
 | See what comes next | [Research and practical milestones](docs/research-next-steps.md) |
 
 ## Citation

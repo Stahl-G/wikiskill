@@ -4,9 +4,9 @@
 
 给 Agent 一批练习任务和一种检查结果的方法。WikiSkill 会整理它做对、做错的地方，把经验写进持续维护的 Wiki，再生成可以用于后续任务的技能。
 
-本项目基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**，将论文的方法实现到 Codex Agent 上，用于文档分析、表格操作和推理等任务。
+本项目基于 **[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://huggingface.co/papers/2608.27454)**，让你正在使用的 Agent 用自己的模型和正常工具，进入基于经验的改进循环。
 
-[English](README.md) · [快速开始](#快速开始) · [实验结果](docs/research-repeatability-20260908.md) · [原论文](https://arxiv.org/abs/2608.27454)
+[English](README.md) · [安装入口技能](#快速开始) · [产品指南](docs/product-guide.md) · [实验结果](docs/research-repeatability-20260908.md) · [原论文](https://arxiv.org/abs/2608.27454)
 
 ## 论文提出了什么？
 
@@ -51,9 +51,13 @@ Maintainer 在 Wiki 中记下了这句话：
 ## 我们实现了什么？
 
 - **完整学习循环**：执行任务、整理 Wiki、提出技能、验证收益、保留或拒绝更新。
-- **Codex 接入**：明确配置执行任务和生成技能所用的模型。
+- **使用自己的 Agent 和模型**：产品入口采用宿主 Agent 协议，不锁定模型，也不强制建立沙箱。
+- **支持自己的任务和评分**：输入可以是 JSON 或文件，评分可以是任意有限数值，支持越高越好或越低越好；样本量与轮数由你决定。
+- **跨批次积累经验**：用 `start --from` 将保留的技能、Wiki 和反馈带入新任务。
+- **人类建议直接进入 Wiki**：保留原话，再与任务经验关联。
+- **可安装的入口技能**：直接让 Agent 开始、恢复、检查或导出改进循环。
 - **五类任务适配器**：文档问答、表格编辑、数学、网络研究和 ALFWorld 交互任务。
-- **隔离的 Spreadsheet 运行路径**：独立安装即可运行的 macOS 单轮实验，支持 Python/openpyxl、LibreOffice 重算和按角色限定的工具。
+- **独立保留的隔离研究路径**：独立安装即可运行的 macOS 单轮实验，支持 Python/openpyxl、LibreOffice 重算和按角色限定的工具。
 - **可检查的过程产物**：查看生成的 Wiki、技能和提案结果，恢复已完成的工作。
 - **可复算的研究结果**：公开逐题分数、工件哈希和离线分析脚本。
 
@@ -69,7 +73,7 @@ Maintainer 在 Wiki 中记下了这句话：
 | **文档分析** | 定位证据、读取表格、区分统计期间、基于资料回答问题 | OfficeQA 指定资料与全库检索适配器 |
 | **网络研究** | 改进搜索和证据搜集方法 | SealQA 适配器 |
 | **推理任务** | 复用解题步骤，减少反复出现的错误 | 数学任务适配器 |
-| **自己的可评分工作流** | 学习针对特定输入、工具和反馈的操作方法 | 用 Python 扩展任务读取、执行和二元评分适配器 |
+| **自己的可评分工作流** | 学习针对特定输入、工具和反馈的操作方法 | 任务 JSON、当前 Agent，以及外部评分器或明确的人类／评审评分 |
 
 对于简报、研报或 BriefLoop 这样的多角色工作流，下一步是从已完成任务和人类纠正中学习取证、分析与写作方法。这属于[后续应用方向](docs/research-next-steps.md)，尚未作为内置后端提供。
 
@@ -88,40 +92,48 @@ Maintainer 在 Wiki 中记下了这句话：
 
 ## 快速开始
 
-需要 Python **3.11+**。离线示例支持 macOS 和 Linux。
+控制器需要 Python **3.11+**。产品模式在 macOS、Linux 或 Windows 上使用 Agent 自己的正常环境。
 
 ```bash
-git clone https://github.com/Stahl-G/wikiskill.git
-cd wikiskill
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install .
+python -m pip install git+https://github.com/Stahl-G/wikiskill.git
+npx skills add Stahl-G/wikiskill --skill wikiskill
+```
 
-# 用合成任务体验学习循环，不需要模型账号。
+然后直接对 Agent 说：
+
+> 用 WikiSkill，根据这些任务样本和我的反馈改进这个技能。用项目测试来评价，先做一轮。
+
+[入口技能](skills/wikiskill/SKILL.md)会指导 Agent 准备任务、执行、整理 Wiki、提出技能并验证。模型、工具和预算由你选择；它不会偷偷启动固定供应商的模型或改变宿主权限。
+
+### 使用 CLI，或接入其他 Agent
+
+```bash
+# 用自己的任务创建工作区。
+wikiskill start runs/my-task --tasks tasks.json --rounds 2
+
+# 让当前 Agent 获取并执行下一项任务。
+wikiskill next runs/my-task
+
+# 直接记入反馈，或查看进度。
+wikiskill feedback runs/my-task --text "检查真正要交付的文件。"
+wikiskill status runs/my-task
+
+# 循环完成后导出保留的技能。
+wikiskill export runs/my-task ./improved-skill
+```
+
+可以用 `--scorer '["python", "score.py"]'` 接入自己的评分器，也可以记录人类或明确评审规则给出的分数。控制器发出工作请求，由当前 Agent 执行并记录实际结果。[任务格式、评分与完整用法](docs/product-guide.md) · [小型任务示例](examples/text-cleanup/)
+
+### 先体验离线示例
+
+```bash
 wikiskill demo runs/demo
 wikiskill status runs/demo
 ```
 
-打开 `runs/demo/wiki/` 看整理出的经验，打开 `runs/demo/skills/` 看技能版本。这个示例会经历接受更新、拒绝更新和不提出修改三种情况。
+合成示例不需要模型账号，会经历接受、拒绝和不提出修改三种情况。打开 `runs/demo/wiki/` 和 `runs/demo/skills/` 即可查看产物。
 
-### 跑一个真实的小型 Spreadsheet 实验
-
-在 macOS 上准备已登录的 Codex CLI、SpreadsheetBench 数据，以及可无界面运行的 LibreOffice 应用。这条入口使用 **Luna/high**，完成一轮有明确预算的学习。
-
-```bash
-python -m pip install '.[spreadsheet,paper]'
-
-wikiskill spreadsheet-study prepare runs/spreadsheet \
-  --data /path/to/spreadsheet-data \
-  --split-dir /path/to/splits \
-  --libreoffice-app /path/to/LibreOffice.app
-
-# 开始真实模型调用：最多16次解题和2次学习角色调用。
-wikiskill spreadsheet-study run runs/spreadsheet
-wikiskill spreadsheet-study status runs/spreadsheet
-```
-
-[依赖检查与配置说明](docs/isolated-spreadsheet-study.md) · [其他适配器与数据准备](docs/datasets.md) · [通用演化 CLI](docs/reproduction.md)
+原有基准适配器和 macOS 隔离 Spreadsheet 实验作为独立研究工具保留。[研究入口](docs/isolated-spreadsheet-study.md) · [数据准备](docs/datasets.md) · [旧版演化 CLI](docs/reproduction.md)
 
 ## 接下来从哪里看？
 
@@ -131,7 +143,8 @@ wikiskill spreadsheet-study status runs/spreadsheet
 | 看 Agent 到底学出了什么 | [Wiki 示例](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md)与[完整技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) |
 | 自己核对分数 | `python scripts/check_repeatability_20260908.py` |
 | 阅读全部实验，包括不确定结果 | [最新报告](docs/research-repeatability-20260908.md)与[历史记录](docs/results.md) |
-| 运行或扩展任务 | [复跑说明](docs/reproduction.md)与[数据准备](docs/datasets.md) |
+| 改进自己的任务 | [产品指南](docs/product-guide.md)与[入口技能](skills/wikiskill/SKILL.md) |
+| 运行研究适配器 | [复跑说明](docs/reproduction.md)与[数据准备](docs/datasets.md) |
 | 了解后续研究和实用化计划 | [下一步](docs/research-next-steps.md) |
 
 ## 引用

@@ -1,4 +1,4 @@
-"""CLI; model calls happen in evolve or explicit spreadsheet-study run."""
+"""Product and research CLI. Host-agent product requests invoke no model."""
 import argparse
 import json
 import shutil
@@ -46,9 +46,16 @@ def main(argv=None):
     preflight.add_argument('--libreoffice-app',type=Path,required=True)
     preflight.add_argument('--model',default='gpt-5.6-luna')
     preflight.add_argument('--effort',default='high')
+    from . import product_cli
+    product_cli.register(sub)
     args=parser.parse_args(argv)
-    from . import engine
     try:
+        if args.command in product_cli.COMMANDS:
+            result=product_cli.handle(args)
+            print(json.dumps(result,ensure_ascii=False,indent=2));return 0
+        if args.command=='status' and (args.workspace/'config.json').exists():
+            from .product import status
+            print(json.dumps(status(args.workspace),ensure_ascii=False,indent=2));return 0
         if args.command=='spreadsheet-study':
             if args.study_action=='preflight':
                 from .isolated.runtime import preflight
@@ -65,6 +72,7 @@ def main(argv=None):
         if args.command=='results':
             from .results import verify
             print(json.dumps(verify(args.snapshot),indent=2));return 0
+        from . import engine
         if args.command=='init':
             config={k:str(v.resolve()) if isinstance(v,Path) else v for k,v in vars(args).items() if k not in {'command','workspace'}}
             config['optimizer_model']=args.optimizer_model or args.model

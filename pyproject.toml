@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wikiskill-research"
 version = "0.1.0"
-description = "Compile agent experience into persistent knowledge and validated skills"
+description = "Improve reusable agent skills from tasks and feedback with your own model and tools"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"

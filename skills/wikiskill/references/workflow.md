@@ -1,0 +1,127 @@
+# Operating the product workflow
+
+The product commands below use the calling agent's model and normal tools. They do not start a Codex subprocess, require a particular provider, or create an OS sandbox. `evolve` and `spreadsheet-study` are separate research/legacy paths.
+
+## Create a workspace
+
+```bash
+wikiskill capabilities
+wikiskill start .wikiskill/my-task --tasks tasks.json --rounds 1
+```
+
+Add `--skill path/to/current/SKILL.md` to improve an existing skill. Use `--direction minimize` for error/cost metrics; maximize is the default. `--min-improvement 0.01` requires more than that improvement. Samples and rounds have no experiment-only upper bound.
+
+Tasks are supplied as JSON:
+
+```json
+{
+  "train": [
+    {"id": "train-1", "instruction": "Describe the requested job", "input": {"text": "example"}, "files": [], "reference": "optional scorer reference"}
+  ],
+  "validation": [
+    {"id": "val-1", "instruction": "Describe another instance of the job", "input": {"text": "another example"}, "files": [], "reference": "optional scorer reference"}
+  ]
+}
+```
+
+IDs must be unique; `files` resolve relative to the task JSON. `input` can contain arbitrary JSON. Execution requests omit the reserved `reference`, `expected`, `gold` and `score` fields. These are routing conventions, not filesystem access isolation.
+
+You can initialize without tasks to collect feedback, then attach them before execution:
+
+```bash
+wikiskill start .wikiskill/my-task
+wikiskill feedback .wikiskill/my-task --text "Check the actual delivered file, not a temporary copy."
+wikiskill tasks .wikiskill/my-task --file tasks.json
+```
+
+The task set is fixed once attached so baseline and candidate are checked against the same tasks. For new tasks, carry the retained skill, Wiki and feedback into a new workspace:
+
+```bash
+wikiskill start .wikiskill/next-batch --from .wikiskill/my-task --tasks new-tasks.json --scorer '["python", "score.py"]'
+```
+
+This carries knowledge, not previous scores or task-completion caches. Configure the current batch's scorer, metric and budget explicitly.
+
+## Scoring
+
+Use `--scorer '["python", "score.py"]' --project /path/to/project` at start for an external evaluator. It runs in that project with the normal environment. The command gets JSON on stdin:
+
+```json
+{"task": {"id": "...", "reference": "..."}, "output": {"path": "/absolute/saved/output", "text": "UTF-8 text, or null for binary files"}, "phase": "baseline", "round": 1}
+```
+
+It must print a JSON object such as:
+
+```json
+{"score": 0.8, "feedback": "Two requested details were missing.", "success": false}
+```
+
+`score` is any finite number. `feedback` and `success` are optional. Nonzero exits, invalid JSON and invalid scores become recorded failures, not task scores. For workbook/PDF outputs, the evaluator reads `output.path`.
+
+Without a configured evaluator, provide `--score` and describe the actual human/checker/judge basis in `--feedback`. Explicit rubric-based model evaluation is possible, but do not substitute a guessed score for an agreed evaluation method. Prefer a fresh judge context where available; no fixed judge model is required.
+
+## Execute the next request
+
+```bash
+wikiskill next .wikiskill/my-task
+# Optional: request several task jobs for parallel execution.
+wikiskill next .wikiskill/my-task --count 4
+```
+
+Each request has a stable `id`, `kind`, `phase`, `round` and task or context. Relative file paths, including `skill.file`, `context_file`, output/trace artifacts and feedback files, resolve against the workspace root. Read the indicated skill before task execution.
+
+### Task
+
+Execute `request.task.instruction` using its `input`/`files`, save the actual output, then:
+
+```bash
+wikiskill record .wikiskill/my-task --request req-... --output output.txt --trace work-log.txt --model chosen-model --runtime chosen-agent
+```
+
+Use optional `--effort` to record a known reasoning setting. Omit trace/model/effort/runtime if unknown or unavailable; do not fabricate provenance. With manual evaluation, also pass `--score 0.8 --feedback "..."`. Existing TRAIN outputs and logs can be recorded when they match the declared tasks and conditions; do not call them fresh executions.
+
+### Maintainer
+
+Read `context_file`. It contains Wiki patterns, verbatim human observations, training output/trace locations and feedback. Produce:
+
+```json
+{"patterns":[{"name":"Deliver the checked file","content":"Verify the exact final output after the last transformation.","sources":["req-training-example","feedback-example"]}]}
+```
+
+Use actual source IDs from that context. Pattern names are topic labels, not constrained filenames. Updates merge into the persistent Wiki; previous versions remain in the journal.
+
+```bash
+wikiskill learn .wikiskill/my-task --request req-... --file patterns.json
+```
+
+### Proposer
+
+Read the current Wiki and relevant training evidence. Write a complete candidate SKILL.md with standard `name` and `description` frontmatter and useful procedural instructions. Then:
+
+```bash
+wikiskill propose .wikiskill/my-task --request req-... --skill candidate/SKILL.md --note "What changed and why"
+# Or, when no useful change is justified:
+wikiskill propose .wikiskill/my-task --request req-... --no-action --note "Why no change is proposed"
+```
+
+The controller issues candidate validation jobs and applies the strict improvement gate. Rejected skills stay in history; the Wiki retains its updates. Call `next` again until complete or a real problem requires attention.
+
+## Failure, status and export
+
+```bash
+wikiskill record .wikiskill/my-task --request req-... --error "Tool or execution failure"
+wikiskill status .wikiskill/my-task
+# After resolving the actual cause:
+wikiskill retry .wikiskill/my-task --request req-...
+wikiskill next .wikiskill/my-task
+```
+
+A retry receives a new request ID and preserves the old failure. If `previous_output` exists, attempt to evaluate that saved output before rerunning the model. A repeated record of the same completed request does not rerun the evaluator.
+
+```bash
+wikiskill export .wikiskill/my-task ./improved-skill
+```
+
+If there was no initial skill and every candidate was rejected or no_action, there is no retained skill to export. Explain that result and link the Wiki and candidate history; do not present the rejected candidate as retained.
+
+Export writes the retained `SKILL.md` plus provenance. It does not overwrite an occupied directory or automatically install a global skill. When installation/replacement is already authorized, use the host's normal file operations to apply it to the requested destination, retaining the previous version. Keep user run folders and feedback out of public Git commits.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "WikiSkill"
+  short_description: "Turn task experience and feedback into better agent skills"
+  default_prompt: "Use $wikiskill to improve a reusable skill from my task examples and feedback."
