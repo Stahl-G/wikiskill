@@ -102,6 +102,8 @@ def report(root):
         after = (root / cs['file']).read_text(encoding='utf-8') if cs else None
         diff = ''.join(difflib.unified_diff(before.splitlines(keepends=True), after.splitlines(keepends=True),
                                           fromfile='incumbent', tofile='candidate')) if after is not None else ''
+        if gate.get('policy')=='lightweight_pairwise':
+            pairs=[{'id':r['case_id'],'incumbent':'—','candidate':'—','outcome':r['verdict'],'reason':r.get('reason','')} for r in gate['pairs']]
         comparisons.append({**gate, 'pairs': pairs, 'diff': diff})
         if gate['accepted']:
             incumbent = candidate
@@ -109,6 +111,7 @@ def report(root):
     return {'workspace': str(root), 'phase': p._status(root, s)['phase'],
             'source_event_sha256': s['last_hash'], 'direction': s['config']['direction'],
             'min_improvement': s['config']['min_improvement'],
+            'selection_policy': 'lightweight_pairwise' if s.get('feedback_mode') else 'numeric',
             'baseline_score': baseline_score if baseline_complete else None,
             'baseline_completed': len(baseline), 'baseline_complete': baseline_complete,
             'retained_score': s['best_score'], 'retained_skill': s['current_skill'],
@@ -126,14 +129,14 @@ def report_markdown(value):
     lines = ['# WikiSkill result', '', f"State: **{value['phase']}**", '',
              f"Baseline: {value['baseline_score'] if value['baseline_complete'] else 'not yet complete'}",
              f"Retained score: {value['retained_score'] if value['retained_score'] is not None else 'not measured'}",
-             f"Direction: {value['direction']}; required improvement: strictly greater than {value['min_improvement']}", '',
+             ('Selection: lightweight paired comparison; no numeric-score threshold.' if value.get('selection_policy')=='lightweight_pairwise' else f"Direction: {value['direction']}; required improvement: strictly greater than {value['min_improvement']}"), '',
              value['evaluation'], '', '## Rounds', '']
     if not value['rounds']:
         lines.append('No completed candidate decision yet.')
     for g in value['rounds']:
         lines += [f"### Round {g['round']}: {g['verdict']}", '',
                   f"Incumbent: {g['incumbent_score']}; candidate: {g['candidate_score'] if g['candidate_score'] is not None else 'not evaluated'}", '',
-                  'Proposal note (agent supplied): ' + g['note'], '',
+                  'Proposal note (agent supplied): ' + g.get('note',g.get('reason','')), '',
                   '| Task | Incumbent | Candidate | Outcome |', '|---|---:|---:|---|']
         for row in g['pairs']:
             uid = row['id'].replace('|', '\\|').replace('\n', ' ')

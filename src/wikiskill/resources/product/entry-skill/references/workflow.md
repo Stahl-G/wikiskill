@@ -39,14 +39,14 @@ wikiskill tasks .wikiskill/my-task --file tasks.json
 The task set is fixed once attached so baseline and candidate are checked against the same tasks. For new tasks, carry the retained skill, Wiki and feedback into a new workspace:
 
 ```bash
-wikiskill start .wikiskill/next-batch --from .wikiskill/my-task --tasks new-tasks.json --scorer '["python", "score.py"]'
+wikiskill start .wikiskill/next-batch --from .wikiskill/my-task --tasks new-tasks.json --scorer '["{python}", "score.py"]'
 ```
 
 This carries knowledge, not previous scores or task-completion caches. Configure the current batch's scorer, metric and budget explicitly.
 
 ## Scoring
 
-Use `--scorer '["python", "score.py"]' --project /path/to/project` at start for an external evaluator. It runs in that project with the normal environment. The command gets JSON on stdin:
+Use `--scorer '["{python}", "score.py"]' --project /path/to/project` at start for an external evaluator. `{python}` resolves to the interpreter running WikiSkill (`sys.executable`), so no `python` alias is needed. It runs in that project with the normal environment. The command gets JSON on stdin:
 
 ```json
 {"task": {"id": "...", "reference": "..."}, "output": {"path": "/absolute/saved/output", "text": "UTF-8 text, or null for binary files"}, "phase": "baseline", "round": 1}

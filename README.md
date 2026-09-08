@@ -115,13 +115,13 @@ Codex native fresh-context delegation has a live workflow check. Claude Code def
 Python **3.11+** for the controller. Product mode uses your agent's normal environment on macOS, Linux or Windows.
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
 
-On Windows PowerShell, replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
+On Windows PowerShell, create the environment with `py -3 -m venv .venv` and replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
 
 Then ask your agent:
 
@@ -164,7 +164,7 @@ wikiskill export runs/my-task ./improved-skill
 
 External scorer commands are inspected and authorized once per unchanged local configuration. [Scorer trust](docs/product-guide.md#review-an-external-scorer-once).
 
-Provide an external scorer with `--scorer '["python", "score.py"]'`, or record a human/rubric-based score. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small text example](examples/text-cleanup/) · [Workbook delivery example](examples/workbook-delivery/)
+Provide an external scorer with `--scorer '["{python}", "score.py"]'`, or record a human/rubric-based score. `{python}` uses WikiSkill’s own Python interpreter, including its virtual environment. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small text example](examples/text-cleanup/) · [Workbook delivery example](examples/workbook-delivery/)
 
 ### Try an offline demo
 
@@ -208,3 +208,7 @@ If you use the method, please credit the original paper:
 ## License
 
 Framework code is MIT. Third-party scorers and prompt resources retain their own attribution and notices. This is an independent implementation of the paper. See [LICENSE](LICENSE), [NOTICE](NOTICE.md), and [third-party notices](third_party/).
+
+### Feedback-first host API
+
+`wikiskill.feedback_loop.begin/work/finish` lets an application start from saved user revisions and comments instead of rerunning a training set before Wiki maintenance. Existing native Maintainer and Proposer handoffs are reused. A host supplies real paired comparison results; the optional lightweight policy accepts more better-than-worse cases without reported material regressions, retaining ties and stopping within the configured round limit. Original numeric scoring remains unchanged. This is an application integration API, not evidence of benchmark improvement.

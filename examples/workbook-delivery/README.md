@@ -19,7 +19,7 @@ The included input XLSX files are ready to use. They have no dependency on the a
 For direct CLI users, from the checkout root:
 
 ```bash
-wikiskill start runs/workbook-delivery --tasks examples/workbook-delivery/tasks.json --rounds 1 --scorer '["python", "examples/workbook-delivery/score.py"]'
+wikiskill start runs/workbook-delivery --tasks examples/workbook-delivery/tasks.json --rounds 1 --scorer '["{python}", "examples/workbook-delivery/score.py"]'
 wikiskill scorer inspect runs/workbook-delivery
 # Authorize the checker fingerprint if this checker is covered by your approval.
 wikiskill scorer trust runs/workbook-delivery --fingerprint FINGERPRINT

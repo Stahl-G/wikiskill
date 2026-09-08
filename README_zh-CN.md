@@ -104,13 +104,13 @@ Maintainer 在 Wiki 中记下了这句话：
 控制器需要 Python **3.11+**。产品模式在 macOS、Linux 或 Windows 上使用 Agent 自己的正常环境。
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
 
-Windows PowerShell 请将激活命令替换为 `.venv\Scripts\Activate.ps1`；已有项目虚拟环境也可以直接复用。
+Windows PowerShell 可用 `py -3 -m venv .venv` 创建环境，并将激活命令替换为 `.venv\Scripts\Activate.ps1`；已有项目虚拟环境也可以直接复用。
 
 然后直接对 Agent 说：
 
@@ -137,7 +137,7 @@ wikiskill export runs/my-task ./improved-skill
 
 外部评分器首次运行前会展示命令和工作目录；本机确认后，未改变的配置不会每道题重复询问。[评分器信任说明](docs/product-guide.md#review-an-external-scorer-once)。
 
-可以用 `--scorer '["python", "score.py"]'` 接入自己的评分器，也可以记录人类或明确评审规则给出的分数。控制器发出工作请求，由当前 Agent 执行并记录实际结果。[任务格式、评分与完整用法](docs/product-guide.md) · [小型任务示例](examples/text-cleanup/)
+可以用 `--scorer '["{python}", "score.py"]'` 接入自己的评分器；`{python}` 使用运行 WikiSkill 的 Python 解释器，不需要 `python` 命令别名。也可以记录人类或明确评审规则给出的分数。控制器发出工作请求，由当前 Agent 执行并记录实际结果。[任务格式、评分与完整用法](docs/product-guide.md) · [小型任务示例](examples/text-cleanup/)
 
 ### 先体验离线示例
 
@@ -214,3 +214,7 @@ wikiskill report runs/my-task
 ## 许可
 
 框架代码采用 MIT 许可；第三方评分器和提示词资源保留各自的署名与许可说明。本项目是论文方法的独立实现。见 [LICENSE](LICENSE)、[NOTICE](NOTICE.md) 和[第三方声明](third_party/)。
+
+### 从反馈开始的应用接口
+
+`wikiskill.feedback_loop.begin/work/finish` 允许应用直接从已保存的改稿和评论开始维护 Wiki，无需先重跑训练集；继续复用原生 Maintainer 和 Proposer 交接。应用提交真实的成对比较结果，可选轻量策略按改善多于退步且无已报告实质回退来选择候选，平局保留旧版，并在配置轮数内结束。原数值评分流程不变。这是应用集成接口，不是基准效果提升的证明。

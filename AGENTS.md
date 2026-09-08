@@ -9,3 +9,7 @@ WikiSkill is an independent, multi-domain research framework. Keep the package s
 - Run focused offline tests for behavior changes. For packaging changes, verify one installed-package demo and result recomputation from outside the source tree. Do not launch paid model experiments merely to reassure a code change.
 - Update both README.md and README_zh-CN.md when user-facing behavior changes.
 - Imported historical results came from the originating harness; label any subsequent runner or scoring changes instead of implying those results were remeasured.
+
+## Local development checks
+
+Install development dependencies once in a project environment: `python3 -m pip install -e '.[dev]'`. You can then run `pytest -q tests/test_product.py` directly from the checkout; pytest's `pythonpath = ["src"]` selects this source tree even when the package itself has not been installed. Dependencies such as pytest and pydantic must still be available. Installed-package behavior is checked separately from outside the checkout.

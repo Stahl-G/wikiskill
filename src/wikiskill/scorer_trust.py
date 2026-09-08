@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import shutil
+import sys
 
 
 def _hash(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -17,7 +18,9 @@ def describe(root,config):
     if not command:return {'configured':False,'trusted':True}
     project=Path(config['project']).resolve()
     executable=Path(command[0])
-    if executable.is_absolute() or executable.parent!=Path('.') or '/' in command[0] or '\\' in command[0]:
+    if command[0]=='{python}':
+        executable=Path(sys.executable).absolute()
+    elif executable.is_absolute() or executable.parent!=Path('.') or '/' in command[0] or '\\' in command[0]:
         executable=(project/executable).absolute()
     else:
         found=shutil.which(command[0])

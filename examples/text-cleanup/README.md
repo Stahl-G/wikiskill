@@ -5,7 +5,7 @@ This example checks text labels: trim outside whitespace, collapse internal whit
 From the repository root:
 
 ```bash
-wikiskill start runs/labels --tasks examples/text-cleanup/tasks.json --scorer '["python", "examples/text-cleanup/score.py"]'
+wikiskill start runs/labels --tasks examples/text-cleanup/tasks.json --scorer '["{python}", "examples/text-cleanup/score.py"]'
 ```
 
 Inspect and authorize the example scorer with `wikiskill scorer inspect runs/labels` and `wikiskill scorer trust runs/labels --fingerprint <shown-fingerprint>`.

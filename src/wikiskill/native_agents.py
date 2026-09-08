@@ -56,6 +56,8 @@ def _learning_context(root, state):
     context['human_feedback'] = [{**row, 'file': str(root/row['file'])} for row in context['human_feedback']]
     context['gate_history'] = [{k: row[k] for k in ('round','verdict','incumbent_score','candidate_score','improvement')}
                                for row in state['history']]
+    if state.get('feedback_mode'):
+        context['gate_history']=[{key:row.get(key) for key in ('round','verdict','reason','pairs')} for row in state['history']]
     return context
 
 

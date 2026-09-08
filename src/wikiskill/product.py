@@ -132,6 +132,12 @@ def _load(root):
             s['candidate']=None; s['round']+=1
             s['phase']='complete' if s['round']>config['rounds'] else 'train'
         elif kind=='feedback': s['feedback'].append(value)
+        elif kind=='feedback_mode': s['feedback_mode']=True
+        elif kind=='feedback_gate':
+            s['history'].append(value)
+            if value['accepted']: s['current_skill']=value['skill']
+            s['candidate']=None; s['round']+=1
+            s['phase']='complete' if value['accepted'] or value.get('no_action') or s['round']>config['rounds'] else 'maintainer'
         else: raise ValueError('Unknown journal event: '+kind)
         s['events']=i;s['last_hash']=file_hash(p)
     if s['current_skill'] and file_hash(root/s['current_skill']['file'])!=s['current_skill']['sha256']:
@@ -258,7 +264,7 @@ def next_work(root,count=1):
     if isinstance(count,bool) or not isinstance(count,int) or count<1:raise ValueError('count must be a positive integer')
     with locked(root) as root:
         s=_advance(root,_load(root));_wiki_view(root,s)
-        if not s['tasks']:return {**_status(root,s),'phase':'needs_tasks','action':'Provide train and validation tasks with the tasks command.'}
+        if not s['tasks'] and not s.get('feedback_mode'):return {**_status(root,s),'phase':'needs_tasks','action':'Provide train and validation tasks with the tasks command.'}
         failed=[r for r in s['requests'].values() if r['status']=='failed']
         if failed:return {**_status(root,s),'phase':'needs_attention','failures':failed,'action':'Resolve the failure, then explicitly retry its request.'}
         if s['phase']=='complete':return _status(root,s)
@@ -439,8 +445,8 @@ def _status(root,s):
              'validation':'Evaluate the candidate on the same validation tasks.',
              'complete':'Read wikiskill report; export the retained skill if available.'}
     action='Resolve the failure and retry its request; saved scoring outputs can be reused.' if failed else actions[s['phase']]
-    phase='needs_attention' if failed else s['phase'] if s['tasks'] else 'needs_tasks'
-    if not s['tasks']:action='Prepare train and validation examples, then attach them with wikiskill tasks.'
+    phase='needs_attention' if failed else s['phase'] if s['tasks'] or s.get('feedback_mode') else 'needs_tasks'
+    if not s['tasks'] and not s.get('feedback_mode'):action='Prepare train and validation examples, then attach them with wikiskill tasks.'
     failures=[{'id':r['id'],'error':r['error'],'output':str(root/r['failed_output']['file']) if r.get('failed_output') else None} for r in s['requests'].values() if r['status']=='failed']
     return {'schema_version':SCHEMA,'workspace':str(root),'phase':phase,
             'action':action,'failures':failures,

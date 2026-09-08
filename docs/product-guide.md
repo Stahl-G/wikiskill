@@ -5,13 +5,13 @@ WikiSkill's product workflow is driven by the agent you already use. It can be a
 ## Install the package and entry skill
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
 
-On Windows PowerShell, replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
+On Windows PowerShell, create the environment with `py -3 -m venv .venv` and replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
 
 Use an existing project environment if you already have one. A venv isolates Python dependencies; it does not sandbox the agent or restrict normal file/tool access. Installing from Git runs package build code, so use a source you trust.
 
@@ -50,10 +50,12 @@ Use JSON with `train` and `validation` lists. Each item has an `id`, an `instruc
 wikiskill start runs/my-workflow \
   --tasks examples/text-cleanup/tasks.json \
   --rounds 2 \
-  --scorer '["python", "examples/text-cleanup/score.py"]'
+  --scorer '["{python}", "examples/text-cleanup/score.py"]'
 ```
 
 Add `--skill path/to/current/SKILL.md` to start from an existing skill. Use `--direction minimize` for loss or error metrics. `--min-improvement 0.05` requires an improvement strictly greater than 0.05. Scores can be any finite numbers; larger task sets and more rounds are user choices rather than hardcoded experiment settings.
+
+`{python}` as the first scorer command token resolves to `sys.executable`, the interpreter running WikiSkill. It preserves the selected virtual environment and requires no `python` shell alias. The resolved interpreter is shown by scorer inspect and bound by the normal trust fingerprint. In Python integrations you may supply `[sys.executable, "score.py"]` directly. Other executable names still use normal PATH lookup.
 
 An external scorer receives task/output JSON on stdin and returns `{ "score": 0.8, "feedback": "...", "success": false }` on stdout. For non-text output it reads the saved file path. Human or rubric-based scores can instead be passed through `record --score` with their basis in `--feedback`. A broken scorer is a recorded failure, not a score of zero.
 
@@ -105,7 +107,7 @@ You may also start a workspace without tasks, collect feedback, and attach a tas
 ## Keep learning from new tasks
 
 ```bash
-wikiskill start runs/next-batch --from runs/my-workflow --tasks new-tasks.json --scorer '["python", "score.py"]'
+wikiskill start runs/next-batch --from runs/my-workflow --tasks new-tasks.json --scorer '["{python}", "score.py"]'
 ```
 
 This starts with the retained skill, accumulated Wiki and original feedback from the earlier workspace. It establishes a new baseline on the new tasks instead of reusing old scores. The earlier journal stays unchanged; each batch has its own current evaluation settings.

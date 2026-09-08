@@ -173,3 +173,18 @@ def test_inline_scorer_arguments_are_not_treated_as_paths(tmp_path):
     root=tmp_path/'run';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,'-c',code],trust_scorer=True)
     req=p.next_work(root)['requests'][0];out=tmp_path/'out';out.write_text('output');p.record(root,req['id'],out)
     assert p.status(root)['completed_tasks']==1
+
+
+def test_python_token_uses_current_interpreter_without_path_alias(tmp_path,monkeypatch):
+    from wikiskill import scorer_trust
+    monkeypatch.setattr(scorer_trust.shutil,'which',lambda name:None)
+    grader=tmp_path/'score.py';grader.write_text('import json,sys; print(json.dumps({"score":1,"feedback":sys.prefix}))')
+    root=tmp_path/'flow';p.start(root,tasks=tasks(tmp_path,n=1),scorer=['{python}',str(grader)],trust_scorer=True)
+    info=p.scorer_inspect(root)
+    assert info['command'][0]=='{python}'
+    assert info['resolved_executable']==str(Path(sys.executable).absolute())
+    req=p.next_work(root)['requests'][0];out=tmp_path/'out';out.write_text('actual')
+    p.record(root,req['id'],out)
+    assert p._load(root)['results'][req['id']]['feedback']==sys.prefix
+    with pytest.raises(ValueError,match='unavailable: python'):
+        scorer_trust.describe(tmp_path/'literal',{**p._load(root)['config'],'scorer':['python',str(grader)]})
