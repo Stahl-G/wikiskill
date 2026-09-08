@@ -155,7 +155,7 @@ def _store_file(root, path, name):
     return {'file':target.relative_to(root).as_posix(),'sha256':file_hash(target)},target
 
 
-def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_improvement=0., scorer=None, scorer_timeout=120, project=None, from_workspace=None):
+def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_improvement=0., scorer=None, scorer_timeout=120, project=None, from_workspace=None, trust_scorer=False):
     if isinstance(rounds,bool) or not isinstance(rounds,int) or rounds<1 or direction not in ('maximize','minimize') or finite(min_improvement)<0 or finite(scorer_timeout)<=0:
         raise ValueError('Use positive rounds/timeouts, a valid direction and nonnegative minimum improvement')
     if scorer is not None and (not isinstance(scorer,list) or not scorer or not all(isinstance(x,str) for x in scorer)):
@@ -187,6 +187,9 @@ def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_i
         s=_load(root)
         if loaded:s=_event(root,s,'tasks',{'tasks':loaded})
         _wiki_view(root,s)
+        if trust_scorer and scorer:
+            from .scorer_trust import approve,describe
+            approve(root,config,describe(root,config)['fingerprint'])
         return _status(root,s)
 
 
@@ -261,6 +264,10 @@ def next_work(root,count=1):
         failed=[r for r in s['requests'].values() if r['status']=='failed']
         if failed:return {**_status(root,s),'phase':'needs_attention','failures':failed,'action':'Resolve the failure, then explicitly retry its request.'}
         if s['phase']=='complete':return _status(root,s)
+        if s['config']['scorer']:
+            from .scorer_trust import describe
+            info=describe(root,s['config'])
+            if not info['trusted']:return {**_status(root,s),'phase':'needs_scorer_trust','scorer':info,'action':'Review scorer inspect, then authorize this fingerprint with scorer trust.'}
         active=[r for r in s['requests'].values() if r['status']=='pending' and r['phase']==s['phase'] and r['round']==s['round']]
         todo=[]
         if s['phase'] in ('baseline','train','validation'):
@@ -304,6 +311,10 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
             return _status(root,s)
         if error:return _status(root,_event(root,s,'failure',{'request_id':request_id,'error':error}))
         if output is None:raise ValueError('An actual output file is required')
+        scorer_info=None
+        if s['config']['scorer']:
+            from .scorer_trust import require
+            scorer_info=require(root,s['config'])
         stored,p=_store_file(root,output,Path(output).name)
         judged={'score':score,'feedback':feedback,'success':success};files=[p];trace_record=None
         if trace:
@@ -314,7 +325,7 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
             except UnicodeDecodeError:text=None
             payload={'task':task,'output':{'path':str(p),'text':text},'phase':req['phase'],'round':req['round']}
             try:
-                proc=subprocess.run(s['config']['scorer'],cwd=s['config']['project'],input=json.dumps(payload,ensure_ascii=False),text=True,capture_output=True,timeout=s['config']['scorer_timeout'])
+                proc=subprocess.run([scorer_info['resolved_executable'],*s['config']['scorer'][1:]],cwd=s['config']['project'],input=json.dumps(payload,ensure_ascii=False),text=True,capture_output=True,timeout=s['config']['scorer_timeout'])
                 for name,data in [('scorer.stdout',proc.stdout),('scorer.stderr',proc.stderr)]:
                     f=p.parent/name;f.write_text(data,encoding='utf-8');files.append(f)
                 if proc.returncode:raise RuntimeError(f'Scorer exited with code {proc.returncode}')
@@ -333,7 +344,7 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
             candidate=Path(arg)
             if not candidate.is_absolute():candidate=Path(s['config']['project'])/candidate
             if candidate.is_file():scorer_files[str(candidate.resolve())]=file_hash(candidate)
-        row={'request_id':request_id,'scorer_files':scorer_files,'score':value,'feedback':fb,'success':ok,'output':stored,'model':model,'effort':effort,'runtime':runtime,'trace':trace_record,'recorded_at':now()}
+        row={'request_id':request_id,'scorer_files':scorer_files,'scorer_authorization':scorer_info['fingerprint'] if scorer_info else None,'score':value,'feedback':fb,'success':ok,'output':stored,'model':model,'effort':effort,'runtime':runtime,'trace':trace_record,'recorded_at':now()}
         return _status(root,_advance(root,_event(root,s,'result',row,files)))
 
 
@@ -417,7 +428,18 @@ def capabilities():
     return {'product':{'execution':'host_agent','model':'caller_selected','environment':'host_default',
             'platforms':['macOS','Linux','Windows'],'scoring':'finite numeric scores; maximize or minimize',
             'hard_sample_limit':None,'hard_round_limit':None,'external_scorer':'JSON stdin/stdout command',
-            'commands':['start','tasks','next','record','learn','propose','feedback','retry','export','status']},
+            'scorer_authorization':'Local fingerprint receipt; never imported from a workspace',
+            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','status']},
             'research':{'spreadsheet-study':'Separate macOS isolated Luna/high research/integration path',
                         'evolve':'Legacy Codex-backed domain evolution'},
             'available_executables':{n:shutil.which(n) for n in ('python','python3','codex','claude')}}
+
+
+def scorer_inspect(root):
+    from .scorer_trust import describe
+    root=Path(root).resolve();return describe(root,_load(root)['config'])
+
+
+def scorer_trust(root,fingerprint):
+    from .scorer_trust import approve
+    with locked(root) as root:return approve(root,_load(root)['config'],fingerprint)

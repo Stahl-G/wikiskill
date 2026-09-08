@@ -91,9 +91,13 @@ The two follow-up runs—the primary repeatability comparison—averaged **+13.3
 Python **3.11+** for the controller. Product mode uses your agent's normal environment on macOS, Linux or Windows.
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
+
+On Windows PowerShell, replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
 
 Then ask your agent:
 
@@ -117,6 +121,8 @@ wikiskill status runs/my-task
 # After the loop finishes, export the retained skill.
 wikiskill export runs/my-task ./improved-skill
 ```
+
+External scorer commands are inspected and authorized once per unchanged local configuration. [Scorer trust](docs/product-guide.md#review-an-external-scorer-once).
 
 Provide an external scorer with `--scorer '["python", "score.py"]'`, or record a human/rubric-based score. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small runnable task example](examples/text-cleanup/)
 

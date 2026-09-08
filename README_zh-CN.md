@@ -95,9 +95,13 @@ Maintainer 在 Wiki 中记下了这句话：
 控制器需要 Python **3.11+**。产品模式在 macOS、Linux 或 Windows 上使用 Agent 自己的正常环境。
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
+
+Windows PowerShell 请将激活命令替换为 `.venv\Scripts\Activate.ps1`；已有项目虚拟环境也可以直接复用。
 
 然后直接对 Agent 说：
 
@@ -121,6 +125,8 @@ wikiskill status runs/my-task
 # 循环完成后导出保留的技能。
 wikiskill export runs/my-task ./improved-skill
 ```
+
+外部评分器首次运行前会展示命令和工作目录；本机确认后，未改变的配置不会每道题重复询问。[评分器信任说明](docs/product-guide.md#review-an-external-scorer-once)。
 
 可以用 `--scorer '["python", "score.py"]'` 接入自己的评分器，也可以记录人类或明确评审规则给出的分数。控制器发出工作请求，由当前 Agent 执行并记录实际结果。[任务格式、评分与完整用法](docs/product-guide.md) · [小型任务示例](examples/text-cleanup/)
 

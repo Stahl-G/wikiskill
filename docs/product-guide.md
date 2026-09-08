@@ -5,9 +5,15 @@ WikiSkill's product workflow is driven by the agent you already use. It can be a
 ## Install the package and entry skill
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 python -m pip install git+https://github.com/Stahl-G/wikiskill.git
 npx skills add Stahl-G/wikiskill --skill wikiskill
 ```
+
+On Windows PowerShell, replace the activation line with `.venv\Scripts\Activate.ps1`. You can reuse an existing project environment instead.
+
+Use an existing project environment if you already have one. A venv isolates Python dependencies; it does not sandbox the agent or restrict normal file/tool access. Installing from Git runs package build code, so use a source you trust.
 
 Alternatively clone the repository, run `python -m pip install .`, and copy `skills/wikiskill/` into the skill directory used by your agent. The skill has no dependency on another personal skill or a research checkout.
 
@@ -42,6 +48,17 @@ wikiskill start runs/my-workflow \
 Add `--skill path/to/current/SKILL.md` to start from an existing skill. Use `--direction minimize` for loss or error metrics. `--min-improvement 0.05` requires an improvement strictly greater than 0.05. Scores can be any finite numbers; larger task sets and more rounds are user choices rather than hardcoded experiment settings.
 
 An external scorer receives task/output JSON on stdin and returns `{ "score": 0.8, "feedback": "...", "success": false }` on stdout. For non-text output it reads the saved file path. Human or rubric-based scores can instead be passed through `record --score` with their basis in `--feedback`. A broken scorer is a recorded failure, not a score of zero.
+
+## Review an external scorer once
+
+```bash
+wikiskill scorer inspect runs/my-workflow
+wikiskill scorer trust runs/my-workflow --fingerprint <fingerprint-from-inspect>
+```
+
+The inspection shows exactly which command will run, its executable, working directory, timeout and directly named file hashes. Local authorization is stored separately from the workflow, so an imported workspace cannot authorize its own command. An unchanged trusted scorer does not ask again for every task. Changes to that binding require a fresh inspection. Indirect imports and remote dependencies still belong to the program's normal trust scope. Authorization permits execution; it does not certify the grading logic. If that logic changes, establish a consistent new comparison rather than silently mix old and new scores.
+
+If you supplied and approved the scorer yourself at creation, `start ... --trust-scorer` is the explicit shortcut. Do not apply it blindly to another person's configuration. If authorization is missing, task dispatch pauses with `needs_scorer_trust`; approving it continues the same workflow without spending a model call.
 
 ## Following work requests
 

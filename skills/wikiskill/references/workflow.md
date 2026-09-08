@@ -60,6 +60,20 @@ It must print a JSON object such as:
 
 Without a configured evaluator, provide `--score` and describe the actual human/checker/judge basis in `--feedback`. Explicit rubric-based model evaluation is possible, but do not substitute a guessed score for an agreed evaluation method. Prefer a fresh judge context where available; no fixed judge model is required.
 
+## Authorize the scorer once
+
+```bash
+wikiskill scorer inspect .wikiskill/my-task
+# Review command, executable, working directory and direct-file hashes.
+wikiskill scorer trust .wikiskill/my-task --fingerprint <fingerprint-from-inspect>
+```
+
+Trust is kept in the current user's local WikiSkill trust store, outside the workflow folder. Copying a workspace does not carry that authorization to another path or user environment. Commands, working directory, executable or directly named files changing invalidates the fingerprint. This fingerprints direct files, not all imported modules or remote dependencies.
+
+When the user explicitly supplied/approved the checker while starting the workflow, `start ... --trust-scorer` records that existing authorization without another dialogue. Do not use the shortcut for an unreviewed imported configuration.
+
+`next` returns `needs_scorer_trust` before issuing task work, and `record` refuses an untrusted scorer without executing it. After approval, continue the same request; no task retry is needed solely for trust approval.
+
 ## Execute the next request
 
 ```bash

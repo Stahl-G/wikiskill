@@ -2,7 +2,7 @@
 from pathlib import Path
 import json
 
-COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities'}
+COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities','scorer'}
 
 
 def register(sub):
@@ -14,6 +14,7 @@ def register(sub):
     start.add_argument('--direction',choices=['maximize','minimize'],default='maximize')
     start.add_argument('--min-improvement',type=float,default=0.)
     start.add_argument('--scorer',help='JSON command array; reads task/output JSON from stdin and returns score JSON')
+    start.add_argument('--trust-scorer',action='store_true',help='Explicitly authorize this locally configured scorer; do not use for unreviewed imported workspaces')
     start.add_argument('--scorer-timeout',type=float,default=120)
     for name in ['tasks','next','record','learn','propose','feedback','retry','export']:
         p=sub.add_parser(name,help={'tasks':'Attach training and validation tasks before execution','next':'Get work requests for your current agent','record':'Record an actual task output and its score','learn':'Apply trace-backed Wiki pattern updates','propose':'Submit a candidate skill or no_action','feedback':'Add user feedback directly to the Wiki inbox','retry':'Explicitly retry a failed request after resolving it','export':'Export the retained skill and provenance'}[name])
@@ -30,6 +31,11 @@ def register(sub):
         if name=='feedback':
             g=p.add_mutually_exclusive_group(required=True);g.add_argument('--text');g.add_argument('--file',type=Path);p.add_argument('--source')
         if name=='export':p.add_argument('destination',type=Path)
+    sc=sub.add_parser('scorer',help='Inspect or locally authorize an external scorer')
+    sp=sc.add_subparsers(dest='scorer_action',required=True)
+    for action in ['inspect','trust']:
+        q=sp.add_parser(action);q.add_argument('workspace',type=Path)
+        if action=='trust':q.add_argument('--fingerprint',required=True)
     sub.add_parser('capabilities',help='List product and research capabilities without model calls')
 
 
@@ -37,7 +43,8 @@ def handle(args):
     from . import product as p
     c=args.command
     if c=='capabilities':return p.capabilities()
-    if c=='start':return p.start(args.workspace,tasks=args.tasks,skill=args.skill,rounds=args.rounds,direction=args.direction,min_improvement=args.min_improvement,scorer=json.loads(args.scorer) if args.scorer else None,scorer_timeout=args.scorer_timeout,project=args.project,from_workspace=args.from_workspace)
+    if c=='scorer':return p.scorer_inspect(args.workspace) if args.scorer_action=='inspect' else p.scorer_trust(args.workspace,args.fingerprint)
+    if c=='start':return p.start(args.workspace,tasks=args.tasks,skill=args.skill,rounds=args.rounds,direction=args.direction,min_improvement=args.min_improvement,scorer=json.loads(args.scorer) if args.scorer else None,scorer_timeout=args.scorer_timeout,project=args.project,from_workspace=args.from_workspace,trust_scorer=args.trust_scorer)
     if c=='tasks':return p.set_tasks(args.workspace,args.file)
     if c=='next':return p.next_work(args.workspace,args.count)
     if c=='record':return p.record(args.workspace,args.request,output=args.output,score=args.score,feedback=args.feedback,success=None if args.success is None else args.success=='true',model=args.model,runtime=args.runtime,error=args.error,trace=args.trace,effort=args.effort)

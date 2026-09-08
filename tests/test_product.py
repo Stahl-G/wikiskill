@@ -6,6 +6,11 @@ from wikiskill import product as p
 from wikiskill.cli import main
 
 
+@pytest.fixture(autouse=True)
+def private_trust_store(tmp_path,monkeypatch):
+    monkeypatch.setenv('WIKISKILL_TRUST_DIR',str(tmp_path/'local-trust'))
+
+
 def tasks(tmp_path,n=2):
     f=tmp_path/'tasks.json'
     f.write_text(json.dumps({split:[{'id':f'{split}:{i}','instruction':'Summarize the input','input':'ticket text','reference':'reserved evaluation material'} for i in range(n)] for split in ('train','validation')}))
@@ -69,7 +74,7 @@ def test_no_research_size_or_model_cap_and_feedback_without_tasks(tmp_path):
 
 def test_external_scorer_failure_retains_output_and_explicit_retry(tmp_path):
     grader=tmp_path/'grade.py';grader.write_text('raise SystemExit(2)')
-    root=tmp_path/'flow';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,str(grader)],project=tmp_path)
+    root=tmp_path/'flow';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,str(grader)],project=tmp_path,trust_scorer=True)
     req=p.next_work(root)['requests'][0];out=tmp_path/'answer.txt';out.write_text('answer')
     with pytest.raises(RuntimeError,match='Scoring failed'):p.record(root,req['id'],out)
     assert p.next_work(root)['phase']=='needs_attention'
@@ -77,6 +82,7 @@ def test_external_scorer_failure_retains_output_and_explicit_retry(tmp_path):
     p.retry(root,req['id']);new=p.next_work(root)['requests'][0]
     assert new['id']!=req['id'] and new['retry_of']==req['id'] and new['previous_output']
     grader.write_text('import sys,json\nx=json.load(sys.stdin)\nassert x["task"]["reference"]\nprint(json.dumps({"score": 3.5, "feedback":"graded", "success":True}))')
+    p.scorer_trust(root,p.scorer_inspect(root)['fingerprint'])
     p.record(root,new['id'],root/new['previous_output']['file'])
     assert p.status(root)['best_score']==3.5
 
@@ -125,3 +131,36 @@ def test_new_task_set_can_carry_skill_wiki_and_feedback(tmp_path):
     assert 'Readable topic' in (second/'wiki/index.md').read_text()
     assert Path(s['skill']).read_text()=='# Candidate'
     assert len(p.next_work(second,count=20)['requests'])==3
+
+
+def test_scorer_requires_local_consent_and_change_invalidates_it(tmp_path):
+    grader=tmp_path/'grade.py';marker=tmp_path/'called';grader.write_text('from pathlib import Path; Path('+repr(str(marker))+').touch(); import json; print(json.dumps(dict(score=1)))')
+    root=tmp_path/'run';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,str(grader)],project=tmp_path)
+    assert p.next_work(root)['phase']=='needs_scorer_trust' and not marker.exists()
+    info=p.scorer_inspect(root);assert info['command']==[sys.executable,str(grader)] and info['working_directory']==str(tmp_path)
+    p.scorer_trust(root,info['fingerprint']);req=p.next_work(root)['requests'][0]
+    output=tmp_path/'out.txt';output.write_text('output');p.record(root,req['id'],output);assert marker.exists()
+    marker.unlink();req=p.next_work(root)['requests'][0];grader.write_text(grader.read_text()+'\n# changed')
+    with pytest.raises(RuntimeError,match='authorization'):p.record(root,req['id'],output)
+    assert not marker.exists()
+    with pytest.raises(ValueError,match='changed'):p.scorer_trust(root,info['fingerprint'])
+    p.scorer_trust(root,p.scorer_inspect(root)['fingerprint']);p.record(root,req['id'],output);assert marker.exists()
+
+
+def test_scorer_approval_does_not_travel_with_workspace(tmp_path,monkeypatch):
+    import shutil
+    grader=tmp_path/'grade.py';grader.write_text('import json; print(json.dumps(dict(score=1)))')
+    root=tmp_path/'original';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,str(grader)],trust_scorer=True)
+    other=tmp_path/'copied';shutil.copytree(root,other)
+    assert p.next_work(other)['phase']=='needs_scorer_trust'
+    monkeypatch.setenv('WIKISKILL_TRUST_DIR',str(tmp_path/'another-machine'))
+    assert p.next_work(root)['phase']=='needs_scorer_trust'
+
+
+def test_trusted_scorer_preserves_selected_python_environment(tmp_path):
+    grader=tmp_path/'grade.py'
+    grader.write_text('import sys,json; print(json.dumps({"score":1,"feedback":sys.prefix}))')
+    root=tmp_path/'run';p.start(root,tasks=tasks(tmp_path,n=1),scorer=[sys.executable,str(grader)],trust_scorer=True)
+    assert p.scorer_inspect(root)['resolved_executable']==str(Path(sys.executable).absolute())
+    req=p.next_work(root)['requests'][0];out=tmp_path/'out';out.write_text('output');p.record(root,req['id'],out)
+    assert p._load(root)['results'][req['id']]['feedback']==sys.prefix
