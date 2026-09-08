@@ -23,6 +23,14 @@ Ask your agent:
 
 The skill helps identify inputs and the evaluation method, creates a workspace, follows work requests, and explains the result. It asks only for missing decisions that materially affect the task or budget.
 
+## Native subagents (Codex / Claude Code)
+
+Install host roles and the entry skill with `wikiskill agents install --runtime codex --project .` (or `claude-code`). The entry skill starts native workspaces with `--agent-runtime` and follows `dispatch` → host spawn → `bind-agent` → wait → `collect`. Task execution, Wiki maintenance and proposal use separate fresh subagents. Only the coordinator submits controller operations.
+
+See [native host instructions](../skills/wikiskill/references/native-subagents.md). A bound request is resumed, not duplicated; scoring retries reuse saved execution. A direct-host workspace cannot silently switch to native execution mid-comparison. If the host lacks fresh native delegation, report that limitation rather than claiming independence for a sequential fallback.
+
+The direct CLI examples below remain available for explicitly chosen compatibility integrations. They do not themselves start subagents.
+
 ## The workflow
 
 1. Run the current skill on validation tasks to establish a baseline.

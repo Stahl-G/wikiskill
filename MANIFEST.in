@@ -1,9 +1,9 @@
-include README.md README_zh-CN.md NOTICE.md LICENSE
+include README.md README_zh-CN.md NOTICE.md LICENSE CHANGELOG.md
 recursive-include third_party *
 recursive-include docs *.md *.json
 recursive-include tests *.py *.csv *.json *.txt
 recursive-include scripts *.py
-recursive-include src/wikiskill/resources *.md *.json *.sha256
+recursive-include src/wikiskill/resources *.md *.json *.sha256 *.toml *.yaml
 recursive-include src/wikiskill/alfworld *.sh
 
 recursive-include skills *.md *.yaml

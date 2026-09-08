@@ -157,6 +157,21 @@ wikiskill status runs/demo
 
 独立 Agent 已通过安装后的产品入口完成这套表格流程，包括 Wiki 维护和候选验证。[实际结果与发现的配置问题](docs/product-first-use-validation.md)。
 
+## v0.1.1 原生子 Agent
+
+主 Agent 负责协调。每个任务由新上下文的执行子 Agent 完成，Wiki Maintainer 和 Skill Proposer 也分别运行；候选验证使用新的任务上下文。CLI 提供分角色的上下文包并记录结果，实际创建子 Agent 使用宿主原生工具。
+
+```bash
+# 在准备使用 WikiSkill 的项目中运行：
+wikiskill agents install --runtime codex --project .
+# Claude Code 使用：
+wikiskill agents install --runtime claude-code --project .
+```
+
+安装内容包括协调入口 Skill 和三份角色配置。之后告诉 Agent 用 WikiSkill 做一轮，它会负责派发、等待与提交；已有不同内容的文件不会被覆盖。[宿主操作流程](skills/wikiskill/references/native-subagents.md) · [验证范围](docs/native-subagents-0.1.1.md)。
+
+Codex 原生新上下文派发已进行实际流程检查。Claude Code 配置已提供并通过语法检查，尚未进行本机 Claude 推理验证。新上下文仍可能接收宿主项目说明和记忆，不等于文件系统隔离。
+
 ## 查看进度与使用结果
 
 Agent 会根据你的例子和验收标准整理任务文件。你可以随时检查准备情况、进度和结果：

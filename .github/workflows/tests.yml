@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install '.[dev]'
+      - run: python scripts/sync_native_assets.py --check
       - run: python -m pytest -q
       - run: python scripts/check_research_final_20260907.py
       - run: python scripts/check_repeatability_20260908.py
@@ -29,5 +30,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install '.[dev]'
-      - run: python -m pytest -q tests/test_product.py tests/test_product_views.py tests/test_product_install.py
+      - run: python -m pytest -q tests/test_product.py tests/test_product_views.py tests/test_product_install.py tests/test_native_agents.py
       - run: wikiskill capabilities

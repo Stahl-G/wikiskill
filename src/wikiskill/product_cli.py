@@ -2,7 +2,7 @@
 from pathlib import Path
 import json
 
-COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities','scorer','preflight','report','install','restore'}
+COMMANDS={'start','tasks','next','record','learn','propose','feedback','retry','export','capabilities','scorer','preflight','report','install','restore','agents','dispatch','bind-agent','collect','fail'}
 
 
 def register(sub):
@@ -10,6 +10,7 @@ def register(sub):
     start.add_argument('workspace',type=Path)
     for flag in ['tasks','skill','project']:start.add_argument('--'+flag,type=Path)
     start.add_argument('--from',dest='from_workspace',type=Path,help='Carry retained skill, Wiki and feedback into a new task set')
+    start.add_argument('--agent-runtime',choices=['codex','claude-code'],help='Require fresh native subagent submissions')
     start.add_argument('--rounds',type=int,default=1)
     start.add_argument('--direction',choices=['maximize','minimize'],default='maximize')
     start.add_argument('--min-improvement',type=float,default=0.)
@@ -31,6 +32,25 @@ def register(sub):
         if name=='feedback':
             g=p.add_mutually_exclusive_group(required=True);g.add_argument('--text');g.add_argument('--file',type=Path);p.add_argument('--source')
         if name=='export':p.add_argument('destination',type=Path)
+    agents=sub.add_parser('agents',help='Install native host roles and the coordinating entry skill')
+    agent_actions=agents.add_subparsers(dest='agents_action',required=True)
+    agent_install=agent_actions.add_parser('install')
+    agent_install.add_argument('--runtime',choices=['codex','claude-code'],required=True)
+    agent_install.add_argument('--project',type=Path,required=True)
+    dispatch=sub.add_parser('dispatch',help='Prepare minimal native subagent handoffs; no model calls')
+    dispatch.add_argument('workspace',type=Path)
+    dispatch.add_argument('--runtime',choices=['codex','claude-code'],required=True)
+    dispatch.add_argument('--count',type=int,default=1)
+    bind=sub.add_parser('bind-agent',help='Record the actual host-returned fresh subagent ID')
+    bind.add_argument('workspace',type=Path);bind.add_argument('--request',required=True)
+    bind.add_argument('--agent-id',required=True);bind.add_argument('--runtime',choices=['codex','claude-code'],required=True)
+    bind.add_argument('--context',choices=['fresh'],required=True)
+    collect=sub.add_parser('collect',help='Submit the bound subagent output through normal scoring/learning/gating')
+    collect.add_argument('workspace',type=Path);collect.add_argument('--request',required=True)
+    collect.add_argument('--score',type=float);collect.add_argument('--feedback',default='')
+    collect.add_argument('--success',choices=['true','false'])
+    fail=sub.add_parser('fail',help='Preserve a native delegation or role failure for explicit recovery')
+    fail.add_argument('workspace',type=Path);fail.add_argument('--request',required=True);fail.add_argument('--error',required=True)
     sc=sub.add_parser('scorer',help='Inspect or locally authorize an external scorer')
     sp=sc.add_subparsers(dest='scorer_action',required=True)
     for action in ['inspect','trust']:
@@ -54,6 +74,13 @@ def register(sub):
 def handle(args):
     from . import product as p
     c=args.command
+    if c in ('agents','dispatch','bind-agent','collect','fail'):
+        from . import native_agents as n
+        if c=='agents':return n.install(args.project,args.runtime)
+        if c=='dispatch':return n.dispatch(args.workspace,args.runtime,args.count)
+        if c=='bind-agent':return n.bind(args.workspace,args.request,args.agent_id,args.runtime,args.context)
+        if c=='collect':return n.collect(args.workspace,args.request,score=args.score,feedback=args.feedback,success=None if args.success is None else args.success=='true')
+        return n.fail(args.workspace,args.request,args.error)
     if c in ('install','restore'):
         from . import product_install
         return product_install.install(args.workspace,args.destination,replace=args.replace) if c=='install' else product_install.restore(args.destination,args.backup)
@@ -62,7 +89,7 @@ def handle(args):
         return views.preflight(args.workspace) if c=='preflight' else views.report(args.workspace)
     if c=='capabilities':return p.capabilities()
     if c=='scorer':return p.scorer_inspect(args.workspace) if args.scorer_action=='inspect' else p.scorer_trust(args.workspace,args.fingerprint)
-    if c=='start':return p.start(args.workspace,tasks=args.tasks,skill=args.skill,rounds=args.rounds,direction=args.direction,min_improvement=args.min_improvement,scorer=json.loads(args.scorer) if args.scorer else None,scorer_timeout=args.scorer_timeout,project=args.project,from_workspace=args.from_workspace,trust_scorer=args.trust_scorer)
+    if c=='start':return p.start(args.workspace,tasks=args.tasks,skill=args.skill,rounds=args.rounds,direction=args.direction,min_improvement=args.min_improvement,scorer=json.loads(args.scorer) if args.scorer else None,scorer_timeout=args.scorer_timeout,project=args.project,from_workspace=args.from_workspace,trust_scorer=args.trust_scorer,agent_runtime=args.agent_runtime)
     if c=='tasks':return p.set_tasks(args.workspace,args.file)
     if c=='next':return p.next_work(args.workspace,args.count)
     if c=='record':return p.record(args.workspace,args.request,output=args.output,score=args.score,feedback=args.feedback,success=None if args.success is None else args.success=='true',model=args.model,runtime=args.runtime,error=args.error,trace=args.trace,effort=args.effort)

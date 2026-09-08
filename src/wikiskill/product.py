@@ -115,6 +115,8 @@ def _load(root):
         kind=e['type']; value=e['value']
         if kind=='tasks': s['tasks']=value['tasks']
         elif kind=='request': s['requests'][value['id']]={**value,'status':'pending'}
+        elif kind=='handoff': s['requests'][value['request_id']]['handoff']=value
+        elif kind=='delegated': s['requests'][value['request_id']]['delegation']=value
         elif kind=='result':
             s['results'][value['request_id']]=value; s['requests'][value['request_id']]['status']='complete'
         elif kind=='failure': s['requests'][value['request_id']].update(status='failed',error=value['error'],failed_output=value.get('output'))
@@ -150,11 +152,12 @@ def _store_file(root, path, name):
     return {'file':target.relative_to(root).as_posix(),'sha256':file_hash(target)},target
 
 
-def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_improvement=0., scorer=None, scorer_timeout=120, project=None, from_workspace=None, trust_scorer=False):
+def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_improvement=0., scorer=None, scorer_timeout=120, project=None, from_workspace=None, trust_scorer=False, agent_runtime=None):
     if isinstance(rounds,bool) or not isinstance(rounds,int) or rounds<1 or direction not in ('maximize','minimize') or finite(min_improvement)<0 or finite(scorer_timeout)<=0:
         raise ValueError('Use positive rounds/timeouts, a valid direction and nonnegative minimum improvement')
     if scorer is not None and (not isinstance(scorer,list) or not scorer or not all(isinstance(x,str) for x in scorer)):
         raise ValueError('Scorer must be a nonempty JSON command array, not a shell command')
+    if agent_runtime not in (None,'codex','claude-code'):raise ValueError('Choose codex or claude-code for native subagents')
     root=Path(root).resolve()
     if root.exists() and any(root.iterdir()): raise ValueError('Workspace is not empty; use next/status to resume')
     loaded=normalize_tasks(tasks) if tasks else []
@@ -177,7 +180,7 @@ def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_i
         config={'schema_version':SCHEMA,'created_at':now(),'rounds':rounds,'direction':direction,
                 'min_improvement':float(min_improvement),'scorer':scorer,'scorer_timeout':scorer_timeout,
                 'project':str(Path(project or Path.cwd()).resolve()),'initial_skill':initial,'initial_knowledge':inherited,
-                'execution':'host_agent','environment':'host_default','model':'caller_selected'}
+                'execution':'host_agent','environment':'host_default','model':'caller_selected','agent_runtime':agent_runtime}
         write(root/'config.json',config,immutable=True);write(root/'config.sha256.json',{'sha256':digest(config)},immutable=True)
         s=_load(root)
         if loaded:s=_event(root,s,'tasks',{'tasks':loaded})
@@ -310,6 +313,11 @@ def _check_scorer_comparison(s,info):
         raise ValueError('Scorer changed after recorded scores. Start a new workspace for a consistent comparison; old outputs and scores remain preserved.')
 
 
+def _require_agent(state,request):
+    if (state['config'].get('agent_runtime') or request.get('handoff')) and not request.get('delegation'):
+        raise ValueError('Native workflow requires dispatch and bind-agent before submission; do not execute the role in the coordinator context')
+
+
 def record(root,request_id,output=None,score=None,feedback='',success=None,model=None,runtime=None,error=None,trace=None,effort=None):
     with locked(root) as root:
         s=_load(root);req=_request(s,request_id,'task')
@@ -319,6 +327,7 @@ def record(root,request_id,output=None,score=None,feedback='',success=None,model
             if score is not None and finite(score)!=row['score']:raise ValueError('Completed score differs')
             return _status(root,s)
         if error:return _status(root,_event(root,s,'failure',{'request_id':request_id,'error':error}))
+        _require_agent(s,req)
         if output is None:raise ValueError('An actual output file is required')
         _check_task_files(s)
         scorer_info=None
@@ -363,6 +372,7 @@ def learn(root,request_id,patterns_file):
         if req['status']=='complete':
             if file_hash(patterns_file)!=req['submission']['sha256']:raise ValueError('Completed Wiki submission differs')
             return _status(root,s)
+        _require_agent(s,req)
         context=read(root/req['context_file']);allowed={x['source_id'] for x in context['training_records']}|{x['id'] for x in context['human_feedback']}|{x['source_id'] for x in context['wiki'].values()}
         patterns={}
         for item in data['patterns']:
@@ -383,6 +393,7 @@ def propose(root,request_id,skill=None,note='',no_action=False):
             previous=req['proposal']
             if previous['no_action']!=no_action or previous['note']!=note or skill and file_hash(skill)!=previous['skill']['sha256']:raise ValueError('Completed proposal differs')
             return _status(root,s)
+        _require_agent(s,req)
         files=[];stored=None
         if skill:
             if not Path(skill).read_text(encoding='utf-8').strip():raise ValueError('Skill must not be empty')
@@ -438,7 +449,7 @@ def _status(root,s):
             'direction':s['config']['direction'],'skill':str(root/current['file']) if current else None,
             'completed_tasks':len(s['results']),'pending_requests':[r['id'] for r in s['requests'].values() if r['status']=='pending'],
             'failed_requests':failed,'wiki':str(root/'wiki/index.md'),'feedback_count':len(s['feedback']),'history':s['history'],
-            'execution':'host_agent','model':'caller_selected','environment':'host_default'}
+            'execution':'host_agent','model':'caller_selected','environment':'host_default','agent_runtime':s['config'].get('agent_runtime')}
 
 
 def status(root):
@@ -459,9 +470,10 @@ def status(root):
 def capabilities():
     return {'product':{'execution':'host_agent','model':'caller_selected','environment':'host_default',
             'platforms':['macOS','Linux','Windows'],'scoring':'finite numeric scores; maximize or minimize',
+            'native_hosts':['codex','claude-code'],'native_orchestration':'Host native subagent tool; dispatch/bind-agent/collect, fresh context per request',
             'hard_sample_limit':None,'hard_round_limit':None,'external_scorer':'JSON stdin/stdout command',
             'scorer_authorization':'Local fingerprint receipt; never imported from a workspace',
-            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report']},
+            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report','agents install','dispatch','bind-agent','collect','fail']},
             'research':{'spreadsheet-study':'Separate macOS isolated Luna/high research/integration path',
                         'evolve':'Legacy Codex-backed domain evolution'},
             'available_executables':{n:shutil.which(n) for n in ('python','python3','codex','claude')}}

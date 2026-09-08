@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wikiskill-research"
-version = "0.1.0"
+version = "0.1.1"
 description = "Improve reusable agent skills from tasks and feedback with your own model and tools"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -26,7 +26,7 @@ wikiskill = "wikiskill.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-wikiskill = ["resources/**/*.md", "resources/**/*.json", "resources/**/*.sha256", "resources/**/*.mjs", "alfworld/*.sh"]
+wikiskill = ["resources/**/*.md", "resources/**/*.json", "resources/**/*.sha256", "resources/**/*.mjs", "resources/**/*.toml", "resources/**/*.yaml", "alfworld/*.sh"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

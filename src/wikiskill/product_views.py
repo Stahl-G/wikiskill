@@ -112,6 +112,7 @@ def report(root):
             'baseline_score': baseline_score if baseline_complete else None,
             'baseline_completed': len(baseline), 'baseline_complete': baseline_complete,
             'retained_score': s['best_score'], 'retained_skill': s['current_skill'],
+            'delegations': [{'request_id':r['id'],'kind':r['kind'],'status':r['status'],**r['delegation']} for r in s['requests'].values() if r.get('delegation')],
             'rounds': comparisons, 'patterns': s['patterns'], 'feedback_count': len(s['feedback']),
             'wiki': str(root / 'wiki/index.md'),
             'evaluation': 'Validation selection under the host environment; no held-out or statistical improvement claim.',
@@ -141,6 +142,14 @@ def report_markdown(value):
             # A fence longer than any run of backticks in user content keeps the diff literal.
             fence = '`' * max(3, max((len(x) for x in re.findall(r'`+', g['diff'])), default=0) + 1)
             lines += ['', 'Skill changes:', '', fence + 'diff', g['diff'], fence, '']
+    lines += ['', '## Agent execution', '']
+    if value['delegations']:
+        for d in value['delegations']:
+            reuse='; reused execution from '+d['reused_from'] if d.get('reused_from') else ''
+            lines.append(f"- {d['request_id']}: {d['runtime']} / {d['agent_id']} / {d['context_mode']}{reuse}")
+        lines.append('These are host-reported IDs and context modes, not independent isolation attestations.')
+    else:
+        lines.append('No native subagent provenance recorded (direct-host or legacy workflow).')
     lines += ['', '## Learned patterns', '']
     for name, pattern in value['patterns'].items():
         lines += ['### ' + name, '', pattern['content'], '', 'Sources: ' + ', '.join(pattern['sources']), '']

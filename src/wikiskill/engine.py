@@ -19,6 +19,7 @@ import threading
 from .k4_lock import workspace_lock
 from .jsonl import read_jsonl
 from .settings import RESOURCES
+from . import __version__
 from .officeqa.loop import eq4_accepted, mean_accuracy
 from .officeqa.wiki_agents import build_maintainer, build_proposer
 from .wiki import append_skill_impact, SkillImpactEntry
@@ -86,7 +87,7 @@ def initialize(root, config):
     if config['workers'] < 1 or config['iterations'] < 1 or config['timeout'] < 1:
         raise ValueError('workers, iterations and timeout must be positive')
     root.mkdir(parents=True, exist_ok=True)
-    config = dict(config, created_at=now(), engine_version='0.1.0')
+    config = dict(config, created_at=now(), engine_version=__version__)
     template = 'officeqa' if config['domain'] in {'officeqa', 'officeqa-retrieval', 'demo'} else config['domain']
     shutil.copytree(RESOURCES / template / 'wiki', root / 'wiki')
     (root / 'wiki/patterns').mkdir(exist_ok=True)

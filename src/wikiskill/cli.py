@@ -3,11 +3,12 @@ import argparse
 import json
 import shutil
 from pathlib import Path
+from . import __version__
 
 
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='wikiskill',description='Compile experience into validated agent skills')
-    parser.add_argument('--version',action='version',version='WikiSkill 0.1.0')
+    parser.add_argument('--version',action='version',version=f'WikiSkill {__version__}')
     sub=parser.add_subparsers(dest='command',required=True)
     init=sub.add_parser('init',help='Initialize an empty experiment; no model calls')
     init.add_argument('workspace',type=Path)

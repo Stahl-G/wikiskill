@@ -86,6 +86,21 @@ We froze the Spreadsheet skill above and compared **Luna/high with and without i
 
 The two follow-up runs—the primary repeatability comparison—averaged **+13.31 percentage points**, with a task-cluster bootstrap 95% interval of **[+9.35, +17.45] pp**. This measures one frozen skill on a reused task set; the score checks the requested cell values. The experiments ran in the originating research harness. [Methods, costs, other domains, and full evidence](docs/research-repeatability-20260908.md)
 
+## Native subagents in v0.1.1
+
+The main agent coordinates. Separate subagents execute each task, maintain the Wiki, and propose a skill. Candidate validation uses fresh task contexts. The CLI prepares role-specific handoffs and records results; your host creates the agents using its native tools.
+
+```bash
+# Run in the project where you want to use WikiSkill:
+wikiskill agents install --runtime codex --project .
+# For Claude Code instead:
+wikiskill agents install --runtime claude-code --project .
+```
+
+This installs the coordinating skill and three native role definitions. Then ask your agent to use WikiSkill for one round; it handles dispatch, waiting and submission. Existing differing files are preserved. [Host workflow](skills/wikiskill/references/native-subagents.md) · [Validation scope](docs/native-subagents-0.1.1.md).
+
+Codex native fresh-context delegation has a live workflow check. Claude Code definitions are provided and syntax-checked; Claude live inference has not been verified here. Fresh child contexts still inherit host policies and may receive project instructions or memory. They are not filesystem sandboxes.
+
 ## Quick start
 
 Python **3.11+** for the controller. Product mode uses your agent's normal environment on macOS, Linux or Windows.
