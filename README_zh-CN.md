@@ -8,6 +8,15 @@
 
 [English](README.md) · [安装入口技能](#快速开始) · [产品指南](docs/product-guide.md) · [实验结果](docs/research-repeatability-20260908.md) · [原论文](https://arxiv.org/abs/2608.27454)
 
+## 在 BriefLoop 中使用
+
+[BriefLoop](https://github.com/Stahl-G/briefloop)（[briefloop.ai](https://briefloop.ai)）是我们正在开发的本地报告工作台，面向行业研究、战略与 IR：把分散材料整理成可编辑的简报，逐项追溯重要结论的依据，并经过独立审阅。WikiSkill 是它内置的学习循环，安装 BriefLoop 即自带：
+
+1. **反馈进入 Wiki**：你直接改稿、写评论（可标为"明确要求"），以及经独立审阅确认的纠错，都作为反馈交给 Wiki Maintainer，整理成带来源的工作区 Wiki，人类原话保留。
+2. **经验写成技能**：Skill Proposer 根据 Wiki，为写报告的角色提出候选技能。
+3. **比较后才启用**：BriefLoop 用固定来源重写以往任务，旧技能和候选技能各写一份，由独立的 Evaluator 成对比较（更好／持平／更差，并逐条核对你的明确要求）。确有改善才启用；候选被拒绝，Wiki 中的经验仍然保留。
+4. **先确认再花费**：学习默认关闭，开启前显示并要求确认调用上限；Maintainer、Proposer、Evaluator 可以分别选用模型。
+
 ## 论文提出了什么？
 
 Agent 每次工作都会产生有价值的经验：哪次搜索找到了正确文件、哪个公式出了错、怎样修复才有效。论文关心的是，怎样把这些经验变成可以跨任务积累的知识。
@@ -75,7 +84,7 @@ Maintainer 在 Wiki 中记下了这句话：
 | **推理任务** | 复用解题步骤，减少反复出现的错误 | 数学任务适配器 |
 | **自己的可评分工作流** | 学习针对特定输入、工具和反馈的操作方法 | 任务 JSON、当前 Agent，以及外部评分器或明确的人类／评审评分 |
 
-对于简报、研报或 BriefLoop 这样的多角色工作流，下一步是从已完成任务和人类纠正中学习取证、分析与写作方法。这属于[后续应用方向](docs/research-next-steps.md)，尚未作为内置后端提供。
+简报、研报这类多角色工作流已经在 BriefLoop 中使用 WikiSkill（见[上文](#在-briefloop-中使用)）。更多研究与实用化方向见[下一步](docs/research-next-steps.md)。
 
 ## 实验结果：同一份技能，三次运行都有提升
 
