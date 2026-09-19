@@ -20,6 +20,10 @@ Codex installs `.codex/agents/wikiskill-{executor,maintainer,proposer}.toml` and
 
 Both hosts can inherit project instructions, tools, permissions and memory context. This workflow deliberately limits the handoff contents; it does not promise OS-level isolation or fully untouched benchmark conditions.
 
+## Other hosts
+
+Codex and Claude Code are the **recommended** runtimes: their role assets ship with this package and their native flow was exercised. They are not the only ones allowed. Any host that can start a child with fresh context may run the same handoffs: pass its own short name (lowercase letters, digits, `.`, `-`, `_`) to `start --agent-runtime`, `dispatch --runtime` and `bind-agent --runtime`, and bind the handle that host actually returned. The runtime name is recorded provenance, not a permission; the same fresh-context, one-child-per-request and collect rules apply. `agents install` only covers the recommended hosts, because it copies their packaged role files; other hosts read each handoff's `role.md` directly.
+
 ## Run the authorized cycle
 
 ```bash

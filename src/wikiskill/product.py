@@ -157,7 +157,9 @@ def start(root, *, tasks=None, skill=None, rounds=1, direction='maximize', min_i
         raise ValueError('Use positive rounds/timeouts, a valid direction and nonnegative minimum improvement')
     if scorer is not None and (not isinstance(scorer,list) or not scorer or not all(isinstance(x,str) for x in scorer)):
         raise ValueError('Scorer must be a nonempty JSON command array, not a shell command')
-    if agent_runtime not in (None,'codex','claude-code'):raise ValueError('Choose codex or claude-code for native subagents')
+    if agent_runtime is not None:
+        from .native_agents import runtime_name
+        agent_runtime=runtime_name(agent_runtime)
     root=Path(root).resolve()
     if root.exists() and any(root.iterdir()): raise ValueError('Workspace is not empty; use next/status to resume')
     loaded=normalize_tasks(tasks) if tasks else []
@@ -470,7 +472,7 @@ def status(root):
 def capabilities():
     return {'product':{'execution':'host_agent','model':'caller_selected','environment':'host_default',
             'platforms':['macOS','Linux','Windows'],'scoring':'finite numeric scores; maximize or minimize',
-            'native_hosts':['codex','claude-code'],'native_orchestration':'Host native subagent tool; dispatch/bind-agent/collect, fresh context per request',
+            'native_hosts':['codex','claude-code'],'native_hosts_note':'Recommended hosts; any host with a fresh-context subagent tool may run the handoffs under its own runtime name','native_orchestration':'Host native subagent tool; dispatch/bind-agent/collect, fresh context per request',
             'hard_sample_limit':None,'hard_round_limit':None,'external_scorer':'JSON stdin/stdout command',
             'scorer_authorization':'Local fingerprint receipt; never imported from a workspace',
             'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report','agents install','dispatch','bind-agent','collect','fail']},

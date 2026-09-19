@@ -122,3 +122,18 @@ def test_dispatch_will_not_mix_direct_and_native_workflows(tmp_path):
     root=tmp_path/'direct';p.start(root,tasks=tasks(tmp_path,n=1))
     with pytest.raises(ValueError,match='--agent-runtime'):n.dispatch(root,'codex')
     assert not p.status(root)['pending_requests']
+
+
+def test_any_host_can_run_handoffs_and_codex_claude_code_are_recommended(tmp_path):
+    assert n.RECOMMENDED_RUNTIMES==('codex','claude-code') and n.RUNTIMES==n.RECOMMENDED_RUNTIMES
+    for bad in ('','Codex','has space','../x',None):
+        with pytest.raises(ValueError,match='recommended: codex, claude-code'):n.runtime_name(bad)
+    # Packaged role assets exist for the recommended hosts only; running does not need them.
+    with pytest.raises(ValueError,match='No packaged role assets for opencode'):n.install(tmp_path/'project','opencode')
+    root=tmp_path/'other-host';p.start(root,tasks=tasks(tmp_path,n=1),agent_runtime='opencode')
+    with pytest.raises(ValueError,match='Runtime differs'):n.dispatch(root,'codex')
+    h=n.dispatch(root,'opencode')['handoffs'][0]
+    n.bind(root,h['request_id'],'ses_actual_handle','opencode','fresh')
+    out=Path(h['output_directory'])/'answer';out.write_text('actual');result(h,{'output':out.name})
+    n.collect(root,h['request_id'],score=1)
+    assert p._load(root)['requests'][h['request_id']]['delegation']['runtime']=='opencode'
