@@ -8,6 +8,15 @@ Built from the ideas in **[WikiSkill: Compiling Agent Experience into Persistent
 
 [中文](README_zh-CN.md) · [Install the skill](#quick-start) · [Product guide](docs/product-guide.md) · [Results](docs/research-repeatability-20260908.md) · [Original paper](https://arxiv.org/abs/2608.27454)
 
+## Used in BriefLoop
+
+[BriefLoop](https://github.com/Stahl-G/briefloop) ([briefloop.ai](https://briefloop.ai)) is the local report workbench we are building for industry research, strategy and investor relations: it turns scattered material into editable briefs, traces each important claim to its evidence, and runs an independent review. WikiSkill is its built-in learning loop and ships with it:
+
+1. **Feedback into the Wiki**: your edits to a draft, your comments (optionally marked as explicit requirements) and corrections confirmed by independent review go to the Wiki Maintainer, which consolidates them into a sourced workspace Wiki and keeps your original words.
+2. **Lessons into skills**: the Skill Proposer drafts a candidate skill for the report-writing roles.
+3. **Compare before adopting**: BriefLoop rewrites past tasks on their frozen sources with the current and the candidate skill, and an independent Evaluator compares each pair (better, tie or worse, checking each explicit requirement). A candidate is adopted only when it improves; a rejected candidate still leaves its lessons in the Wiki.
+4. **Confirm before spending**: learning is off by default and asks you to confirm a call budget first; the Maintainer, Proposer and Evaluator can each use their own model.
+
 ## The idea behind the paper
 
 An agent already produces useful experience every time it works: a search that found the right document, a formula that failed, a repair that solved the problem. The paper asks how to turn that experience into knowledge that keeps helping across tasks.
@@ -71,7 +80,7 @@ WikiSkill is useful when you have recurring tasks, meaningful feedback, and a wa
 | **Reasoning tasks** | Reuse problem-solving procedures and avoid recurring mistakes | Mathematics adapter |
 | **Your own scored workflow** | Learn procedures specific to your inputs, tools, and feedback | Product task JSON, your agent, and an external scorer or declared human/rubric rating |
 
-For recurring reports or multi-agent workflows such as BriefLoop, the next step is to learn evidence gathering, analysis, and writing procedures from completed work and human corrections. That integration is a [planned application](docs/research-next-steps.md), not a bundled backend.
+Multi-role report workflows already use WikiSkill inside BriefLoop (see [above](#used-in-briefloop)). Further research and product directions are in [next steps](docs/research-next-steps.md).
 
 ## Results: the same skill helped across three runs
 
