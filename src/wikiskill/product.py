@@ -132,12 +132,12 @@ def _load(root):
             s['candidate']=None; s['round']+=1
             s['phase']='complete' if s['round']>config['rounds'] else 'train'
         elif kind=='feedback': s['feedback'].append(value)
-        elif kind=='feedback_mode': s['feedback_mode']=True
+        elif kind=='feedback_mode': s['feedback_mode']=True;s['explicit_requirement_sources']=value.get('explicit_requirement_sources',[])
         elif kind=='feedback_gate':
             s['history'].append(value)
             if value['accepted']: s['current_skill']=value['skill']
             s['candidate']=None; s['round']+=1
-            s['phase']='complete' if value['accepted'] or value.get('no_action') or s['round']>config['rounds'] else 'maintainer'
+            s['phase']='complete' if value['accepted'] or (value.get('no_action') and not value.get('requirements_pending')) or s['round']>config['rounds'] else 'maintainer'
         else: raise ValueError('Unknown journal event: '+kind)
         s['events']=i;s['last_hash']=file_hash(p)
     if s['current_skill'] and file_hash(root/s['current_skill']['file'])!=s['current_skill']['sha256']:
@@ -259,7 +259,7 @@ def _context(root,s):
     records=[{**s['results'][rid],'source_id':rid,'task':by[s['requests'][rid]['task_id']]} for rid in sorted(ids)]
     return {'round':s['round'],'current_skill':s['current_skill'],'wiki':{name:{**v,'source_id':'pattern-'+digest([name,v])[:16]} for name,v in s['patterns'].items()},'human_feedback':s['feedback'],
             'training_records':records,'gate_history':s['history'],
-            'instructions':'Learn procedures from training outcomes and feedback. Review successful and failed cases when available. Do not turn one-off reference values into reusable instructions.'}
+            'instructions':'Explicit human requirements (learning_intent=explicit_requirement, origin=human) are binding design constraints, not optional score optimizations. Preserve them in Wiki and Skill. When gate_history reports REVISION_REQUIRED, revise the candidate to address regressions without removing those requirements; do not repeat the unchanged proposal. Cite the exact feedback source. Learn procedures from training outcomes and feedback. Review successful and failed cases when available. Do not turn one-off reference values into reusable instructions.'}
 
 
 def next_work(root,count=1):

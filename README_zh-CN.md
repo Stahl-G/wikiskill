@@ -191,6 +191,8 @@ wikiskill agents install --runtime claude-code --project .
 
 安装内容包括协调入口 Skill 和三份角色配置。之后告诉 Agent 用 WikiSkill 做一轮，它会负责派发、等待与提交；已有不同内容的文件不会被覆盖。[宿主操作流程](skills/wikiskill/references/native-subagents.md) · [验证范围](docs/native-subagents-0.1.1.md)。
 
+其他能启动新上下文子 Agent 的宿主（如 opencode）也可以用自己的运行时名称执行同一套交接；角色配置文件只为 Codex 和 Claude Code 提供。[其他宿主](skills/wikiskill/references/native-subagents.md#other-hosts)。
+
 Codex 原生新上下文派发已进行实际流程检查。Claude Code 配置已提供并通过语法检查，尚未进行本机 Claude 推理验证。新上下文仍可能接收宿主项目说明和记忆，不等于文件系统隔离。
 
 ## 查看进度与使用结果
@@ -229,7 +231,7 @@ wikiskill report runs/my-task
 
 ### 从反馈开始的应用接口
 
-`wikiskill.feedback_loop.begin/work/finish` 允许应用直接从已保存的改稿和评论开始维护 Wiki，无需先重跑训练集；继续复用原生 Maintainer 和 Proposer 交接。应用提交真实的成对比较结果，可选轻量策略按改善多于退步且无已报告实质回退来选择候选，平局保留旧版，并在配置轮数内结束。原数值评分流程不变。这是应用集成接口，不是基准效果提升的证明。
+`wikiskill.feedback_loop.begin/work/finish` 允许应用直接从已保存的改稿和评论开始维护 Wiki，无需先重跑训练集；继续复用原生 Maintainer 和 Proposer 交接。应用提交真实的成对比较结果，可选轻量策略按改善多于退步且无已报告实质回退来选择候选，平局保留旧版，并在配置轮数内结束。标记为 `origin: human` 且 `learning_intent: explicit_requirement` 的反馈是硬性要求：每组比较都必须附有证据的要求核对，只有全部满足、且没有退步和回退时才采用候选，否则本轮返回 `REVISION_REQUIRED`，再走一轮 Maintainer/Proposer。输入不变时重复调用 `begin` 结果相同，输入变化会被拒绝；`skip` 用于没有可比较样本的批次，直接结束且不做采用决定。原数值评分流程不变。这是应用集成接口，不是基准效果提升的证明。
 
 ### 研究适配接口与论文角色提示
 

@@ -108,6 +108,8 @@ wikiskill agents install --runtime claude-code --project .
 
 This installs the coordinating skill and three native role definitions. Then ask your agent to use WikiSkill for one round; it handles dispatch, waiting and submission. Existing differing files are preserved. [Host workflow](skills/wikiskill/references/native-subagents.md) · [Validation scope](docs/native-subagents-0.1.1.md).
 
+Other hosts that can start a fresh-context child, such as opencode, can run the same handoffs under their own runtime name; role files are packaged only for Codex and Claude Code. [Other hosts](skills/wikiskill/references/native-subagents.md#other-hosts).
+
 Codex native fresh-context delegation has a live workflow check. Claude Code definitions are provided and syntax-checked; Claude live inference has not been verified here. Fresh child contexts still inherit host policies and may receive project instructions or memory. They are not filesystem sandboxes.
 
 ## Quick start
@@ -223,7 +225,7 @@ Framework code is MIT. Third-party scorers and prompt resources retain their own
 
 ### Feedback-first host API
 
-`wikiskill.feedback_loop.begin/work/finish` lets an application start from saved user revisions and comments instead of rerunning a training set before Wiki maintenance. Existing native Maintainer and Proposer handoffs are reused. A host supplies real paired comparison results; the optional lightweight policy accepts more better-than-worse cases without reported material regressions, retaining ties and stopping within the configured round limit. Original numeric scoring remains unchanged. This is an application integration API, not evidence of benchmark improvement.
+`wikiskill.feedback_loop.begin/work/finish` lets an application start from saved user revisions and comments instead of rerunning a training set before Wiki maintenance. Existing native Maintainer and Proposer handoffs are reused. A host supplies real paired comparison results; the optional lightweight policy accepts more better-than-worse cases without reported material regressions, retaining ties and stopping within the configured round limit. Feedback marked `origin: human` and `learning_intent: explicit_requirement` becomes a binding constraint: every pair must report evidence-backed requirement checks, a candidate is adopted only when all are fulfilled with no worse cases or regressions, and otherwise the round returns `REVISION_REQUIRED` for another Maintainer/Proposer pass. `begin` is idempotent for unchanged inputs and refuses changed ones; `skip` closes a batch that has no comparable cases without an adoption decision. Original numeric scoring remains unchanged. This is an application integration API, not evidence of benchmark improvement.
 
 ### Research adapters and paper role prompts
 
