@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1
+
+Upstreams the WikiSkill fixes that BriefLoop 0.26.3 carried in its vendored copy, so the standalone package and BriefLoop share one source.
+
+- Windows: workspace locks use `msvcrt` on Windows and `fcntl` elsewhere; engine journals are read and written as UTF-8.
+- Feedback-first API: feedback with `origin: human` and `learning_intent: explicit_requirement` is a binding constraint. Every compared pair needs evidence-backed requirement checks; a candidate is adopted only when all are fulfilled with no worse cases or regressions, otherwise the round is `REVISION_REQUIRED` and returns to the Maintainer. `begin` is idempotent and refuses changed inputs; `skip` closes a batch without comparable cases and makes no adoption decision.
+- Native subagents: any fresh-context host may run the handoffs under its own short runtime name (for example `opencode`). Codex and Claude Code remain the recommended hosts with packaged role files.
+- CI runs the feedback-loop and MCP tests on Windows, macOS and Linux.
+- No research result was remeasured; historical records are unchanged.
+
 ## 0.2.0
 
 - MCP server: `python -m pip install 'wikiskill-research[mcp] @ git+https://github.com/Stahl-G/wikiskill.git'` and `wikiskill mcp` expose the host-agent workflow (start, next, record, learn, propose, feedback, retry, status, report, preflight, scorer inspection, export, capabilities) to any MCP client. Tools accept output, pattern and skill text directly and make no model calls. Scorer authorization, skill installation and restoration remain terminal-only.
