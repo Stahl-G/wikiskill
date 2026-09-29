@@ -1,15 +1,30 @@
 """Native-host handoffs. The host creates subagents; this module never calls a model."""
+import re
 from pathlib import Path
 from importlib.resources import files
 from . import product as p
 
-RUNTIMES = ('codex', 'claude-code')
+# Hosts whose role assets ship with this package and whose native subagent flow
+# was exercised. Any other host that can start a fresh-context child may run the
+# same handoffs: the runtime name is recorded provenance, not a permission.
+RECOMMENDED_RUNTIMES = ('codex', 'claude-code')
+RUNTIMES = RECOMMENDED_RUNTIMES  # earlier name, kept for callers
+_RUNTIME_NAME = re.compile(r'^[a-z0-9][a-z0-9._-]{0,63}$')
+
+
+def runtime_name(runtime):
+    """Any short host name; codex and claude-code are the recommended ones."""
+    if not isinstance(runtime, str) or not _RUNTIME_NAME.match(runtime):
+        raise ValueError('Name the host runtime in lowercase letters, digits, dot, dash or underscore '
+                         '(recommended: codex, claude-code; other hosts are allowed)')
+    return runtime
 RESOURCES = files('wikiskill').joinpath('resources/product')
 
 
 def install(project, runtime):
-    if runtime not in RUNTIMES:
-        raise ValueError('Choose codex or claude-code')
+    if runtime not in RECOMMENDED_RUNTIMES:
+        raise ValueError(f'No packaged role assets for {runtime}; they ship for codex and claude-code. '
+                         'Other hosts can run the dispatch handoffs directly: each handoff names its role.md.')
     project = Path(project).resolve()
     host = '.codex' if runtime == 'codex' else '.claude'
     targets = []
@@ -62,8 +77,7 @@ def _learning_context(root, state):
 
 
 def dispatch(root, runtime, count=1):
-    if runtime not in RUNTIMES:
-        raise ValueError('Choose codex or claude-code')
+    runtime = runtime_name(runtime)
     root = Path(root).resolve()
     state = p._load(root)
     if state['config'].get('agent_runtime') != runtime:
@@ -128,8 +142,9 @@ def dispatch(root, runtime, count=1):
 
 
 def bind(root, request_id, agent_id, runtime, context_mode):
-    if runtime not in RUNTIMES or context_mode != 'fresh' or not isinstance(agent_id, str) or not agent_id.strip():
-        raise ValueError('Record the actual host agent ID, supported runtime and fresh context')
+    runtime = runtime_name(runtime)
+    if context_mode != 'fresh' or not isinstance(agent_id, str) or not agent_id.strip():
+        raise ValueError('Record the actual host agent ID, its runtime and fresh context')
     with p.locked(root) as root:
         state = p._load(root)
         request = state['requests'].get(request_id)
