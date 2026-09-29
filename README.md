@@ -182,6 +182,7 @@ The existing benchmark adapters and the isolated macOS Spreadsheet study remain 
 | I want to… | Start here |
 |---|---|
 | Understand the method | [Original paper](https://huggingface.co/papers/2608.27454) |
+| See how closely this follows the paper | [Paper-to-code conformance](docs/paper-conformance.md) |
 | Inspect what the agents learned | [Wiki example](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md) and [evolved skill](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) |
 | Check the numbers | `python scripts/check_repeatability_20260908.py` |
 | Read all experiments, including mixed results | [Latest report](docs/research-repeatability-20260908.md) and [result history](docs/results.md) |

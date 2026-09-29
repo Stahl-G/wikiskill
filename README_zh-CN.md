@@ -155,6 +155,7 @@ wikiskill status runs/demo
 | 我想…… | 入口 |
 |---|---|
 | 理解原始方法 | [WikiSkill 论文](https://huggingface.co/papers/2608.27454) |
+| 查看与论文的对应程度 | [论文与代码对照](docs/paper-conformance.md)（英文） |
 | 看 Agent 到底学出了什么 | [Wiki 示例](src/wikiskill/resources/research/repeatability-20260908/wiki-deliver-the-recalculated-workbook.md)与[完整技能](src/wikiskill/resources/research/final-20260907/spreadsheet-SKILL.md) |
 | 自己核对分数 | `python scripts/check_repeatability_20260908.py` |
 | 阅读全部实验，包括不确定结果 | [最新报告](docs/research-repeatability-20260908.md)与[历史记录](docs/results.md) |
