@@ -218,3 +218,7 @@ wikiskill report runs/my-task
 ### 从反馈开始的应用接口
 
 `wikiskill.feedback_loop.begin/work/finish` 允许应用直接从已保存的改稿和评论开始维护 Wiki，无需先重跑训练集；继续复用原生 Maintainer 和 Proposer 交接。应用提交真实的成对比较结果，可选轻量策略按改善多于退步且无已报告实质回退来选择候选，平局保留旧版，并在配置轮数内结束。原数值评分流程不变。这是应用集成接口，不是基准效果提升的证明。
+
+### 研究适配接口与论文角色提示
+
+Python 集成可以通过 `domain_loader`、`maintainer_factory`、`proposer_factory` 回调复用 `wikiskill.engine.evolve()`，验证选择、回滚和账本仍由原 engine 管理。`wikiskill.paper_alignment.agents.PaperAgents` 使用原论文附录提示，交接仅提供路径与可见范围事实。领域 rollout 可按产品模式相同的 JSON stdin/stdout 协议接入外部 scorer。实验清单应绑定适配代码、输入和 scorer 配置；该接口不表示重新测量了历史结果。

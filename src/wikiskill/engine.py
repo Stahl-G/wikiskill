@@ -80,7 +80,7 @@ def state(root):
     return result
 
 
-def initialize(root, config):
+def initialize(root, config, *, wiki_template=None, agent_prompts=None):
     root = Path(root).resolve()
     if root.exists() and any(root.iterdir()):
         raise ValueError(f'Workspace is not empty: {root}; use evolve to resume')
@@ -88,8 +88,12 @@ def initialize(root, config):
         raise ValueError('workers, iterations and timeout must be positive')
     root.mkdir(parents=True, exist_ok=True)
     config = dict(config, created_at=now(), engine_version=__version__)
-    template = 'officeqa' if config['domain'] in {'officeqa', 'officeqa-retrieval', 'demo'} else config['domain']
+    template = wiki_template or ('officeqa' if config['domain'] in {'officeqa', 'officeqa-retrieval', 'demo'} else config['domain'])
     shutil.copytree(RESOURCES / template / 'wiki', root / 'wiki')
+    for name, text in (agent_prompts or {}).items():
+        if name not in {'maintainer.md', 'proposer.md'} or not isinstance(text, str) or not text.strip():
+            raise ValueError('Provide nonempty maintainer.md/proposer.md prompt text')
+        (root/'wiki/prompts'/name).write_text(text)
     (root / 'wiki/patterns').mkdir(exist_ok=True)
     (root / 'skills').mkdir()
     (root / 'skills/S0.md').write_text('')
@@ -200,7 +204,16 @@ def batch(root, phase, config, cases, rollout, skill):
     return [valid[uid] for uid in ids]
 
 
-def evolve(root):
+def evolve(root, *, domain_loader=None, maintainer_factory=None, proposer_factory=None):
+    """Run the existing loop with optional caller-bound domain/role adapters.
+
+    Adapters supply data, scored rollouts and validated role results; this engine
+    still owns iteration, validation selection, rollback and experiment records.
+    Callers must bind custom adapter sources/configuration in their manifest.
+    """
+    domain_loader = domain_loader or load_domain
+    maintainer_factory = maintainer_factory or build_maintainer
+    proposer_factory = proposer_factory or build_proposer
     root = Path(root).resolve()
     with workspace_lock(root):
         config = read(root/'manifest.json')
@@ -210,8 +223,8 @@ def evolve(root):
             if sha256((root/'wiki/prompts'/name).read_bytes()).hexdigest() != expected:
                 raise ValueError('Agent prompt changed during evolution')
         sync_impacts(root)
-        train, train_rollout = load_domain(config, 'train')
-        val, val_rollout = load_domain(config, 'val')
+        train, train_rollout = domain_loader(config, 'train')
+        val, val_rollout = domain_loader(config, 'val')
         if set(c.uid for c in train) & set(c.uid for c in val):
             raise ValueError('Train/val overlap')
         current = state(root)
@@ -240,10 +253,10 @@ def evolve(root):
                         # Retain before/after Wiki snapshots for review and recovery.
                         backup = directory/'wiki-before'
                         if not backup.exists():shutil.copytree(root/'wiki',backup)
-                        maintainer = build_maintainer(model=config['optimizer_model'],workdir=directory/'maintainer',reasoning_effort=config['optimizer_effort'])
+                        maintainer = maintainer_factory(model=config['optimizer_model'],workdir=directory/'maintainer',reasoning_effort=config['optimizer_effort'])
                         maintainer([outcome_file],iteration=iteration,wiki_dir=root/'wiki')
                         save(marker, {'at':now()})
-                    proposer = build_proposer(model=config['optimizer_model'],workdir=directory/'proposer',reasoning_effort=config['optimizer_effort'])
+                    proposer = proposer_factory(model=config['optimizer_model'],workdir=directory/'proposer',reasoning_effort=config['optimizer_effort'])
                     result = proposer(skill,[outcome_file],iteration=iteration,wiki_dir=root/'wiki').model_dump(mode='json')
                 save(proposal_file,result)
             proposal = read(proposal_file)

@@ -212,3 +212,7 @@ Framework code is MIT. Third-party scorers and prompt resources retain their own
 ### Feedback-first host API
 
 `wikiskill.feedback_loop.begin/work/finish` lets an application start from saved user revisions and comments instead of rerunning a training set before Wiki maintenance. Existing native Maintainer and Proposer handoffs are reused. A host supplies real paired comparison results; the optional lightweight policy accepts more better-than-worse cases without reported material regressions, retaining ties and stopping within the configured round limit. Original numeric scoring remains unchanged. This is an application integration API, not evidence of benchmark improvement.
+
+### Research adapters and paper role prompts
+
+Python integrations can reuse `wikiskill.engine.evolve()` with `domain_loader`, `maintainer_factory` and `proposer_factory` callbacks. The existing engine retains validation selection, rollback and journal ownership. `wikiskill.paper_alignment.agents.PaperAgents` supplies adapters using the original appendix prompts; its handoff contains paths and visibility facts only. Domain rollouts can consume an external scorer using the same JSON stdin/stdout contract as product mode. Bind adapter code, inputs and scorer configuration in the experiment manifest. Historical results are not remeasured by this interface.
