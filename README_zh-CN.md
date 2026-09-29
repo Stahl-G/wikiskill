@@ -144,7 +144,7 @@ wikiskill export runs/my-task ./improved-skill
 支持 MCP 的客户端（如 Cursor、Gemini CLI、Claude Desktop、Claude Code、Codex）可以用工具调用同一套流程：
 
 ```bash
-pip install 'wikiskill-research[mcp]'
+python -m pip install 'wikiskill-research[mcp] @ git+https://github.com/Stahl-G/wikiskill.git'
 wikiskill mcp   # stdio 服务器；在客户端的 MCP 设置中注册这条命令
 ```
 

@@ -171,7 +171,7 @@ Provide an external scorer with `--scorer '["{python}", "score.py"]'`, or record
 Clients that support MCP, such as Cursor, Gemini CLI, Claude Desktop, Claude Code and Codex, can drive the same workflow through tools:
 
 ```bash
-pip install 'wikiskill-research[mcp]'
+python -m pip install 'wikiskill-research[mcp] @ git+https://github.com/Stahl-G/wikiskill.git'
 wikiskill mcp   # stdio server; register this command in your client's MCP settings
 ```
 
