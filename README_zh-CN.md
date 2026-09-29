@@ -139,6 +139,17 @@ wikiskill export runs/my-task ./improved-skill
 
 可以用 `--scorer '["{python}", "score.py"]'` 接入自己的评分器；`{python}` 使用运行 WikiSkill 的 Python 解释器，不需要 `python` 命令别名。也可以记录人类或明确评审规则给出的分数。控制器发出工作请求，由当前 Agent 执行并记录实际结果。[任务格式、评分与完整用法](docs/product-guide.md) · [小型任务示例](examples/text-cleanup/)
 
+### 通过 MCP 接入
+
+支持 MCP 的客户端（如 Cursor、Gemini CLI、Claude Desktop、Claude Code、Codex）可以用工具调用同一套流程：
+
+```bash
+pip install 'wikiskill-research[mcp]'
+wikiskill mcp   # stdio 服务器；在客户端的 MCP 设置中注册这条命令
+```
+
+工具包括 `start`、`next`、`record`、`learn`、`propose`、`feedback`、`retry`、`status`、`report`、`preflight`、`scorer_inspect`、`export` 和 `capabilities`，可以直接传入输出、Wiki 模式和技能文本。工作区请使用绝对路径。服务器本身不调用模型。评分器授权、技能安装和恢复只能在终端完成，已接入的 Agent 无法自行批准评分器，也无法覆盖本地技能。
+
 ### 先体验离线示例
 
 ```bash

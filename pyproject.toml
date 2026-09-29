@@ -17,6 +17,7 @@ spreadsheet = ["openpyxl>=3.1"]
 datasets = ["huggingface-hub>=0.30", "pyarrow>=17", "pandas>=2"]
 plots = ["matplotlib>=3.8"]
 paper = ["PyYAML>=6"]
+mcp = ["mcp>=1.2,<2"]
 dev = ["pytest>=8", "openpyxl>=3.1", "build>=1", "PyYAML>=6"]
 
 [project.scripts]

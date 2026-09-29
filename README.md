@@ -166,6 +166,17 @@ External scorer commands are inspected and authorized once per unchanged local c
 
 Provide an external scorer with `--scorer '["{python}", "score.py"]'`, or record a human/rubric-based score. `{python}` uses WikiSkill’s own Python interpreter, including its virtual environment. The controller returns work requests; the host agent executes them and records the actual outputs. [Task format, scoring, and complete workflow](docs/product-guide.md) · [Small text example](examples/text-cleanup/) · [Workbook delivery example](examples/workbook-delivery/)
 
+### Connect over MCP
+
+Clients that support MCP, such as Cursor, Gemini CLI, Claude Desktop, Claude Code and Codex, can drive the same workflow through tools:
+
+```bash
+pip install 'wikiskill-research[mcp]'
+wikiskill mcp   # stdio server; register this command in your client's MCP settings
+```
+
+Tools cover `start`, `next`, `record`, `learn`, `propose`, `feedback`, `retry`, `status`, `report`, `preflight`, `scorer_inspect`, `export` and `capabilities`, and accept output, pattern and skill text directly. Use absolute workspace paths. The server makes no model calls. Scorer authorization, skill installation and restoration stay in the terminal, so a connected agent cannot approve its own scorer or overwrite local skills.
+
 ### Try an offline demo
 
 ```bash

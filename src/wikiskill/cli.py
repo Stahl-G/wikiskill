@@ -28,6 +28,7 @@ def main(argv=None):
     demo=sub.add_parser('demo',help='Deterministic offline demonstration; no model calls')
     demo.add_argument('workspace',type=Path)
     sub.add_parser('doctor',help='Check runtime availability without model calls')
+    sub.add_parser('mcp',help='Serve the host-agent workflow over MCP stdio; requires the mcp extra')
     report=sub.add_parser('results',help='Verify and summarize the bundled research snapshot')
     report.add_argument('--snapshot',type=Path)
     study=sub.add_parser('spreadsheet-study',help='Opt-in isolated macOS single-round Spreadsheet study')
@@ -52,6 +53,9 @@ def main(argv=None):
     product_cli.register(sub)
     args=parser.parse_args(argv)
     try:
+        if args.command=='mcp':
+            from .mcp_server import run
+            run();return 0
         if args.command in product_cli.COMMANDS:
             result=product_cli.handle(args)
             if args.command=='report' and args.format=='markdown':

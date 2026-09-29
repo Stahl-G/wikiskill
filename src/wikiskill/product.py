@@ -479,7 +479,7 @@ def capabilities():
             'native_hosts':['codex','claude-code'],'native_orchestration':'Host native subagent tool; dispatch/bind-agent/collect, fresh context per request',
             'hard_sample_limit':None,'hard_round_limit':None,'external_scorer':'JSON stdin/stdout command',
             'scorer_authorization':'Local fingerprint receipt; never imported from a workspace',
-            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report','agents install','dispatch','bind-agent','collect','fail']},
+            'commands':['start','tasks','next','scorer','record','learn','propose','feedback','retry','export','install','restore','status','preflight','report','agents install','dispatch','bind-agent','collect','fail','mcp']},
             'research':{'spreadsheet-study':'Separate macOS isolated Luna/high research/integration path',
                         'evolve':'Legacy Codex-backed domain evolution'},
             'available_executables':{n:shutil.which(n) for n in ('python','python3','codex','claude')}}
